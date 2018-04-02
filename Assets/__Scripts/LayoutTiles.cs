@@ -139,6 +139,7 @@ public class LayoutTiles : MonoBehaviour {
                 //set the texure for floor or wall based on room attributes
                 if (type == ".") {
                     go.GetComponent<Renderer>().material.mainTexture = floorTexes[Random.Range(0, floorTexes.Count - 1)];
+                    go.layer = 10; //set to floor layer
                 } else if (type == "|") {
                     go.GetComponent<Renderer>().material.mainTexture = wallTex;
 
@@ -166,7 +167,7 @@ public class LayoutTiles : MonoBehaviour {
                     case "X": //starting position for the Mage
                         if (firstRoom) {
                             //ti.pos = new Vector3(x, maxY - y, -0.05f);
-                            Mage.S.pos = ti.pos; //Use the mage singleton
+                            PUnit.S.pos = ti.pos; //Use the mage singleton
                             //ti.pos = new Vector3(x, maxY - y, 0);
                             firstRoom = false;
                         }
