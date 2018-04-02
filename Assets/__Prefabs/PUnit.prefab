@@ -697,7 +697,7 @@ MonoBehaviour:
   activeScreenWidth: 1
   speed: 2
   __________________________________: 0
-  selected: 0
+  _selected: 0
   totalLineLength: 0
   linePts: []
   mPhase: 0
@@ -720,7 +720,7 @@ LineRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: d03f71df084db924ca2b7c196537792b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

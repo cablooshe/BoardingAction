@@ -16,11 +16,15 @@ public class PlayerSelect : MonoBehaviour {
             RaycastHit hitInfo = new RaycastHit();
                 if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hitInfo) && hitInfo.transform.tag == "PUnit")
                 {
-                    if(unitSelected != null)
+                    if(unitSelected != null) {
                         unitSelected.GetComponent<PUnit>().selected = false;
+                    unitSelected.GetComponent<Renderer>().material.color = Color.white;
 
-                    unitSelected = hitInfo.collider.gameObject;
+                }
+
+                unitSelected = hitInfo.collider.gameObject;
                     unitSelected.GetComponent<PUnit>().selected = true;
+                unitSelected.GetComponent<Renderer>().material.color= Color.blue;
                 }
         }
 
