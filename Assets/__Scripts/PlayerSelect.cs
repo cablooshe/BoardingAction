@@ -19,13 +19,18 @@ public class PlayerSelect : MonoBehaviour {
                     if(unitSelected != null) {
                         unitSelected.GetComponent<PUnit>().selected = false;
                     unitSelected.GetComponent<Renderer>().material.color = Color.white;
-
+                    foreach (Renderer r in unitSelected.GetComponentsInChildren<Renderer>()) {
+                    r.material.color = Color.white; //Set material.
+                    }
                 }
 
                 unitSelected = hitInfo.collider.gameObject;
-                    unitSelected.GetComponent<PUnit>().selected = true;
+                unitSelected.GetComponent<PUnit>().selected = true;
                 unitSelected.GetComponent<Renderer>().material.color= Color.blue;
+                foreach (Renderer r in unitSelected.GetComponentsInChildren<Renderer>()) {
+                    r.material.color = Color.blue; //Set material.
                 }
+            }
         }
 
     }
