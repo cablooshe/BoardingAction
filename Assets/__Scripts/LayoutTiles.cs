@@ -166,7 +166,7 @@ public class LayoutTiles : MonoBehaviour {
                     case "X": //starting position for the Mage
                         if (firstRoom) {
                             //ti.pos = new Vector3(x, maxY - y, -0.05f);
-                            //Mage.S.pos = ti.pos; //Use the mage singleton
+                            Mage.S.pos = ti.pos; //Use the mage singleton
                             //ti.pos = new Vector3(x, maxY - y, 0);
                             firstRoom = false;
                         }
