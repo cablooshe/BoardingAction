@@ -2,11 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class TileTex {
-    public string str;
-    public Texture2D tex;
-}
+
 
 [System.Serializable]
 public class EnemyDef {
@@ -19,7 +15,7 @@ public class LayoutTiles : MonoBehaviour {
 
     public EnemyDef[] enemyDefinitions;
 
-    public Texture2D floorTex;
+    public List<Texture2D> floorTexes;
     public Texture2D wallTex;
 
     static public LayoutTiles S;
@@ -28,9 +24,6 @@ public class LayoutTiles : MonoBehaviour {
     public string roomNumber = "0"; //current room # as string
     //doing this as string allows for encoding in XML and rooms 0-f
     public GameObject tilePrefab; //prefab for all tiles
-    public TileTex[] tileTextures; //list of named textures for the tiles
-
-    public GameObject portalPrefab;
 
     public bool ________________________________;
 
@@ -58,16 +51,6 @@ public class LayoutTiles : MonoBehaviour {
         BuildRoom(roomNumber);
 
 	}
-
-    //this is the GetTileTex() method that tile uses
-    public Texture2D GetTileTex(string tStr) {
-        foreach(TileTex tTex in tileTextures) {
-            if(tTex.str == tStr) {
-                return (tTex.tex);
-            }
-        }
-        return null;
-    }
 
     //Build a room based on room number
     public void BuildRoom(string rNumStr) {
@@ -129,16 +112,14 @@ public class LayoutTiles : MonoBehaviour {
         //these loops scan through each tile of each row of the room
         for (int y = 0; y<roomRows.Length;y++) {
             for (int x = 0; x < roomRows[y].Length;x++) {
-                go = Instantiate(tilePrefab) as GameObject;
-
                 //Set Defaults
                 height = 0;
                 tileTexStr = floorTexStr;
-
                 //get the character representing the tile
                 type = rawType = roomRows[y][x].ToString();
                 switch (rawType) {
                     case " ": //empty space
+                        continue;
                     case "_": //empty space
                         //just continue
                         continue;
@@ -153,31 +134,28 @@ public class LayoutTiles : MonoBehaviour {
                         type = ".";
                         break;
                 }
-
+                //instantitate the tile prefab
+                go = Instantiate(tilePrefab) as GameObject;
                 //set the texure for floor or wall based on room attributes
-                if(type == ".") {
-                    go.GetComponent<Renderer>().material.mainTexture = floorTex;
-                    //tileTexStr = floorTexStr;
+                if (type == ".") {
+                    go.GetComponent<Renderer>().material.mainTexture = floorTexes[Random.Range(0, floorTexes.Count - 1)];
                 } else if (type == "|") {
                     go.GetComponent<Renderer>().material.mainTexture = wallTex;
 
-                    //tileTexStr = wallTexStr;
                 }
 
 
-                //instantitate the tile prefab
-                ///go = Instantiate(tilePrefab) as GameObject;
                 ti = go.GetComponent<Tile>();
-                //set the paretn transform to tileanchor
+                //set the parent transform to tileanchor
                 ti.transform.parent = tileAnchor;
-                //set the position o fthe tile
+                //set the position of the tile
                 ti.pos = new Vector3(x, maxY - y, 0);
-                tiles[x, y] = ti; //addti to the tiles 2d array
+                tiles[x, y] = ti; //add ti to the tiles 2d array
 
-                //set the type, height, and texture of the tile
+                //set the type and height of the tile
                 ti.type = type;
                 ti.height = height;
-                //ti.tex = tileTexStr;
+                
 
 
                 //If the type is still rawType, continue to the next iteration
@@ -187,9 +165,9 @@ public class LayoutTiles : MonoBehaviour {
                 switch(rawType) {
                     case "X": //starting position for the Mage
                         if (firstRoom) {
-                            ti.pos = new Vector3(x, maxY - y, -0.05f);
+                            //ti.pos = new Vector3(x, maxY - y, -0.05f);
                             //Mage.S.pos = ti.pos; //Use the mage singleton
-                            ti.pos = new Vector3(x, maxY - y, 0);
+                            //ti.pos = new Vector3(x, maxY - y, 0);
                             firstRoom = false;
                         }
                         break;
@@ -209,21 +187,10 @@ public class LayoutTiles : MonoBehaviour {
                     case "D":
                     case "E":
                     case "F":
-                        /*GameObject pGO = Instantiate(portalPrefab) as GameObject;
-                        Portal p = pGO.GetComponent<Portal>();
-                        p.pos = ti.pos;
-                        p.transform.parent = tileAnchor;
-
-                        p.toRoom = rawType;
-                        //portals.Add(p);*/
+                        
                         break;
-                    //default:
-                       /* Enemy en = EnemyFactory(rawType);
-                        if (en == null) break;
-                        en.pos = ti.pos;
-                        en.transform.parent = tileAnchor;
-                        en.typeString = rawType;
-                        break;*/
+                    default:
+                        break;
                 }
 
                 //MORE TO COME HERE...

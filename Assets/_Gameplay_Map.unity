@@ -229,7 +229,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 80
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -253,13 +253,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1718146093}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0.258819, y: 0, z: 0, w: 0.9659259}
   m_LocalPosition: {x: 0, y: 1, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -30, y: 0, z: 0}
 --- !u!114 &1718146098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -272,15 +272,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyDefinitions: []
-  floorTex: {fileID: 2800000, guid: 06300052bf5d17e46849ec7b7e85adb1, type: 3}
+  floorTexes:
+  - {fileID: 2800000, guid: 06300052bf5d17e46849ec7b7e85adb1, type: 3}
   wallTex: {fileID: 2800000, guid: 775104e3a8e0be848a41f8c866ffc479, type: 3}
   roomsText: {fileID: 4900000, guid: 509dfc8836ad01142b6a9684860537ad, type: 3}
   roomNumber: 0
   tilePrefab: {fileID: 1634892200393122, guid: b85f2f5e1a74e544796f228dbc544349, type: 2}
-  tileTextures:
-  - str: b
-    tex: {fileID: 2800000, guid: 9213389d0ebe0f847b120f383f30cd1a, type: 3}
-  portalPrefab: {fileID: 0}
   ________________________________: 0
   roomsXMLR:
     xmlText: 
