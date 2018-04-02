@@ -24,6 +24,7 @@ public class LayoutTiles : MonoBehaviour {
     public string roomNumber = "0"; //current room # as string
     //doing this as string allows for encoding in XML and rooms 0-f
     public GameObject tilePrefab; //prefab for all tiles
+    public GameObject playerPrefab;
 
     public bool ________________________________;
 
@@ -167,7 +168,8 @@ public class LayoutTiles : MonoBehaviour {
                     case "X": //starting position for the Mage
                         if (firstRoom) {
                             //ti.pos = new Vector3(x, maxY - y, -0.05f);
-                            PUnit.S.pos = ti.pos; //Use the mage singleton
+                            GameObject unitToSpawn = Instantiate(playerPrefab) as GameObject;
+                            unitToSpawn.transform.position = ti.pos; //Use the mage singleton
                             //ti.pos = new Vector3(x, maxY - y, 0);
                             firstRoom = false;
                         }
