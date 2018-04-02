@@ -171,7 +171,7 @@ public class LayoutTiles : MonoBehaviour {
                             GameObject unitToSpawn = Instantiate(playerPrefab) as GameObject;
                             unitToSpawn.transform.position = ti.pos; //Use the mage singleton
                             //ti.pos = new Vector3(x, maxY - y, 0);
-                            firstRoom = false;
+                            //firstRoom = false;
                         }
                         break;
                     case "0":

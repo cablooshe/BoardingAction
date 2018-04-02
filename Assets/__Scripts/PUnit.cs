@@ -64,6 +64,10 @@ public class PUnit : PT_MonoBehaviour {
 
     public bool __________________________________;
 
+    public bool _selected;
+
+
+
     private Transform viewCharacterTrans;
 
     public float totalLineLength;
@@ -82,6 +86,7 @@ public class PUnit : PT_MonoBehaviour {
 
     void Awake() {
         S = this;
+        this.selected = false;
         mPhase = MPhase.idle;
         //this.GetComponent<Rigidbody>().transform.position.z = 0;
         //find the characterTrans to rotate with Face()
@@ -98,6 +103,8 @@ public class PUnit : PT_MonoBehaviour {
     }
 
     void Update() {
+
+        if (!selected) return;
         //find whether the mouse button 0 was pressed or released this frame
         bool b0Down = Input.GetMouseButtonDown(0);
         bool b0Up = Input.GetMouseButtonUp(0);
@@ -202,6 +209,7 @@ public class PUnit : PT_MonoBehaviour {
             //this should be either ground, mage, or enemy
         }
     }
+
     void MouseTap()
     {
         if (DEBUG) print("Mage.MouseTap()");
@@ -295,6 +303,11 @@ public class PUnit : PT_MonoBehaviour {
     
     public void ClearInput() {
         mPhase = MPhase.idle;
+    }
+
+    public bool selected {
+        get { return _selected; }
+        set { _selected = value; }
     }
 }
 

@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 114043211295980778}
   m_Layer: 8
   m_Name: PUnit
-  m_TagString: Mage
+  m_TagString: PUnit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -691,6 +691,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 523476a5303af9f4f9c7a6edb21103f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tapIndicatorPrefab: {fileID: 0}
+  mTapTime: 0.1
+  mDragDist: 5
+  activeScreenWidth: 1
+  speed: 2
+  __________________________________: 0
+  selected: 0
+  totalLineLength: 0
+  linePts: []
+  mPhase: 0
+  mouseInfos: []
+  actionStartTag: 
+  walking: 0
+  walkTarget: {x: 0, y: 0, z: 0}
+  characterTrans: {fileID: 0}
 --- !u!120 &120641387022225862
 LineRenderer:
   m_ObjectHideFlags: 1
