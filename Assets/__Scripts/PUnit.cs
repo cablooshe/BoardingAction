@@ -107,6 +107,8 @@ public class PUnit : PT_MonoBehaviour {
         if (!selected) return;
         //find whether the mouse button 0 was pressed or released this frame
         bool b0Down = Input.GetMouseButtonDown(0);
+        bool b1Down = Input.GetMouseButtonDown(1);
+        bool b1Up = Input.GetMouseButtonUp(1);
         bool b0Up = Input.GetMouseButtonUp(0);
 
         //handle all input here except for inventory button
@@ -123,7 +125,7 @@ public class PUnit : PT_MonoBehaviour {
 
         //this is handled as an if statement instead of switch because a tap can sometimes happen within a single frame
         if (mPhase == MPhase.idle) {
-            if(b0Down && inActiveArea) {
+            if(b1Down && inActiveArea) {
                 mouseInfos.Clear(); //clear the mouseInfos
                 AddMouseInfo(); //and add a first mouseinfo
 
@@ -137,8 +139,8 @@ public class PUnit : PT_MonoBehaviour {
 
         if (mPhase == MPhase.down) {
             AddMouseInfo();
-            if(b0Up) {
-                MouseTap();
+            if(b1Up) {
+                RightClick();
                 mPhase = MPhase.idle;
             } else if (Time.time - mouseInfos[0].time > mTapTime) {
                 //if its been down longer for a tap, it may be a drag, but to be a drag, it must also have moved a certain number of pixels on screen
@@ -210,7 +212,7 @@ public class PUnit : PT_MonoBehaviour {
         }
     }
 
-    void MouseTap()
+    void RightClick()
     {
         if (DEBUG) print("Mage.MouseTap()");
 
