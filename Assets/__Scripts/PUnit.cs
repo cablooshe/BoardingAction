@@ -54,7 +54,6 @@ public class PUnit : PT_MonoBehaviour {
     public GameObject tapIndicatorPrefab;
 
     public float mTapTime = 0.1f; //how long is considered a tap
-
     public float mDragDist = 5; //how long is considered a drag
 
     public float activeScreenWidth = 1; //the % of the screen to usee
@@ -62,11 +61,12 @@ public class PUnit : PT_MonoBehaviour {
     public float speed = 2; //the speed at which _Mage walks
 
     //these are the min and max distance between two line points
-    public float lineMinDelta = 0.1f;
-    public float lineMaxDelta = 0.5f;
-    public float lineMaxLength = 8f;
 
     public bool __________________________________;
+
+    public bool _selected;
+
+
 
     private Transform viewCharacterTrans;
 
@@ -86,6 +86,7 @@ public class PUnit : PT_MonoBehaviour {
 
     void Awake() {
         S = this;
+        this.selected = false;
         mPhase = MPhase.idle;
         //this.GetComponent<Rigidbody>().transform.position.z = 0;
         //find the characterTrans to rotate with Face()
@@ -102,8 +103,12 @@ public class PUnit : PT_MonoBehaviour {
     }
 
     void Update() {
+
+        if (!selected) return;
         //find whether the mouse button 0 was pressed or released this frame
         bool b0Down = Input.GetMouseButtonDown(0);
+        bool b1Down = Input.GetMouseButtonDown(1);
+        bool b1Up = Input.GetMouseButtonUp(1);
         bool b0Up = Input.GetMouseButtonUp(0);
 
         //handle all input here except for inventory button
@@ -120,7 +125,7 @@ public class PUnit : PT_MonoBehaviour {
 
         //this is handled as an if statement instead of switch because a tap can sometimes happen within a single frame
         if (mPhase == MPhase.idle) {
-            if(b0Down && inActiveArea) {
+            if(b1Down && inActiveArea) {
                 mouseInfos.Clear(); //clear the mouseInfos
                 AddMouseInfo(); //and add a first mouseinfo
 
@@ -134,8 +139,8 @@ public class PUnit : PT_MonoBehaviour {
 
         if (mPhase == MPhase.down) {
             AddMouseInfo();
-            if(b0Up) {
-                MouseTap();
+            if(b1Up) {
+                RightClick();
                 mPhase = MPhase.idle;
             } else if (Time.time - mouseInfos[0].time > mTapTime) {
                 //if its been down longer for a tap, it may be a drag, but to be a drag, it must also have moved a certain number of pixels on screen
@@ -206,7 +211,8 @@ public class PUnit : PT_MonoBehaviour {
             //this should be either ground, mage, or enemy
         }
     }
-    void MouseTap()
+
+    void RightClick()
     {
         if (DEBUG) print("Mage.MouseTap()");
 
@@ -296,52 +302,14 @@ public class PUnit : PT_MonoBehaviour {
 
     // LineRenderer Code ------------------------------------------------------------------------\\
 
-    //add a new point to the line
-    void AddPointToLiner(Vector3 pt) {
-        pt.z = lineZ;
-
-        //linePts.Add(pt);
-        //UpdateLiner();
-
-        //add the point if linePts is empty
-        if (linePts.Count == 0) {
-            linePts.Add(pt);
-            totalLineLength = 0;
-            return; //but wait a bit to update the linerenderer
-        }
-
-        if (totalLineLength > lineMaxLength) return;
-
-        Vector3 pt0 = linePts[linePts.Count - 1]; //get the last point in linePts
-        Vector3 dir = pt - pt0;
-        float delta = dir.magnitude;
-        dir.Normalize();
-
-        totalLineLength += delta;
-
-        //if less than mnii distance
-        if (delta < lineMinDelta) {
-            //then dont add it
-            return;
-        }
-
-        //if its further than the max distance then extra points
-        if (delta > lineMaxDelta) {
-            //add extra points
-            float numToAdd = Mathf.Ceil(delta / lineMaxDelta);
-            float midDelta = delta / numToAdd;
-            Vector3 ptMid;
-            for (int i = 1; i < numToAdd; i++) {
-                ptMid = pt0 + (dir * midDelta * i);
-                linePts.Add(ptMid);
-            }
-        }
-
-        linePts.Add(pt);
-    }
-
+    
     public void ClearInput() {
         mPhase = MPhase.idle;
+    }
+
+    public bool selected {
+        get { return _selected; }
+        set { _selected = value; }
     }
 }
 

@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraMovement : MonoBehaviour {
+
     public float cameraSpeed = 10f;
     public float zoomSpeed = 30f;
     public float minZoom = 1f;
     public float maxZoom = 20f;
     
+
 	// Use this for initialization
 	void Start () {
        
