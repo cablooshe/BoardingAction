@@ -19,15 +19,7 @@ public class SelectionHalo : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (visible)
-        {
-            mat.mainTextureOffset = new Vector2(0.6f, 0);
-            float rZ = -(rotationsPerSecond * Time.time * 360) % 360f;
-            transform.rotation = Quaternion.Euler(0, 0, rZ);
-        }
-        else
-        {
-            mat.mainTextureOffset = new Vector2(0, 0);
-        }
+        float rZ = -(rotationsPerSecond * Time.time * 360) % 360f;
+        transform.rotation = Quaternion.Euler(0, 0, rZ);
 	}
 }

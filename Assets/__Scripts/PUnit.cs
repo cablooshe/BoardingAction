@@ -50,9 +50,12 @@ public class PUnit : PT_MonoBehaviour {
 
     public float speed = 2; //the speed at which _Mage walks
 
+    public GameObject haloPrefab;
     //these are the min and max distance between two line points
 
     public bool __________________________________;
+
+    public GameObject halo;
 
     public bool _selected;
 
@@ -77,10 +80,24 @@ public class PUnit : PT_MonoBehaviour {
         characterTrans = transform.Find("CharacterTrans");
         viewCharacterTrans = characterTrans.Find("View_Character");
 
+        halo = Instantiate(haloPrefab) as GameObject;
+        halo.transform.parent = this.transform;
+        halo.GetComponent<Renderer>().enabled = false;
+        halo.transform.position = new Vector3(this.pos.x, this.pos.y, this.pos.z - 0.15f);
+
+    }
+
+    public void toggleHalo() {
+        if(selected) {
+            halo.GetComponent<Renderer>().enabled = true;
+        }
+        else {
+            halo.GetComponent<Renderer>().enabled = false;
+        }
     }
 
     void Update() {
-
+        toggleHalo();
         if (!selected) return;
         //find whether the mouse button 0 was pressed or released this frame
         bool b0Down = Input.GetMouseButtonDown(0);
