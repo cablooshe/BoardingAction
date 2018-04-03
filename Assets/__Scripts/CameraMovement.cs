@@ -18,7 +18,6 @@ public class CameraMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-        
         if (Input.GetKey(KeyCode.RightArrow))
         {
             transform.Translate(new Vector3(cameraSpeed * Time.deltaTime, 0, 0));
@@ -40,9 +39,10 @@ public class CameraMovement : MonoBehaviour {
 
         var d = Input.GetAxis("Mouse ScrollWheel");
 
-        if(d > 0f)
+        if(d > 0f || Input.GetKey(KeyCode.Equals) || Input.GetKey(KeyCode.KeypadPlus))
         {
             //Scroll Up
+       
             Vector3 move = Quaternion.Euler(-transform.rotation.eulerAngles.x, 0, 0) * new Vector3(0, 0, zoomSpeed * Time.deltaTime);
             transform.transform.Translate(move);
 
@@ -52,7 +52,7 @@ public class CameraMovement : MonoBehaviour {
                 transform.transform.Translate(move);
             }
         }
-        else if (d < 0f) {
+        else if (d < 0f || Input.GetKey(KeyCode.Minus) || Input.GetKey(KeyCode.KeypadMinus) ) {
             //Scroll Down
             Vector3 move = Quaternion.Euler(-transform.rotation.eulerAngles.x, 0, 0) * new Vector3(0, 0, -zoomSpeed * Time.deltaTime);
             transform.transform.Translate(move);
