@@ -204,7 +204,7 @@ public class PUnit : PT_MonoBehaviour {
 
     void RightClick()
     {
-        if (DEBUG) print("Mage.MouseTap()");
+        if (DEBUG) print("Mage.RightClick()");
 
         //now this cares what was tapped
         switch (actionStartTag) {

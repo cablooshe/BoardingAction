@@ -101,11 +101,20 @@ public class Utils : MonoBehaviour {
 	// Get the location of the mouse in World coordinates (at z=0)
 	static public Vector3 mouseLoc {
 		get {
-			Vector3 loc = Input.mousePosition;
+			/*Vector3 loc = Input.mousePosition;
 			loc.z = -Camera.main.transform.position.z;
 			loc = Camera.main.ScreenToWorldPoint(loc);
-			return(loc);
-		}
+			return(loc);*/
+            
+            Plane plane = new Plane(Vector3.forward, Vector3.left);
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            float ent = 0.0f;
+            if (plane.Raycast(ray, out ent)) {
+                Vector3 hitPoint = ray.GetPoint(ent);
+                 return (hitPoint);
+            }
+            return ray.GetPoint(ent);
+        }
 	}
 	static public Vector3 MouseLoc {
 		get {
