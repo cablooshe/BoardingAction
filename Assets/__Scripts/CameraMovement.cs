@@ -23,13 +23,11 @@ public class CameraMovement : MonoBehaviour {
         if (Input.GetKey(KeyCode.DownArrow))
         {
             Vector3 move = Quaternion.Euler(30, 0, 0) * new Vector3(0, -speed * Time.deltaTime, 0);
-            print("down " + move);
             transform.Translate(move);
         }
         if (Input.GetKey(KeyCode.UpArrow))
         {
             Vector3 move = Quaternion.Euler(30, 0, 0) * new Vector3(0, speed * Time.deltaTime, 0);
-            print("up " + move);
             transform.Translate(move);
         }
     }
