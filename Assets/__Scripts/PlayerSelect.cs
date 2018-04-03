@@ -5,14 +5,13 @@ using UnityEngine;
 public class PlayerSelect : MonoBehaviour {
 
     public GameObject unitSelected;
-    
-	// Use this for initialization
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update () {
 
         if (Input.GetMouseButtonDown(0))
         {
+
             RaycastHit hitInfo = new RaycastHit();
                 if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hitInfo) && hitInfo.transform.tag == "PUnit")
                 {
