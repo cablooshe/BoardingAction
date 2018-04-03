@@ -43,27 +43,24 @@ public class PUnit : PT_MonoBehaviour {
 
     public GameObject tapIndicatorPrefab;
 
-    public float mTapTime = 0.1f; //how long is considered a tap
-    public float mDragDist = 5; //how long is considered a drag
+    public float mTapTime = 0.5f; //how long is considered a tap
+    public float mDragDist = 10; //how long is considered a drag
 
     public float activeScreenWidth = 1; //the % of the screen to usee
 
     public float speed = 2; //the speed at which _Mage walks
 
+    public GameObject haloPrefab;
     //these are the min and max distance between two line points
 
     public bool __________________________________;
 
+    public GameObject halo;
+
     public bool _selected;
-
-
 
     private Transform viewCharacterTrans;
 
-    public float totalLineLength;
-
-    public List<Vector3> linePts;
-    protected LineRenderer liner;
     protected float lineZ = -0.1f;
 
     public MPhase mPhase = MPhase.idle;
@@ -83,17 +80,24 @@ public class PUnit : PT_MonoBehaviour {
         characterTrans = transform.Find("CharacterTrans");
         viewCharacterTrans = characterTrans.Find("View_Character");
 
-        //get the linRenderer component and disable it
-        liner = GetComponent<LineRenderer>();
-        liner.enabled = false;
-
-        //creates an empty gameObject names "spell anchor".  when youcreate a new gameobject this way, its at P: [0,0,0] S: [1,1,1]
-
+        halo = Instantiate(haloPrefab) as GameObject;
+        halo.transform.parent = this.transform;
+        halo.GetComponent<Renderer>().enabled = false;
+        halo.transform.position = new Vector3(this.pos.x, this.pos.y, this.pos.z - 0.15f);
 
     }
 
-    void Update() {
+    public void toggleHalo() {
+        if(selected) {
+            halo.GetComponent<Renderer>().enabled = true;
+        }
+        else {
+            halo.GetComponent<Renderer>().enabled = false;
+        }
+    }
 
+    void Update() {
+        toggleHalo();
         if (!selected) return;
         //find whether the mouse button 0 was pressed or released this frame
         bool b0Down = Input.GetMouseButtonDown(0);
