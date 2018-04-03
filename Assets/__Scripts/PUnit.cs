@@ -43,8 +43,8 @@ public class PUnit : PT_MonoBehaviour {
 
     public GameObject tapIndicatorPrefab;
 
-    public float mTapTime = 0.1f; //how long is considered a tap
-    public float mDragDist = 5; //how long is considered a drag
+    public float mTapTime = 0.5f; //how long is considered a tap
+    public float mDragDist = 10; //how long is considered a drag
 
     public float activeScreenWidth = 1; //the % of the screen to usee
 
@@ -56,14 +56,8 @@ public class PUnit : PT_MonoBehaviour {
 
     public bool _selected;
 
-
-
     private Transform viewCharacterTrans;
 
-    public float totalLineLength;
-
-    public List<Vector3> linePts;
-    protected LineRenderer liner;
     protected float lineZ = -0.1f;
 
     public MPhase mPhase = MPhase.idle;
@@ -82,13 +76,6 @@ public class PUnit : PT_MonoBehaviour {
         //find the characterTrans to rotate with Face()
         characterTrans = transform.Find("CharacterTrans");
         viewCharacterTrans = characterTrans.Find("View_Character");
-
-        //get the linRenderer component and disable it
-        liner = GetComponent<LineRenderer>();
-        liner.enabled = false;
-
-        //creates an empty gameObject names "spell anchor".  when youcreate a new gameobject this way, its at P: [0,0,0] S: [1,1,1]
-
 
     }
 
