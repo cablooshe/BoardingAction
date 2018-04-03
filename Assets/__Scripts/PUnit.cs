@@ -10,16 +10,6 @@ public enum MPhase {
     drag
 }
 
-//the elementtype enum
-public enum ElementType {
-    earth,
-    water,
-    air,
-    fire,
-    aether,
-    none
-}
-
 //MouseInfor stores info about the mouse in each frame of interaction
 [System.Serializable]
 public class MouseInfo {
