@@ -10,7 +10,7 @@ public class PlayerSelect : MonoBehaviour {
 
 
     //Mouse selection related stuff
-]    public float mDragDist = 2;
+    public float mDragDist = 2;
 
     public MPhase mPhase = MPhase.idle;
 
