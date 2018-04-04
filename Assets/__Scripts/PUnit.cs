@@ -11,27 +11,7 @@ public enum MPhase {
 }
 
 //MouseInfor stores info about the mouse in each frame of interaction
-[System.Serializable]
-public class MouseInfo {
-    public Vector3 loc; //location of the mouse near z=0
-    public Vector3 screenLoc; //screen position of the mouse
-    public Ray ray;//ray from the mouse into 3d space
-    public float time;//time this mouseInfo was recorded 
-    public RaycastHit hitInfo;//info aobut what was hit by the ray
-    public bool hit; //whether the mouse was over any collider
 
-
-    //these methods see if the mouseRay hits anything
-    public RaycastHit Raycast() {
-        hit = Physics.Raycast(ray, out hitInfo);
-        return hitInfo;
-    }
-
-    public RaycastHit Raycaset(int mask) {
-        hit = Physics.Raycast(ray, out hitInfo, mask);
-        return hitInfo;
-    }
-}
 
 
 
@@ -136,17 +116,7 @@ public class PUnit : PT_MonoBehaviour {
             if(b1Up) {
                 RightClick();
                 mPhase = MPhase.idle;
-            } else if (Time.time - mouseInfos[0].time > mTapTime) {
-                //if its been down longer for a tap, it may be a drag, but to be a drag, it must also have moved a certain number of pixels on screen
-                float dragDist = (lastMouseInfo.screenLoc - mouseInfos[0].screenLoc).magnitude;
-                if(dragDist >=mDragDist) {
-                    mPhase = MPhase.drag;
-                }
-
-                //however, drag will immediately start after mTapTime if there are no elements selected
-                mPhase = MPhase.drag;
-                
-            }
+            } 
         }
 
         if(mPhase == MPhase.drag) {

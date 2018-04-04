@@ -8,12 +8,104 @@ public enum BoundsTest {
 	onScreen,	// Are the bounds entirely on screen
 	offScreen	// Are the bounds entirely off screen
 }
+[System.Serializable]
+public class MouseInfo
+{
+    public Vector3 loc; //location of the mouse near z=0
+    public Vector3 screenLoc; //screen position of the mouse
+    public Ray ray;//ray from the mouse into 3d space
+    public float time;//time this mouseInfo was recorded 
+    public RaycastHit hitInfo;//info aobut what was hit by the ray
+    public bool hit; //whether the mouse was over any collider
+
+
+    //these methods see if the mouseRay hits anything
+    public RaycastHit Raycast()
+    {
+        hit = Physics.Raycast(ray, out hitInfo);
+        return hitInfo;
+    }
+
+    public RaycastHit Raycaset(int mask)
+    {
+        hit = Physics.Raycast(ray, out hitInfo, mask);
+        return hitInfo;
+    }
+
+}
 
 public class Utils : MonoBehaviour {
 	static public bool DEBUG = true;
 
-	// Returns the maximum value for a Vector3, which can be used to return a unique, identifiable Vector3 value
-	static public Vector3 maxVector3 {
+
+
+
+    //DRAW SELECTION RECTANGLES____________________________________________________________________________________---
+    static Texture2D _whiteTexture;
+    public static Texture2D WhiteTexture
+    {
+        get
+        {
+            if (_whiteTexture == null)
+            {
+                _whiteTexture = new Texture2D(1, 1);
+                _whiteTexture.SetPixel(0, 0, Color.white);
+                _whiteTexture.Apply();
+            }
+
+            return _whiteTexture;
+        }
+    }
+
+    public static void DrawScreenRect(Rect rect, Color color)
+    {
+        GUI.color = color;
+        GUI.DrawTexture(rect, WhiteTexture);
+        GUI.color = Color.white;
+    }
+    public static void DrawScreenRectBorder(Rect rect, float thickness, Color color)
+    {
+        // Top
+        DrawScreenRect(new Rect(rect.xMin, rect.yMin, rect.width, thickness), color);
+        // Left
+        DrawScreenRect(new Rect(rect.xMin, rect.yMin, thickness, rect.height), color);
+        // Right
+        DrawScreenRect(new Rect(rect.xMax - thickness, rect.yMin, thickness, rect.height), color);
+        // Bottom
+        DrawScreenRect(new Rect(rect.xMin, rect.yMax - thickness, rect.width, thickness), color);
+    }
+
+    public static Rect GetScreenRect(Vector3 screenPosition1, Vector3 screenPosition2)
+    {
+        // Move origin from bottom left to top left
+        screenPosition1.y = Screen.height - screenPosition1.y;
+        screenPosition2.y = Screen.height - screenPosition2.y;
+        // Calculate corners
+        var topLeft = Vector3.Min(screenPosition1, screenPosition2);
+        var bottomRight = Vector3.Max(screenPosition1, screenPosition2);
+        // Create Rect
+        return Rect.MinMaxRect(topLeft.x, topLeft.y, bottomRight.x, bottomRight.y);
+    }
+
+    public static Bounds GetViewportBounds(Camera camera, Vector3 screenPosition1, Vector3 screenPosition2)
+    {
+        var v1 = Camera.main.ScreenToViewportPoint(screenPosition1);
+        var v2 = Camera.main.ScreenToViewportPoint(screenPosition2);
+        var min = Vector3.Min(v1, v2);
+        var max = Vector3.Max(v1, v2);
+        min.z = camera.nearClipPlane;
+        max.z = camera.farClipPlane;
+
+        var bounds = new Bounds();
+        bounds.SetMinMax(min, max);
+        return bounds;
+    }
+
+
+    //_____________END SELECTION RECTANGLE CODE________________________________________________________________________________________________________________
+
+    // Returns the maximum value for a Vector3, which can be used to return a unique, identifiable Vector3 value
+    static public Vector3 maxVector3 {
 		get { return( new Vector3(float.MaxValue, float.MaxValue, float.MaxValue) ); }
 	}
 	
@@ -608,5 +700,7 @@ public class Easing {
 		
 		return( u2 );
 	}
-	
+
+    
+
 }
