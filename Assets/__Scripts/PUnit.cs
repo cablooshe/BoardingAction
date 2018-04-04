@@ -58,10 +58,11 @@ public class PUnit : PT_MonoBehaviour {
         //this.GetComponent<Rigidbody>().transform.position.z = 0;
         //find the characterTrans to rotate with Face()
         characterTrans = transform.Find("CharacterTrans");
-        viewCharacterTrans = characterTrans.Find("View_Character");
+        //viewCharacterTrans = characterTrans.Find("View_Character");
 
         halo = Instantiate(haloPrefab) as GameObject;
         halo.transform.parent = this.transform;
+        halo.transform.position = new Vector3(halo.transform.position.x-.23f, halo.transform.position.y+.05f, halo.transform.position.z);
         halo.GetComponent<Renderer>().enabled = false;
         halo.transform.position = new Vector3(this.pos.x, this.pos.y, this.pos.z - 0.15f);
 
@@ -263,8 +264,14 @@ public class PUnit : PT_MonoBehaviour {
         go.transform.position = loc;
     }*/
 
+    void OnCollisionEnter (Collision c) {
+        print("Colliding");
+        GameObject go = c.gameObject;
+        if (go.tag == "PUnit" && go.GetComponent<PUnit>().walking == false) {
+            StopWalking();
+        }
+    }
 
-    // LineRenderer Code ------------------------------------------------------------------------\\
 
     
     public void ClearInput() {

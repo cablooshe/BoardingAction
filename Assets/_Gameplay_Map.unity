@@ -313,11 +313,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitsSelected: []
-  start_box: {x: 0, y: 0, z: 0}
-  end_box: {x: 0, y: 0, z: 0}
-  boundbox:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 0
-    height: 0
+  isSelecting: 0
+  mousePosition1: {x: 0, y: 0, z: 0}
+  mDragDist: 5
+  mPhase: 0
+  mouseInfos: []
