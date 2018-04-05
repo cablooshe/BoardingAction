@@ -8,6 +8,7 @@ public class DialogueManager : MonoBehaviour {
 
     public Text nameText;
     public Text dialogueText;
+    public Button continueButton;
 
     public Animator animator;
 
@@ -36,11 +37,18 @@ public class DialogueManager : MonoBehaviour {
 
     public void DisplayNextSentence () {
         if (sentences.Count == 0) {
-            EndDialogue();
             return;
         }
-
         string sentence = sentences.Dequeue();
+        if (sentences.Count == 0) {
+            StopAllCoroutines();
+            StartCoroutine(TypeSentence(sentence));
+            continueButton.gameObject.SetActive(false);
+            return;
+        }
+        continueButton.gameObject.SetActive(true);
+
+
         StopAllCoroutines();
         StartCoroutine(TypeSentence(sentence));
     }
