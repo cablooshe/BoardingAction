@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class PlayerInfo {
 
-    public static int gold;
+    public static int gold, exp;
     public static GameObject[] soldiers;
 
     public static int Gold {
@@ -22,6 +22,15 @@ public static class PlayerInfo {
         }
         set {
             soldiers = value;
+        }
+    }
+
+    public static int Exp {
+        get {
+            return exp;
+        }
+        set {
+            exp = value;
         }
     }
 }
