@@ -11,12 +11,14 @@ public class ChoiceScript : MonoBehaviour {
     public GameObject Choice02;
     public GameObject Choice03;
     public GameObject Choice04;
+    public GameObject BackButton;
     public int ChoiceMade;
 
     public GameObject Result1;
     public GameObject Result2;
     public GameObject Result3;
     public GameObject Result4;
+    public GameObject Start;
 
 
 
@@ -36,6 +38,9 @@ public class ChoiceScript : MonoBehaviour {
         ChoiceMade = 4;
     }
 
+    public void ChoiceOptionBack() {
+        ChoiceMade = 5;
+    }
 
 
     // Update is called once per frame
@@ -58,6 +63,9 @@ public class ChoiceScript : MonoBehaviour {
         if (ChoiceMade == 4) {
             Result4.SetActive(true);
 
+        }
+        if(ChoiceMade == 5) {
+            Start.SetActive(true);
         }
 
         ChoiceMade = 0;
