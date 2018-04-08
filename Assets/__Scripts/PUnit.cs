@@ -51,6 +51,8 @@ public class PUnit : PT_MonoBehaviour {
     public Vector3 walkTarget;
     public Transform characterTrans;
 
+    public List<Transform> transforms;
+
     void Awake() {
         S = this;
         this.selected = false;
@@ -58,6 +60,10 @@ public class PUnit : PT_MonoBehaviour {
         //this.GetComponent<Rigidbody>().transform.position.z = 0;
         //find the characterTrans to rotate with Face()
         characterTrans = transform.Find("CharacterTrans");
+        transforms.Add(characterTrans.Find("SquadLeader"));
+        transforms.Add(characterTrans.Find("Member1"));
+        transforms.Add(characterTrans.Find("Member2"));
+
         //viewCharacterTrans = characterTrans.Find("View_Character");
 
         halo = Instantiate(haloPrefab) as GameObject;
@@ -230,7 +236,10 @@ public class PUnit : PT_MonoBehaviour {
         //use atan2 to get the rotation around z that ponts the x axis of mage:charactertrans towards poi
         float rZ = Mathf.Rad2Deg * Mathf.Atan2(delta.y, delta.x);
         //set the rotation of charactwertrans (doesnt rotate just yet)
-        characterTrans.rotation = Quaternion.Euler(0, 0, rZ);
+        //characterTrans.rotation = Quaternion.Euler(0, 0, rZ);
+        foreach(Transform t in transforms){
+            t.rotation = Quaternion.Euler(-rZ, 90, -90);
+        }
     }
 
     public void StopWalking() {
