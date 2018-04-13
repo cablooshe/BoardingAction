@@ -197,6 +197,28 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 10a6ffe4af9a202449114b60c70100d3, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1130514779 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1756043496468972, guid: 10a6ffe4af9a202449114b60c70100d3,
+    type: 2}
+  m_PrefabInternal: {fileID: 908187043}
+--- !u!114 &1130514780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1130514779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfc55c66ad59a9f4c884dde97162cbf7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftMax: 0
+  rightMax: 0
+  upMax: 0
+  downMax: 0
+  _oxygen: 0
+  visible: 0
 --- !u!1 &1326374107
 GameObject:
   m_ObjectHideFlags: 0
@@ -343,7 +365,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -30, y: 0, z: 0}
 --- !u!114 &1718146099
 MonoBehaviour:
@@ -371,4 +393,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 509eb33bbacdb2c44a3bbc98a76db63e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitSelected: {fileID: 0}
+  unitsSelected: []
+  isSelecting: 0
+  mousePosition1: {x: 0, y: 0, z: 0}
+  mDragDist: 2
+  mPhase: 0
+  mouseInfos: []
