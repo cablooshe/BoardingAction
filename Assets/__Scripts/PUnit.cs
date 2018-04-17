@@ -3,16 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq; //Enables LINQ queries
 
-//The MPhase enum is used to track the phase of mouse interaction
-public enum MPhase {
-    idle,
-    down,
-    drag
-}
-
-//MouseInfor stores info about the mouse in each frame of interaction
-
-
 
 
 //mage is a subclass of PT_MonoBehavior

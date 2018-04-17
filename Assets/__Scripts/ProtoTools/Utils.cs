@@ -9,30 +9,7 @@ public enum BoundsTest {
 	offScreen	// Are the bounds entirely off screen
 }
 [System.Serializable]
-public class MouseInfo
-{
-    public Vector3 loc; //location of the mouse near z=0
-    public Vector3 screenLoc; //screen position of the mouse
-    public Ray ray;//ray from the mouse into 3d space
-    public float time;//time this mouseInfo was recorded 
-    public RaycastHit hitInfo;//info aobut what was hit by the ray
-    public bool hit; //whether the mouse was over any collider
 
-
-    //these methods see if the mouseRay hits anything
-    public RaycastHit Raycast()
-    {
-        hit = Physics.Raycast(ray, out hitInfo);
-        return hitInfo;
-    }
-
-    public RaycastHit Raycaset(int mask)
-    {
-        hit = Physics.Raycast(ray, out hitInfo, mask);
-        return hitInfo;
-    }
-
-}
 
 public class Utils : MonoBehaviour {
 	static public bool DEBUG = true;

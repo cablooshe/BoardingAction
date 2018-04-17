@@ -2,6 +2,40 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//The MPhase enum is used to track the phase of mouse interaction
+public enum MPhase
+{
+    idle,
+    down,
+    drag
+}
+
+//MouseInfo stores info about the mouse in each frame of interaction
+public class MouseInfo
+{
+    public Vector3 loc; //location of the mouse near z=0
+    public Vector3 screenLoc; //screen position of the mouse
+    public Ray ray;//ray from the mouse into 3d space
+    public float time;//time this mouseInfo was recorded 
+    public RaycastHit hitInfo;//info aobut what was hit by the ray
+    public bool hit; //whether the mouse was over any collider
+
+
+    //these methods see if the mouseRay hits anything
+    public RaycastHit Raycast()
+    {
+        hit = Physics.Raycast(ray, out hitInfo);
+        return hitInfo;
+    }
+
+    public RaycastHit Raycaset(int mask)
+    {
+        hit = Physics.Raycast(ray, out hitInfo, mask);
+        return hitInfo;
+    }
+
+}
+
 public class PlayerSelect : MonoBehaviour {
 
     public List<GameObject> unitsSelected;
