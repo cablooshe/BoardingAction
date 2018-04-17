@@ -48,7 +48,7 @@ public class PlayerSelect : MonoBehaviour {
 
     public MPhase mPhase = MPhase.idle;
 
-    public List<MouseInfo> mouseInfos;
+    public List<MouseInfo> mouseInfos = new List<MouseInfo>();
 
     MouseInfo AddMouseInfo()
     {

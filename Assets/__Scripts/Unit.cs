@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq; //Enables LINQ queries
 
 public abstract class Unit : PT_MonoBehaviour {
     static public Unit S;
@@ -38,7 +39,7 @@ public abstract class Unit : PT_MonoBehaviour {
 
 
     // Use this for initialization
-    void Start () {
+    void Awake () {
         S = this;
         this.selected = false;
         //find the characterTrans to rotate with Face()
@@ -49,17 +50,13 @@ public abstract class Unit : PT_MonoBehaviour {
 
         //viewCharacterTrans = characterTrans.Find("View_Character");
 
-        halo = Instantiate(haloPrefab) as GameObject;
+        /*halo = Instantiate(haloPrefab) as GameObject;
         halo.transform.parent = this.transform;
         halo.transform.position = new Vector3(halo.transform.position.x - .23f, halo.transform.position.y + .05f, halo.transform.position.z);
         halo.GetComponent<Renderer>().enabled = false;
-        halo.transform.position = new Vector3(this.pos.x, this.pos.y, this.pos.z - 0.15f);
+        halo.transform.position = new Vector3(this.pos.x, this.pos.y, this.pos.z - 0.15f);*/
     }
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
     //______________________________WALKING AND FACING METHODS______________________________________\\
     public void WalkTo(Vector3 xTarget)
@@ -102,6 +99,14 @@ public abstract class Unit : PT_MonoBehaviour {
             halo.GetComponent<Renderer>().enabled = false;
         }
     }
+
+    //______________________________________MOUSECLICK METHODS___________________________________________________\\
+
+    //public abstract void LeftClick();
+    public abstract void RightClick();
+    public abstract void MouseDown();
+    public abstract void MouseDrag();
+    public abstract void MouseDragUp();
 
 
 }
