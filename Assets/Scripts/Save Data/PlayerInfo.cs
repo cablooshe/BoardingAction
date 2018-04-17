@@ -4,8 +4,7 @@ using UnityEngine;
 
 public static class PlayerInfo {
 
-    public static int gold, exp;
-    public static GameObject[] soldiers;
+    public static int gold, exp, currentSceneIndex;
 
     public static int Gold {
         get {
@@ -16,21 +15,21 @@ public static class PlayerInfo {
         }
     }
 
-    public static GameObject[] Soldiers {
-        get {
-            return soldiers;
-        }
-        set {
-            soldiers = value;
-        }
-    }
-
     public static int Exp {
         get {
             return exp;
         }
         set {
             exp = value;
+        }
+    }
+
+    public static int CurrentSceneIndex {
+        get {
+            return currentSceneIndex;
+        }
+        set {
+            currentSceneIndex = value;
         }
     }
 }

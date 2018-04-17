@@ -23,6 +23,8 @@ public static class SaveLoad {
             FileStream file = File.Open(Application.persistentDataPath + "/savedGames.ben", FileMode.Open);
             SaveLoad.savedGames = (List<SaveGame>)bf.Deserialize(file);
             file.Close();
+        } else {
+            System.Console.WriteLine("Error: No Save Games Found");
         }
     }
 }
