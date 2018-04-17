@@ -5,15 +5,20 @@ using System.Collections;
 [System.Serializable]
 public class SaveGame {
 
-    public static SaveGame current;
     public int sceneIndex;
     public int gold;
     public int exp;
 
     public SaveGame() {
-        sceneIndex = SceneManager.GetActiveScene().buildIndex;
-        gold = PlayerInfo.Gold;
-        exp = PlayerInfo.Exp;
+        this.sceneIndex = SceneManager.GetActiveScene().buildIndex;
+        this.gold = PlayerInfo.Gold;
+        this.exp = PlayerInfo.Exp;
+    }
+
+    public void UpdateSave() {
+        this.sceneIndex = SceneManager.GetActiveScene().buildIndex;
+        this.gold = PlayerInfo.Gold;
+        this.exp = PlayerInfo.Exp;
     }
 
 }

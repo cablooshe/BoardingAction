@@ -6,14 +6,15 @@ using System.IO;
  
 public static class SaveLoad {
  
-    public static List<SaveGame> savedGames = new List<SaveGame>();
+    public static SaveGame savedGame = new SaveGame();
     
              
     public static void Save() {
-        SaveLoad.savedGames.Add(SaveGame.current);
+        savedGame.UpdateSave();
+        Debug.Log("Gold when game was saved: " + savedGame.gold);
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create (Application.persistentDataPath + "/savedGames.ben");
-        bf.Serialize(file, SaveLoad.savedGames);
+        bf.Serialize(file, savedGame);
         file.Close();
     }   
      
@@ -21,10 +22,10 @@ public static class SaveLoad {
         if(File.Exists(Application.persistentDataPath + "/savedGames.ben")) {
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Open(Application.persistentDataPath + "/savedGames.ben", FileMode.Open);
-            SaveLoad.savedGames = (List<SaveGame>)bf.Deserialize(file);
+            savedGame = (SaveGame)bf.Deserialize(file);
             file.Close();
         } else {
-            System.Console.WriteLine("Error: No Save Games Found");
+            System.Console.Write("Error: No Save Game Found");
         }
     }
 }
