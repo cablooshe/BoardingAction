@@ -10,10 +10,7 @@ public class PauseMenu : MonoBehaviour {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
-    public void SaveGame()
-    {
-        //Save scene so that it can be loaded later
-    }
+   
     public void QuitGame()
     {
         Debug.Log("QUIT!");
