@@ -1011,7 +1011,9 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114909559061858800, guid: 01ea692c4b700e4408d31927917d8eab, type: 2}
+    - {fileID: 114792101306032130, guid: 01ea692c4b700e4408d31927917d8eab, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 01ea692c4b700e4408d31927917d8eab, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &847518197
@@ -1632,21 +1634,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4455181004594124, guid: 01ea692c4b700e4408d31927917d8eab,
     type: 2}
   m_PrefabInternal: {fileID: 837319456}
---- !u!114 &1203301884
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1203301882}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7e7fa66e19a7ce4f987a2fe404de43d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isVertical: 1
-  isOpen: 0
-  door1: {fileID: 0}
-  door2: {fileID: 0}
 --- !u!114 &1203301885
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1929,46 +1916,11 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1336514549}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1395573333 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1452109303395994, guid: 01ea692c4b700e4408d31927917d8eab,
-    type: 2}
-  m_PrefabInternal: {fileID: 1930291038}
 --- !u!4 &1395573334 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4455181004594124, guid: 01ea692c4b700e4408d31927917d8eab,
     type: 2}
   m_PrefabInternal: {fileID: 1930291038}
---- !u!114 &1395573335
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1395573333}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7e7fa66e19a7ce4f987a2fe404de43d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isVertical: 1
-  isOpen: 0
-  door1: {fileID: 0}
-  door2: {fileID: 0}
---- !u!114 &1395573336
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1395573333}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7e7fa66e19a7ce4f987a2fe404de43d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isVertical: 1
-  isOpen: 0
-  door1: {fileID: 0}
-  door2: {fileID: 0}
 --- !u!1 &1440996351
 GameObject:
   m_ObjectHideFlags: 0
@@ -2567,6 +2519,7 @@ Prefab:
       propertyPath: m_RootOrder
       value: 24
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114792101306032130, guid: 01ea692c4b700e4408d31927917d8eab, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 01ea692c4b700e4408d31927917d8eab, type: 2}
   m_IsPrefabParent: 0
