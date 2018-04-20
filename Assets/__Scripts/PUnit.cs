@@ -23,18 +23,20 @@ public class PUnit : Unit {
 
     public MPhase mPhase = MPhase.idle;
 
-    void Awake() {
-        S = this;
-        this.selected = false;
-        mPhase = MPhase.idle;
-        //this.GetComponent<Rigidbody>().transform.position.z = 0;
-        //find the characterTrans to rotate with Face()
-        characterTrans = transform.Find("CharacterTrans");
-        transforms.Add(characterTrans.Find("SquadLeader"));
-        transforms.Add(characterTrans.Find("Member1"));
-        transforms.Add(characterTrans.Find("Member2"));
+    protected new void Awake() {
+        base.Awake();
+        /* S = this;
+         this.selected = false;
+         mPhase = MPhase.idle;
+         //this.GetComponent<Rigidbody>().transform.position.z = 0;
+         //find the characterTrans to rotate with Face()
+         characterTrans = transform.Find("CharacterTrans");
+         transforms.Add(characterTrans.Find("SquadLeader"));
+         transforms.Add(characterTrans.Find("Member1"));
+         transforms.Add(characterTrans.Find("Member2"));
 
-        //viewCharacterTrans = characterTrans.Find("View_Character");
+         //viewCharacterTrans = characterTrans.Find("View_Character");*/
+        mPhase = MPhase.idle;
         
         halo = Instantiate(haloPrefab) as GameObject;
         halo.transform.parent = this.transform;
@@ -203,10 +205,10 @@ public class PUnit : Unit {
 		if (go.tag == "Door") {
 			go.GetComponentInParent<DoubleDoor>().OpenDoors();
 		}
-		Room currentRoom = go.transform.parent.GetComponent<Room> (); 
+		/*Room currentRoom = go.transform.parent.GetComponent<Room> (); 
 		if (currentRoom != null) {
 			currentRoom.makeVisible ();
-		}
+		}*/
     }
 
 
