@@ -45,7 +45,7 @@ public abstract class Unit : PT_MonoBehaviour {
 
 
     // Use this for initialization
-    void Awake () {
+    protected void Awake () {
         S = this;
         this.selected = false;
         //find the characterTrans to rotate with Face()
