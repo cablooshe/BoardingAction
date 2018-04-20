@@ -203,6 +203,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &96970423 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1149319919361476, guid: a596dd9c286e9e444959f353c2b98386,
+    type: 2}
+  m_PrefabInternal: {fileID: 1088959802}
+--- !u!114 &96970424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 96970423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77c2d1cf98188044c8f3ea954602afe8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 2
+  health: 10
+  haloPrefab: {fileID: 0}
+  __________________________________: 0
+  halo: {fileID: 0}
+  _selected: 0
+  actionStartTag: 
+  walking: 0
+  walkTarget: {x: 0, y: 0, z: 0}
+  characterTrans: {fileID: 0}
+  transforms: []
+  isTargeting: 0
+  targetSelected: {fileID: 0}
+  attackRadius: 5
 --- !u!1001 &294749407
 Prefab:
   m_ObjectHideFlags: 0
@@ -894,6 +924,72 @@ Transform:
   m_Father: {fileID: 44780813}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1088959802
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4153483924359840, guid: a596dd9c286e9e444959f353c2b98386, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4153483924359840, guid: a596dd9c286e9e444959f353c2b98386, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4153483924359840, guid: a596dd9c286e9e444959f353c2b98386, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4153483924359840, guid: a596dd9c286e9e444959f353c2b98386, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4153483924359840, guid: a596dd9c286e9e444959f353c2b98386, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4153483924359840, guid: a596dd9c286e9e444959f353c2b98386, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4153483924359840, guid: a596dd9c286e9e444959f353c2b98386, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4153483924359840, guid: a596dd9c286e9e444959f353c2b98386, type: 2}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 54040069536702744, guid: a596dd9c286e9e444959f353c2b98386,
+        type: 2}
+      propertyPath: m_Interpolate
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 54040069536702744, guid: a596dd9c286e9e444959f353c2b98386,
+        type: 2}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 54040069536702744, guid: a596dd9c286e9e444959f353c2b98386,
+        type: 2}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1149319919361476, guid: a596dd9c286e9e444959f353c2b98386, type: 2}
+      propertyPath: m_Name
+      value: Enemysquad
+      objectReference: {fileID: 0}
+    - target: {fileID: 1149319919361476, guid: a596dd9c286e9e444959f353c2b98386, type: 2}
+      propertyPath: m_TagString
+      value: EnemyUnit
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 114235445634389356, guid: a596dd9c286e9e444959f353c2b98386, type: 2}
+  m_ParentPrefab: {fileID: 100100000, guid: a596dd9c286e9e444959f353c2b98386, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &1139378137
 Prefab:
   m_ObjectHideFlags: 0
@@ -1319,11 +1415,16 @@ Prefab:
     - target: {fileID: 54040069536702744, guid: a596dd9c286e9e444959f353c2b98386,
         type: 2}
       propertyPath: m_Interpolate
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 54040069536702744, guid: a596dd9c286e9e444959f353c2b98386,
         type: 2}
       propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 54040069536702744, guid: a596dd9c286e9e444959f353c2b98386,
+        type: 2}
+      propertyPath: m_IsKinematic
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

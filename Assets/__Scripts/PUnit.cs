@@ -29,13 +29,13 @@ public class PUnit : Unit {
         mPhase = MPhase.idle;
         //this.GetComponent<Rigidbody>().transform.position.z = 0;
         //find the characterTrans to rotate with Face()
-        /*characterTrans = transform.Find("CharacterTrans");
+        characterTrans = transform.Find("CharacterTrans");
         transforms.Add(characterTrans.Find("SquadLeader"));
         transforms.Add(characterTrans.Find("Member1"));
         transforms.Add(characterTrans.Find("Member2"));
 
         //viewCharacterTrans = characterTrans.Find("View_Character");
-        */
+        
         halo = Instantiate(haloPrefab) as GameObject;
         halo.transform.parent = this.transform;
         halo.transform.position = new Vector3(halo.transform.position.x-.23f, halo.transform.position.y+.05f, halo.transform.position.z);
@@ -186,24 +186,6 @@ public class PUnit : Unit {
     }
 
 
-    void FixedUpdate() {//happens every physics step, 50 times per second
-
-
-        if(walking) {
-            if((walkTarget-pos).magnitude<speed*Time.fixedDeltaTime) {
-                //if mage is very close to walktarget, just stop
-                pos = walkTarget;
-                StopWalking();
-            } else {
-                //otherwise, walk                
-                GetComponent<Rigidbody>().velocity = (walkTarget - pos).normalized * speed;
-            }
-        } else {
-            //if not walking, velocity should be zero
-            GetComponent<Rigidbody>().velocity = Vector3.zero;
-        }
-
-    }
 
    
     //show where the player tapped

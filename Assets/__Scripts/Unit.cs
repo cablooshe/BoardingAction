@@ -9,6 +9,7 @@ public abstract class Unit : PT_MonoBehaviour {
     static public bool DEBUG = true;
 
     public float speed = 2; //the speed at which unit walks
+    public float health = 10;
 
     public GameObject haloPrefab; //selection halo prefab that will be used when this unit is selected
 
@@ -30,6 +31,10 @@ public abstract class Unit : PT_MonoBehaviour {
     public Transform characterTrans;
 
     public List<Transform> transforms;
+
+    public bool isTargeting = false;
+    public GameObject targetSelected;
+    public float attackRadius = 2;
 
     public bool selected
     {
@@ -86,6 +91,63 @@ public abstract class Unit : PT_MonoBehaviour {
         }
     }
 
+    void FixedUpdate()
+    {//happens every physics step, 50 times per second
+
+
+        if (walking)
+        {
+            if ((walkTarget - pos).magnitude < speed * Time.fixedDeltaTime)
+            {
+                //if mage is very close to walktarget, just stop
+                pos = walkTarget;
+                StopWalking();
+            }
+            else
+            {
+                //otherwise, walk                
+                GetComponent<Rigidbody>().velocity = (walkTarget - pos).normalized * speed;
+            }
+        }
+        else
+        {
+            //if not walking, velocity should be zero
+            GetComponent<Rigidbody>().velocity = Vector3.zero;
+        }
+
+        if (!isTargeting){
+            findTargetInRange();
+        }
+        if (isTargeting){
+            attackTarget(targetSelected);
+        }
+
+    }
+
+    void attackTarget(GameObject enemy){
+        enemy.GetComponent<Unit>().health--;
+    }
+    void findTargetInRange(){
+        Vector3 localPos = S.transform.position;
+        Collider[] hitColliders = Physics.OverlapSphere(localPos, attackRadius);
+        int i = 0;
+        GameObject toAttack = null;
+        while (i < hitColliders.Length)
+        {
+            if (hitColliders[i].gameObject != this.gameObject && hitColliders[i].tag == "EnemyUnit" ){
+                if (toAttack == null || Vector3.Distance(toAttack.transform.position,localPos) > Vector3.Distance(hitColliders[i].transform.position,localPos)){
+                    toAttack = hitColliders[i].gameObject;
+                }
+            }
+            i++;
+        }
+
+        if (toAttack != null){
+            isTargeting = true;
+            targetSelected = toAttack;
+        }
+    }
+
     //______________________________________SELECTION RELEVANT METHODS___________________________________________________\\
 
     public void toggleHalo()
@@ -107,6 +169,6 @@ public abstract class Unit : PT_MonoBehaviour {
     public abstract void MouseDown();
     public abstract void MouseDrag();
     public abstract void MouseDragUp();
-
+    
 
 }
