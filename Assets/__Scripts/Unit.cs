@@ -35,6 +35,7 @@ public abstract class Unit : PT_MonoBehaviour {
     public bool isTargeting = false;
     public GameObject targetSelected;
     public float attackRadius = 2;
+	protected string enemyTag = "EnemyUnit";
 
     public bool selected
     {
@@ -134,7 +135,7 @@ public abstract class Unit : PT_MonoBehaviour {
         GameObject toAttack = null;
         while (i < hitColliders.Length)
         {
-            if (hitColliders[i].gameObject != this.gameObject && hitColliders[i].tag == "EnemyUnit" ){
+            if (hitColliders[i].gameObject != this.gameObject && hitColliders[i].tag == enemyTag ){
                 if (toAttack == null || Vector3.Distance(toAttack.transform.position,localPos) > Vector3.Distance(hitColliders[i].transform.position,localPos)){
                     toAttack = hitColliders[i].gameObject;
                 }

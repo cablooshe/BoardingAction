@@ -6,7 +6,7 @@ public class EnemyUnit : Unit {
 
 	// Use this for initialization
 	void Start () {
-		
+		enemyTag = "PUnit";
 	}
 	
 	// Update is called once per frame
