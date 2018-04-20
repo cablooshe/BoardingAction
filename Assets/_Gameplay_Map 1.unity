@@ -1013,7 +1013,7 @@ Prefab:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114909559061858800, guid: 01ea692c4b700e4408d31927917d8eab, type: 2}
-    - {fileID: 114792101306032130, guid: 01ea692c4b700e4408d31927917d8eab, type: 2}
+    - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: 01ea692c4b700e4408d31927917d8eab, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &847518197
@@ -1647,8 +1647,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isVertical: 0
   isOpen: 0
+  opening: 0
+  closing: 0
   door1: {fileID: 0}
   door2: {fileID: 0}
+  startOpen: 0
+  finishOpen: 0
+  startClose: 0
+  finishClose: 0
+  closeTime: 0
+  startPos1: 0
+  startPos2: 0
 --- !u!1 &1284831592
 GameObject:
   m_ObjectHideFlags: 0
@@ -2517,9 +2526,8 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4455181004594124, guid: 01ea692c4b700e4408d31927917d8eab, type: 2}
       propertyPath: m_RootOrder
-      value: 24
+      value: 23
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114792101306032130, guid: 01ea692c4b700e4408d31927917d8eab, type: 2}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 01ea692c4b700e4408d31927917d8eab, type: 2}
   m_IsPrefabParent: 0

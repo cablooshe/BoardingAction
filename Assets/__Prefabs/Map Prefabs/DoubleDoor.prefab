@@ -38,7 +38,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4455181004594124}
   - component: {fileID: 114909559061858800}
-  - component: {fileID: 114792101306032130}
   m_Layer: 0
   m_Name: DoubleDoor
   m_TagString: Untagged
@@ -211,21 +210,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114792101306032130
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1452109303395994}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7e7fa66e19a7ce4f987a2fe404de43d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isVertical: 1
-  isOpen: 0
-  door1: {fileID: 1393793825664448}
-  door2: {fileID: 1590938499371102}
 --- !u!114 &114909559061858800
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -241,3 +225,4 @@ MonoBehaviour:
   isOpen: 0
   door1: {fileID: 1393793825664448}
   door2: {fileID: 1590938499371102}
+  closeTime: 0
