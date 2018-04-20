@@ -200,6 +200,9 @@ public class PUnit : Unit {
         if (go.tag == "PUnit" && go.GetComponent<PUnit>().walking == false) {
             StopWalking();
         }
+		if (go.tag == "Door") {
+			go.GetComponentInParent<DoubleDoor>().OpenDoors();
+		}
 		Room currentRoom = go.transform.parent.GetComponent<Room> (); 
 		if (currentRoom != null) {
 			currentRoom.makeVisible ();
