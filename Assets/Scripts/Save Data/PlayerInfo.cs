@@ -5,6 +5,7 @@ using UnityEngine;
 public static class PlayerInfo {
 
     public static int gold, exp, currentSceneIndex;
+    public static List<Squad> squads;
 
     public static int Gold {
         get {

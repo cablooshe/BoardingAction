@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Soldier : MonoBehaviour {
+public class SoldierSet : MonoBehaviour {
 
-    public GameObject person;
-    public int health;
-    public GameObject weapon;
-
+    public string soldierClass; //specialty of the SoldierSet
+    public int health;  //float?
+    public float speedMult;
+    public int damage;
 
 	// Use this for initialization
 	void Start () {
