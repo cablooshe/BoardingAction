@@ -124,7 +124,6 @@ GameObject:
   - component: {fileID: 5613151}
   - component: {fileID: 5613150}
   - component: {fileID: 5613149}
-  - component: {fileID: 5613148}
   m_Layer: 5
   m_Name: SquadLeader3
   m_TagString: Untagged
@@ -132,21 +131,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &5613148
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 5613147}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a23f28e42c32c44da627b46ca890528, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogue:
-    name: Weapons Vendor
-    sentences:
-    - I have run out of things to say. This is result 3 from ChoiceList.
 --- !u!114 &5613149
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,7 +171,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1287027788}
-        m_MethodName: ChoiceOption3
+        m_MethodName: ChoiceOption03
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -197,7 +181,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 5613148}
+      - m_Target: {fileID: 0}
         m_MethodName: TriggerDialogue
         m_Mode: 1
         m_Arguments:
@@ -322,12 +306,36 @@ MonoBehaviour:
   Choice02: {fileID: 1467540498}
   Choice03: {fileID: 1590985994}
   Choice04: {fileID: 531323267}
+  Choice05: {fileID: 0}
+  Choice06: {fileID: 0}
+  Choice07: {fileID: 0}
+  Choice08: {fileID: 0}
+  Choice09: {fileID: 0}
+  Choice10: {fileID: 0}
+  Choice11: {fileID: 0}
+  Choice12: {fileID: 0}
+  Choice13: {fileID: 0}
+  Choice14: {fileID: 0}
+  Choice15: {fileID: 0}
+  Choice16: {fileID: 0}
   BackButton: {fileID: 2143746265}
   ChoiceMade: 0
-  Result1: {fileID: 1287027786}
-  Result2: {fileID: 1287027786}
-  Result3: {fileID: 1287027786}
-  Result4: {fileID: 1287027786}
+  Result01: {fileID: 1287027786}
+  Result02: {fileID: 1287027786}
+  Result03: {fileID: 1287027786}
+  Result04: {fileID: 1287027786}
+  Result05: {fileID: 0}
+  Result06: {fileID: 0}
+  Result07: {fileID: 0}
+  Result08: {fileID: 0}
+  Result09: {fileID: 0}
+  Result10: {fileID: 0}
+  Result11: {fileID: 0}
+  Result12: {fileID: 0}
+  Result13: {fileID: 0}
+  Result14: {fileID: 0}
+  Result15: {fileID: 0}
+  Result16: {fileID: 0}
   Start: {fileID: 2143746265}
 --- !u!1 &71695018
 GameObject:
@@ -921,7 +929,6 @@ GameObject:
   - component: {fileID: 289144582}
   - component: {fileID: 289144581}
   - component: {fileID: 289144580}
-  - component: {fileID: 289144579}
   m_Layer: 5
   m_Name: SquadLeader4
   m_TagString: Untagged
@@ -929,21 +936,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &289144579
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 289144578}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a23f28e42c32c44da627b46ca890528, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogue:
-    name: Weapons Vendor
-    sentences:
-    - I have run out of things to say. This is result 4 from ChoiceList.
 --- !u!114 &289144580
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -984,7 +976,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1287027788}
-        m_MethodName: ChoiceOption4
+        m_MethodName: ChoiceOption04
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -994,7 +986,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 289144579}
+      - m_Target: {fileID: 0}
         m_MethodName: TriggerDialogue
         m_Mode: 1
         m_Arguments:
@@ -1597,7 +1589,6 @@ GameObject:
   - component: {fileID: 531323271}
   - component: {fileID: 531323270}
   - component: {fileID: 531323269}
-  - component: {fileID: 531323272}
   m_Layer: 5
   m_Name: SquadLeader4
   m_TagString: Untagged
@@ -1664,7 +1655,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 26172089}
-        m_MethodName: ChoiceOption4
+        m_MethodName: ChoiceOption04
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1674,7 +1665,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 531323272}
+      - m_Target: {fileID: 0}
         m_MethodName: TriggerDialogue
         m_Mode: 1
         m_Arguments:
@@ -1720,21 +1711,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 531323267}
---- !u!114 &531323272
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 531323267}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a23f28e42c32c44da627b46ca890528, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogue:
-    name: Weapons Vendor
-    sentences:
-    - I have run out of things to say. This is result 4 from ChoiceList.
 --- !u!1 &570986631
 GameObject:
   m_ObjectHideFlags: 0
@@ -1969,7 +1945,6 @@ GameObject:
   - component: {fileID: 674693434}
   - component: {fileID: 674693433}
   - component: {fileID: 674693432}
-  - component: {fileID: 674693435}
   m_Layer: 5
   m_Name: Squad1
   m_TagString: Untagged
@@ -2046,7 +2021,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 674693435}
+      - m_Target: {fileID: 0}
         m_MethodName: TriggerDialogue
         m_Mode: 1
         m_Arguments:
@@ -2092,23 +2067,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 674693430}
---- !u!114 &674693435
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 674693430}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a23f28e42c32c44da627b46ca890528, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogue:
-    name: Weapons Vendor
-    sentences:
-    - Ah, I see you found out how to make choices!
-    - Choices are for citizens, you follow orders comrade.
-    - Get those silly things out of your head.
 --- !u!1 &718825789
 GameObject:
   m_ObjectHideFlags: 0
@@ -2194,7 +2152,6 @@ GameObject:
   - component: {fileID: 740077902}
   - component: {fileID: 740077901}
   - component: {fileID: 740077900}
-  - component: {fileID: 740077899}
   m_Layer: 5
   m_Name: SquadLeader1
   m_TagString: Untagged
@@ -2202,23 +2159,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &740077899
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 740077898}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a23f28e42c32c44da627b46ca890528, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogue:
-    name: Weapons Vendor
-    sentences:
-    - Ah, I see you found out how to make choices!
-    - Choices are for citizens, you follow orders comrade.
-    - Get those silly things out of your head.
 --- !u!114 &740077900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2259,7 +2199,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1287027788}
-        m_MethodName: ChoiceOption1
+        m_MethodName: ChoiceOption01
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2269,7 +2209,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 740077899}
+      - m_Target: {fileID: 0}
         m_MethodName: TriggerDialogue
         m_Mode: 1
         m_Arguments:
@@ -2731,12 +2671,36 @@ MonoBehaviour:
   Choice02: {fileID: 1887373247}
   Choice03: {fileID: 491769205}
   Choice04: {fileID: 1189885246}
+  Choice05: {fileID: 0}
+  Choice06: {fileID: 0}
+  Choice07: {fileID: 0}
+  Choice08: {fileID: 0}
+  Choice09: {fileID: 0}
+  Choice10: {fileID: 0}
+  Choice11: {fileID: 0}
+  Choice12: {fileID: 0}
+  Choice13: {fileID: 0}
+  Choice14: {fileID: 0}
+  Choice15: {fileID: 0}
+  Choice16: {fileID: 0}
   BackButton: {fileID: 351595770}
   ChoiceMade: 0
-  Result1: {fileID: 0}
-  Result2: {fileID: 1078020896}
-  Result3: {fileID: 0}
-  Result4: {fileID: 0}
+  Result01: {fileID: 0}
+  Result02: {fileID: 0}
+  Result03: {fileID: 0}
+  Result04: {fileID: 0}
+  Result05: {fileID: 0}
+  Result06: {fileID: 0}
+  Result07: {fileID: 0}
+  Result08: {fileID: 0}
+  Result09: {fileID: 0}
+  Result10: {fileID: 0}
+  Result11: {fileID: 0}
+  Result12: {fileID: 0}
+  Result13: {fileID: 0}
+  Result14: {fileID: 0}
+  Result15: {fileID: 0}
+  Result16: {fileID: 0}
   Start: {fileID: 26172087}
 --- !u!224 &1078020898
 RectTransform:
@@ -2913,7 +2877,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 26172089}
-        m_MethodName: ChoiceOption1
+        m_MethodName: ChoiceOption01
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3203,7 +3167,6 @@ GameObject:
   - component: {fileID: 1218287292}
   - component: {fileID: 1218287291}
   - component: {fileID: 1218287290}
-  - component: {fileID: 1218287289}
   m_Layer: 5
   m_Name: SquadLeader2
   m_TagString: Untagged
@@ -3211,21 +3174,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1218287289
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1218287288}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a23f28e42c32c44da627b46ca890528, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogue:
-    name: Weapons Vendor
-    sentences:
-    - I have run out of things to say. This is Result 2 from ChoiceList.
 --- !u!114 &1218287290
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3266,7 +3214,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1287027788}
-        m_MethodName: ChoiceOption2
+        m_MethodName: ChoiceOption02
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3276,7 +3224,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1218287289}
+      - m_Target: {fileID: 0}
         m_MethodName: TriggerDialogue
         m_Mode: 1
         m_Arguments:
@@ -3448,7 +3396,7 @@ RectTransform:
   - {fileID: 289144583}
   - {fileID: 2128475227}
   m_Father: {fileID: 1728551626}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -3471,12 +3419,36 @@ MonoBehaviour:
   Choice02: {fileID: 1218287288}
   Choice03: {fileID: 5613147}
   Choice04: {fileID: 289144578}
+  Choice05: {fileID: 0}
+  Choice06: {fileID: 0}
+  Choice07: {fileID: 0}
+  Choice08: {fileID: 0}
+  Choice09: {fileID: 0}
+  Choice10: {fileID: 0}
+  Choice11: {fileID: 0}
+  Choice12: {fileID: 0}
+  Choice13: {fileID: 0}
+  Choice14: {fileID: 0}
+  Choice15: {fileID: 0}
+  Choice16: {fileID: 0}
   BackButton: {fileID: 2128475226}
   ChoiceMade: 0
-  Result1: {fileID: 26172087}
-  Result2: {fileID: 26172087}
-  Result3: {fileID: 26172087}
-  Result4: {fileID: 26172087}
+  Result01: {fileID: 26172087}
+  Result02: {fileID: 26172087}
+  Result03: {fileID: 26172087}
+  Result04: {fileID: 26172087}
+  Result05: {fileID: 0}
+  Result06: {fileID: 0}
+  Result07: {fileID: 0}
+  Result08: {fileID: 0}
+  Result09: {fileID: 0}
+  Result10: {fileID: 0}
+  Result11: {fileID: 0}
+  Result12: {fileID: 0}
+  Result13: {fileID: 0}
+  Result14: {fileID: 0}
+  Result15: {fileID: 0}
+  Result16: {fileID: 0}
   Start: {fileID: 26172087}
 --- !u!1 &1339792707
 GameObject:
@@ -3563,7 +3535,6 @@ GameObject:
   - component: {fileID: 1467540503}
   - component: {fileID: 1467540502}
   - component: {fileID: 1467540501}
-  - component: {fileID: 1467540500}
   m_Layer: 5
   m_Name: SquadLeader2
   m_TagString: Untagged
@@ -3590,21 +3561,6 @@ RectTransform:
   m_AnchoredPosition: {x: -54.820923, y: 65}
   m_SizeDelta: {x: 50, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1467540500
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1467540498}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a23f28e42c32c44da627b46ca890528, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogue:
-    name: Weapons Vendor
-    sentences:
-    - I have run out of things to say. This is Result 2 from ChoiceList.
 --- !u!114 &1467540501
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3645,7 +3601,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 26172089}
-        m_MethodName: ChoiceOption2
+        m_MethodName: ChoiceOption02
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3655,7 +3611,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1467540500}
+      - m_Target: {fileID: 0}
         m_MethodName: TriggerDialogue
         m_Mode: 1
         m_Arguments:
@@ -3786,7 +3742,6 @@ GameObject:
   - component: {fileID: 1590985999}
   - component: {fileID: 1590985998}
   - component: {fileID: 1590985997}
-  - component: {fileID: 1590985996}
   m_Layer: 5
   m_Name: SquadLeader3
   m_TagString: Untagged
@@ -3813,21 +3768,6 @@ RectTransform:
   m_AnchoredPosition: {x: -54.82094, y: -80.1}
   m_SizeDelta: {x: 50, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1590985996
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1590985994}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a23f28e42c32c44da627b46ca890528, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogue:
-    name: Weapons Vendor
-    sentences:
-    - I have run out of things to say. This is result 3 from ChoiceList.
 --- !u!114 &1590985997
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3868,7 +3808,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 26172089}
-        m_MethodName: ChoiceOption3
+        m_MethodName: ChoiceOption03
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3878,7 +3818,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1590985996}
+      - m_Target: {fileID: 0}
         m_MethodName: TriggerDialogue
         m_Mode: 1
         m_Arguments:
@@ -4010,50 +3950,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1603584282}
---- !u!1 &1634746931
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1634746933}
-  - component: {fileID: 1634746932}
-  m_Layer: 0
-  m_Name: DialogueManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1634746932
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1634746931}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42e79e842d3144246bc96435005d69ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nameText: {fileID: 0}
-  dialogueText: {fileID: 0}
-  continueButton: {fileID: 0}
-  animator: {fileID: 0}
---- !u!4 &1634746933
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1634746931}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -590.5, y: -332, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1728551626}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1635609326
 GameObject:
   m_ObjectHideFlags: 0
@@ -4291,7 +4187,6 @@ RectTransform:
   - {fileID: 1912334307}
   - {fileID: 26172088}
   - {fileID: 1078020898}
-  - {fileID: 1634746933}
   - {fileID: 1287027787}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -4929,7 +4824,6 @@ GameObject:
   - component: {fileID: 2128475231}
   - component: {fileID: 2128475230}
   - component: {fileID: 2128475229}
-  - component: {fileID: 2128475228}
   m_Layer: 5
   m_Name: BackButton
   m_TagString: Untagged
@@ -4956,21 +4850,6 @@ RectTransform:
   m_AnchoredPosition: {x: -141.82, y: -294.9}
   m_SizeDelta: {x: 85.35, y: 30.46}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2128475228
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2128475226}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a23f28e42c32c44da627b46ca890528, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogue:
-    name: Weapons Vendor
-    sentences:
-    - I have run out of things to say. This is result 4 from ChoiceList.
 --- !u!114 &2128475229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5011,7 +4890,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1287027788}
-        m_MethodName: ChoiceOption4
+        m_MethodName: ChoiceOptionBack
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5021,7 +4900,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2128475228}
+      - m_Target: {fileID: 0}
         m_MethodName: TriggerDialogue
         m_Mode: 1
         m_Arguments:
