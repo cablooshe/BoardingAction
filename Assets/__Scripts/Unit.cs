@@ -4,8 +4,6 @@ using UnityEngine;
 using System.Linq; //Enables LINQ queries
 
 public abstract class Unit : PT_MonoBehaviour {
-    static public GameObject S;
-
     static public bool DEBUG = true;
 
     public float speed = 2; //the speed at which unit walks
@@ -52,7 +50,6 @@ public abstract class Unit : PT_MonoBehaviour {
 
     // Use this for initialization
     protected void Awake () {
-        S = this.gameObject;
         this.selected = false;
         //find the characterTrans to rotate with Face()
         characterTrans = transform.Find("CharacterTrans");
@@ -100,7 +97,10 @@ public abstract class Unit : PT_MonoBehaviour {
 
     protected void FixedUpdate()
     {//happens every physics step, 50 times per second
-
+        //keep muzzle flash with unit
+        if (muzzleFlashFront != null) {
+            muzzleFlashFront.transform.position = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, this.gameObject.transform.position.z - 1f);
+        }
 
         if (walking)
         {
@@ -151,8 +151,8 @@ public abstract class Unit : PT_MonoBehaviour {
 
     void attackAnimation(GameObject target) {
         muzzleFlashFront = Instantiate(muzzlePrefab) as GameObject;
-        muzzleFlashFront.transform.position = new Vector3(S.transform.position.x, S.transform.position.y, S.transform.position.z-1f);
-        muzzleFlashFront.transform.rotation = S.transform.rotation;
+        muzzleFlashFront.transform.position = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, this.gameObject.transform.position.z-1f);
+        muzzleFlashFront.transform.rotation = this.gameObject.transform.rotation;
     }
 
     void takeDamageAnimation() {
@@ -190,6 +190,9 @@ public abstract class Unit : PT_MonoBehaviour {
     }
 
     bool targetInRange(GameObject target){
+        if (target == null){
+            return false;
+        }
         Vector3 localPos = this.transform.position;
         RaycastHit hit;
         if (!(Physics.Raycast(localPos, target.transform.position - localPos, out hit, attackRadius - 0.1f) && hit.collider.gameObject != target))

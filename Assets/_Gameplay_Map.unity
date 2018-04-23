@@ -275,6 +275,7 @@ MonoBehaviour:
   isTargeting: 0
   targetSelected: {fileID: 0}
   attackRadius: 1
+  corpse: {fileID: 1177295529553878, guid: 7a44cb136f2c00948be4dbd63c3681f0, type: 2}
 --- !u!1 &177543265
 GameObject:
   m_ObjectHideFlags: 0
