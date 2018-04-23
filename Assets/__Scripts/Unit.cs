@@ -16,6 +16,8 @@ public abstract class Unit : PT_MonoBehaviour {
     public bool __________________________________;
 
     public GameObject halo;
+    private int attackSpeed = 1; //amount of seconds between attacks
+    private int updateAttack = 1;
 
     public bool _selected; //is this unit selected
 
@@ -116,16 +118,42 @@ public abstract class Unit : PT_MonoBehaviour {
             GetComponent<Rigidbody>().velocity = Vector3.zero;
         }
 
-        if (!isTargeting){
+        if (!isTargeting || !targetInRange(targetSelected))
+        {
             findTargetInRange();
         }
-        if (isTargeting){
-            attackTarget(targetSelected);
+
+        //DO Attack based on attack speed
+        if (Time.time >= updateAttack)
+        {
+            // Change the next update (current second+attackSpeed)
+            updateAttack = Mathf.FloorToInt(Time.time) + attackSpeed;
+            // Call your function
+            attack();
         }
 
     }
 
-    void attackTarget(GameObject enemy){
+    //_________________________________________________Targeting and attack/damage methods__________________________________________________\\
+
+    void attack() {
+        if (isTargeting)
+        {
+            doDamage(targetSelected);
+            attackAnimation(targetSelected);
+            targetSelected.GetComponent<Unit>().takeDamage();
+        }
+    }
+
+    void attackAnimation(GameObject target) {
+
+    }
+
+    void takeDamage() {
+
+    }
+
+    void doDamage(GameObject enemy){
         enemy.GetComponent<Unit>().health--;
     }
     void findTargetInRange(){
@@ -149,7 +177,23 @@ public abstract class Unit : PT_MonoBehaviour {
         if (toAttack != null){
             isTargeting = true;
             targetSelected = toAttack;
+        } else {
+            isTargeting = false;
+            targetSelected = null;
         }
+    }
+
+    bool targetInRange(GameObject target){
+        Vector3 localPos = this.transform.position;
+        RaycastHit hit;
+        if (!(Physics.Raycast(localPos, target.transform.position - localPos, out hit, attackRadius - 0.1f) && hit.collider.gameObject != target))
+        {
+            if (attackRadius >= Vector3.Distance(target.transform.position, localPos))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     //______________________________________SELECTION RELEVANT METHODS___________________________________________________\\
