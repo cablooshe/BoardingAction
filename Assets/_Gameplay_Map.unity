@@ -274,7 +274,7 @@ MonoBehaviour:
   transforms: []
   isTargeting: 0
   targetSelected: {fileID: 0}
-  attackRadius: 5
+  attackRadius: 1
 --- !u!1 &177543265
 GameObject:
   m_ObjectHideFlags: 0
@@ -2340,6 +2340,11 @@ Prefab:
       value: 
       objectReference: {fileID: 1524977901687380, guid: 412956d6a1d6840498a41820b2e7d16e,
         type: 2}
+    - target: {fileID: 114235445634389356, guid: a596dd9c286e9e444959f353c2b98386,
+        type: 2}
+      propertyPath: attackRadius
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a596dd9c286e9e444959f353c2b98386, type: 2}
   m_IsPrefabParent: 0
