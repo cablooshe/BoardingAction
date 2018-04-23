@@ -4,7 +4,7 @@ using UnityEngine;
 using System.Linq; //Enables LINQ queries
 
 public abstract class Unit : PT_MonoBehaviour {
-    static public Unit S;
+    static public GameObject S;
 
     static public bool DEBUG = true;
 
@@ -12,12 +12,16 @@ public abstract class Unit : PT_MonoBehaviour {
     public float health = 10;
 
     public GameObject haloPrefab; //selection halo prefab that will be used when this unit is selected
+    public GameObject muzzlePrefab;
 
     public bool __________________________________;
 
     public GameObject halo;
+
     private int attackSpeed = 1; //amount of seconds between attacks
     private int updateAttack = 1;
+    public GameObject muzzleFlashFront;
+
 
     public bool _selected; //is this unit selected
 
@@ -48,14 +52,14 @@ public abstract class Unit : PT_MonoBehaviour {
 
     // Use this for initialization
     protected void Awake () {
-        S = this;
+        S = this.gameObject;
         this.selected = false;
         //find the characterTrans to rotate with Face()
         characterTrans = transform.Find("CharacterTrans");
         transforms.Add(characterTrans.Find("SquadLeader"));
         transforms.Add(characterTrans.Find("Member1"));
         transforms.Add(characterTrans.Find("Member2"));
-
+        
         //viewCharacterTrans = characterTrans.Find("View_Character");
 
         /*halo = Instantiate(haloPrefab) as GameObject;
@@ -141,15 +145,17 @@ public abstract class Unit : PT_MonoBehaviour {
         {
             doDamage(targetSelected);
             attackAnimation(targetSelected);
-            targetSelected.GetComponent<Unit>().takeDamage();
+            targetSelected.GetComponent<Unit>().takeDamageAnimation();
         }
     }
 
     void attackAnimation(GameObject target) {
-
+        muzzleFlashFront = Instantiate(muzzlePrefab) as GameObject;
+        muzzleFlashFront.transform.position = new Vector3(S.transform.position.x, S.transform.position.y, S.transform.position.z-1f);
+        muzzleFlashFront.transform.rotation = S.transform.rotation;
     }
 
-    void takeDamage() {
+    void takeDamageAnimation() {
 
     }
 
