@@ -40,6 +40,7 @@ public abstract class Unit : PT_MonoBehaviour {
     public GameObject targetSelected;
     public float attackRadius = 2;
 	protected string enemyTag = "EnemyUnit";
+	public bool inCover = false;
 
     public bool selected
     {
@@ -160,23 +161,28 @@ public abstract class Unit : PT_MonoBehaviour {
     }
 
     void doDamage(GameObject enemy){
-        enemy.GetComponent<Unit>().health--;
+		if ((enemy.GetComponent<Unit> ().inCover) && (Random.value > 0.5)) {
+			return;
+		}
+		enemy.GetComponent<Unit> ().health--;
     }
     void findTargetInRange(){
         Vector3 localPos = this.transform.position;
         Collider[] hitColliders = Physics.OverlapSphere(localPos, attackRadius);
         int i = 0;
         GameObject toAttack = null;
+		inCover = false;
         while (i < hitColliders.Length)
         {
-            if (hitColliders[i].gameObject != this.gameObject && hitColliders[i].tag == enemyTag ) {
-                RaycastHit hit;
-                if (!(Physics.Raycast(localPos, hitColliders[i].gameObject.transform.position - localPos, out hit, attackRadius - 0.1f) && hit.collider.gameObject != hitColliders[i].gameObject)){
-                    if (toAttack == null || Vector3.Distance(toAttack.transform.position,localPos) > Vector3.Distance(hitColliders[i].transform.position,localPos)){
-                        toAttack = hitColliders[i].gameObject;
-                    }
-                }
-            }
+			if (hitColliders [i].gameObject != this.gameObject && hitColliders [i].tag == enemyTag) {
+				RaycastHit hit;
+				if (!(Physics.Raycast (localPos, hitColliders [i].gameObject.transform.position - localPos, out hit, attackRadius - 0.1f) && hit.collider.gameObject != hitColliders [i].gameObject)) {
+					if (toAttack == null || Vector3.Distance (toAttack.transform.position, localPos) > Vector3.Distance (hitColliders [i].transform.position, localPos)) {
+						toAttack = hitColliders [i].gameObject;
+					}
+				}
+			} else if (hitColliders [i].tag == "Structure")
+				inCover = true;
             i++;
         }
 
