@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ButtonTextSwitcher : MonoBehaviour {
 
@@ -36,6 +37,10 @@ public class ButtonTextSwitcher : MonoBehaviour {
     }
     public void SlotChoice04() {
         CurrentSlot = 4;
+    }
+
+    public void StartMission() {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
 
