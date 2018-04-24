@@ -47,6 +47,9 @@ public abstract class Unit : PT_MonoBehaviour {
         set { _selected = value; }
     }
 
+    [Header("Set in Inspector")]
+    public GameObject corpse;
+
 
     // Use this for initialization
     protected void Awake () {
@@ -161,7 +164,18 @@ public abstract class Unit : PT_MonoBehaviour {
 
     void doDamage(GameObject enemy){
         enemy.GetComponent<Unit>().health--;
+        if (enemy.GetComponent<Unit>().health <= 0)
+        {
+            enemy.GetComponent<Unit>().Die();
+        }
     }
+
+    public void Die()
+    {
+        Instantiate(corpse, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z - 1), gameObject.transform.rotation);
+        Destroy(gameObject);
+    }
+
     void findTargetInRange(){
         Vector3 localPos = this.transform.position;
         Collider[] hitColliders = Physics.OverlapSphere(localPos, attackRadius);

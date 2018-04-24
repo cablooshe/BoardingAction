@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class EnemyUnit : Unit {
 
-    [Header("Set in Inspector")]
-    public GameObject corpse;
+    
 
 	// Use this for initialization
 	void Start () {
@@ -14,9 +13,7 @@ public class EnemyUnit : Unit {
 	
 	// Update is called once per frame
 	void Update () {
-		if (health <= 0) {
-            Die();
-        }
+		
 	}
     override public void MouseDown()
     {
@@ -33,9 +30,5 @@ public class EnemyUnit : Unit {
     override public void MouseDragUp()
     {
  
-    }
-    public void Die() {
-        Instantiate(corpse,new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z-1), gameObject.transform.rotation);
-        Destroy(gameObject);
     }
 }
