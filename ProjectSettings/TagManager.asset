@@ -6,6 +6,7 @@ TagManager:
   tags:
   - PUnit
   - EnemyUnit
+  - Structure
   layers:
   - Default
   - TransparentFX
