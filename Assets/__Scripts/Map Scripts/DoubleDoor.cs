@@ -51,7 +51,7 @@ public class DoubleDoor : MonoBehaviour {
 
 	void Update() {
 		if (opening) {
-			float openStatus = Mathf.Min (Time.time - startOpen, 1);
+			float openStatus = Mathf.Min (Time.time - startOpen, 1.9f);
 			if (isVertical) {
 				door1.transform.position = new Vector3 (door1.transform.position.x, startPos1 - openStatus, door1.transform.position.z);
 				door2.transform.position = new Vector3 (door2.transform.position.x, startPos2 + openStatus, door2.transform.position.z);
@@ -87,7 +87,7 @@ public class DoubleDoor : MonoBehaviour {
 		isOpen = true;
 		opening = true;
 		startOpen = Time.time;
-		finishOpen = Time.time + 1;
+		finishOpen = Time.time + 1.9f;
 	}
 
 	public void CloseDoors() {
@@ -96,6 +96,6 @@ public class DoubleDoor : MonoBehaviour {
 		isOpen = false;
 		closing = true;
 		startClose = Time.time;
-		finishClose = Time.time + 1;
+		finishClose = Time.time + 1.9f;
 	}
 }
