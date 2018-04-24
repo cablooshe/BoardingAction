@@ -40,8 +40,9 @@ public class ButtonTextSwitcher : MonoBehaviour {
     }
 
     public void StartMission() {
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        SceneManager.LoadScene(PlayerInfo.CurrentSceneIndex);
+        string path = SceneUtility.GetScenePathByBuildIndex(PlayerInfo.currentSceneIndex);
+        string sceneName = path.Substring(0, path.Length - 6).Substring(path.LastIndexOf('/') + 1);
+        SceneManager.LoadScene(sceneName);
     }
 
 
