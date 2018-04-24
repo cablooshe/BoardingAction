@@ -164,18 +164,18 @@ public abstract class Unit : PT_MonoBehaviour {
     }
 
     void doDamage(GameObject enemy){
-<<<<<<< HEAD
+//<<<<<<< HEAD
         enemy.GetComponent<Unit>().health--;
         if (enemy.GetComponent<Unit>().health <= 0)
         {
             enemy.GetComponent<Unit>().Die();
         }
-=======
+//=======
 		if ((enemy.GetComponent<Unit> ().inCover) && (Random.value > 0.5)) {
 			return;
 		}
 		enemy.GetComponent<Unit> ().health--;
->>>>>>> 5d6d2c8da489278b943a300831b8da131b3191b3
+//>>>>>>> 5d6d2c8da489278b943a300831b8da131b3191b3
     }
 
     public void Die()
