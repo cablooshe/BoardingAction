@@ -678,7 +678,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &71695019
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6409,7 +6409,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1747859943}
   - component: {fileID: 1747859945}
-  - component: {fileID: 1747859944}
   - component: {fileID: 1747859946}
   m_Layer: 5
   m_Name: SquadChoicePanel
@@ -6446,33 +6445,6 @@ RectTransform:
   m_AnchoredPosition: {x: -512, y: -384}
   m_SizeDelta: {x: -1024, y: -768}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1747859944
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1747859942}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.45490196, g: 0.7411765, b: 0.7411765, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
 --- !u!222 &1747859945
 CanvasRenderer:
   m_ObjectHideFlags: 0
