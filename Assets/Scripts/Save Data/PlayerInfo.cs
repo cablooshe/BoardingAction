@@ -4,8 +4,10 @@ using UnityEngine;
 
 public static class PlayerInfo {
 
-    public static int gold, exp, currentSceneIndex;
-    public static List<Squad> squads;
+    public static int gold, currentSceneIndex;
+    public static IList<Squad> squads;
+    public static IList<SquadLeader> leaders;
+    public static IList<GameObject> equipment;
 
     public static int Gold {
         get {
@@ -16,21 +18,30 @@ public static class PlayerInfo {
         }
     }
 
-    public static int Exp {
-        get {
-            return exp;
-        }
-        set {
-            exp = value;
-        }
-    }
-
     public static int CurrentSceneIndex {
         get {
             return currentSceneIndex;
         }
         set {
             currentSceneIndex = value;
+        }
+    }
+
+    public static IList<SquadLeader> Leaders {
+        get {
+            return leaders;
+        }
+        set {
+            leaders = value;
+        }
+    }
+
+    public static IList<GameObject> Equipment {
+        get {
+            return equipment;
+        }
+        set {
+            equipment = value;
         }
     }
 }

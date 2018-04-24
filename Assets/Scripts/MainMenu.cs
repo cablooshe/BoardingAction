@@ -6,6 +6,18 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour {
 
     public void PlayGame() {
+        PlayerInfo.squads = new List<Squad>() {
+            new Squad(),
+            new Squad(),
+            new Squad(),
+            new Squad()
+        };
+        PlayerInfo.Leaders = new List<SquadLeader> {
+            new SquadLeader("Speedy", "Scout"),
+            new SquadLeader("Gordon't", "Idiot"),
+            new SquadLeader("Jake", "Bully"),
+            new SquadLeader("Leader4", "Generic")
+        };
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
@@ -19,7 +31,6 @@ public class MainMenu : MonoBehaviour {
         SaveLoad.Load();
         PlayerInfo.currentSceneIndex = SaveLoad.savedGame.sceneIndex;
         PlayerInfo.gold = SaveLoad.savedGame.gold;
-        PlayerInfo.exp = SaveLoad.savedGame.exp;
         string path = SceneUtility.GetScenePathByBuildIndex(PlayerInfo.currentSceneIndex);
         string sceneName = path.Substring(0, path.Length - 6).Substring(path.LastIndexOf('/') + 1);
         SceneManager.LoadScene(sceneName);

@@ -16,10 +16,8 @@ public class SquadLeader : MonoBehaviour {
     public int level;
     public int exp;
 
-
-	// Use this for initialization
-	void Start () {
-        switch(squadClass) {
+    public SquadLeader(string leaderName, string squadClass) {
+        switch (squadClass) {
             case "Scout":
                 speed = 20 + (10 * level);
                 health = 80 + (10 * level);
@@ -29,12 +27,11 @@ public class SquadLeader : MonoBehaviour {
             default:
                 break;
         }
+        this.leaderName = leaderName;
+        this.squadClass = squadClass;
+        this.damage = (int)(Random.value * 10);
+    }
 
-
-
-
-
-	}
 	
 	// Update is called once per frame
 	void Update () {
