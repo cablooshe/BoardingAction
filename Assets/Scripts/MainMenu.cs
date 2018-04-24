@@ -30,15 +30,17 @@ public class MainMenu : MonoBehaviour {
     public void LoadGame() {
         Debug.Log("LOADING");
         SaveLoad.Load();
+        //trasnsfer all data from the save game into the PlayerInfo static script
         PlayerInfo.currentSceneIndex = SaveLoad.SavedGame.sceneIndex;
         PlayerInfo.gold = SaveLoad.SavedGame.gold;
         PlayerInfo.Leaders = new List<SquadLeader>();
         foreach (SquadLeaderData l in SaveLoad.SavedGame.leaders) {
             PlayerInfo.Leaders.Add(new SquadLeader(l.leaderName, l.squadClass));
         }
-        string path = SceneUtility.GetScenePathByBuildIndex(PlayerInfo.currentSceneIndex);
-        string sceneName = path.Substring(0, path.Length - 6).Substring(path.LastIndexOf('/') + 1);
-        SceneManager.LoadScene(sceneName);
+        //string path = SceneUtility.GetScenePathByBuildIndex(PlayerInfo.currentSceneIndex);
+        //string sceneName = path.Substring(0, path.Length - 6).Substring(path.LastIndexOf('/') + 1);
+        SceneManager.LoadScene(1);
+        PlayerInfo.Squads = new List<Squad>();
     }
 
 }
