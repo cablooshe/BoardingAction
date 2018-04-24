@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ButtonTextSwitcher : MonoBehaviour {
 
@@ -38,6 +39,10 @@ public class ButtonTextSwitcher : MonoBehaviour {
         CurrentSlot = 4;
     }
 
+    public void StartMission() {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
 
     public void ChoiceOption01() {
         ChoiceMade = 1;
@@ -68,9 +73,14 @@ public class ButtonTextSwitcher : MonoBehaviour {
         slots[CurrentSlot - 1].GetComponentInChildren<Text>().text = choices[chosenLeader - 1].GetComponentInChildren<Text>().text;
         slots[CurrentSlot - 1].interactable = false;
         choices[chosenLeader - 1].SetActive(false);
+        PlayerInfo.Squads[CurrentSlot - 1].leader = PlayerInfo.Leaders[chosenLeader - 1];
     }
 
     private void Start() {
+        Choice01.GetComponentInChildren<Text>().text = PlayerInfo.Leaders[0].data.leaderName;
+        Choice02.GetComponentInChildren<Text>().text = PlayerInfo.Leaders[1].data.leaderName;
+        Choice03.GetComponentInChildren<Text>().text = PlayerInfo.Leaders[2].data.leaderName;
+        Choice04.GetComponentInChildren<Text>().text = PlayerInfo.Leaders[3].data.leaderName;
         /*
         slots.Add(Slot1);
         slots.Add(Slot2);
@@ -86,7 +96,7 @@ public class ButtonTextSwitcher : MonoBehaviour {
         choices.Add(Choice07);
         choices.Add(Choice08);
         */
-        
+
     }
 
     // Update is called once per frame

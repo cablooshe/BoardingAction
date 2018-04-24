@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public static class PlayerInfo {
 
-    public static int gold, exp, currentSceneIndex;
-    public static List<Squad> squads;
+    public static int gold, currentSceneIndex;
+    public static IList<Squad> squads;
+    public static IList<SquadLeader> leaders;
+    //public static IList<GameObject> equipment;
 
     public static int Gold {
         get {
@@ -16,12 +19,12 @@ public static class PlayerInfo {
         }
     }
 
-    public static int Exp {
+    public static IList<Squad> Squads {
         get {
-            return exp;
+            return squads;
         }
         set {
-            exp = value;
+            squads = value;
         }
     }
 
@@ -33,4 +36,22 @@ public static class PlayerInfo {
             currentSceneIndex = value;
         }
     }
+
+    public static IList<SquadLeader> Leaders {
+        get {
+            return leaders;
+        }
+        set {
+            leaders = value;
+        }
+    }
+
+    //public static IList<GameObject> Equipment {
+    //    get {
+    //        return equipment;
+    //    }
+    //    set {
+    //        equipment = value;
+    //    }
+    //}
 }
