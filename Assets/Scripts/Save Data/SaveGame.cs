@@ -8,21 +8,29 @@ public class SaveGame {
 
     public int sceneIndex;
     public int gold;
-    public IList<SquadLeader> leaders;
-    public IList<GameObject> equipment;
+    public IList<SquadLeaderData> leaders;
+    //public IList<GameObject> equipment;
 
     public SaveGame() {
-        this.sceneIndex = SceneManager.GetActiveScene().buildIndex;
-        this.gold = PlayerInfo.Gold;
-        this.leaders = PlayerInfo.Leaders;
-        this.equipment = PlayerInfo.Equipment;
+        leaders = new List<SquadLeaderData>();
+        if (PlayerInfo.Leaders != null) {
+            foreach (SquadLeader l in PlayerInfo.Leaders) {
+                leaders.Add(l.data);
+            }
+            this.sceneIndex = SceneManager.GetActiveScene().buildIndex;
+            this.gold = PlayerInfo.Gold;
+            //this.equipment = PlayerInfo.Equipment;
+        }
     }
 
     public void UpdateSave() {
+        leaders = new List<SquadLeaderData>();
         this.sceneIndex = SceneManager.GetActiveScene().buildIndex;
         this.gold = PlayerInfo.Gold;
-        this.leaders = PlayerInfo.Leaders;
-        this.equipment = PlayerInfo.Equipment;
+        foreach (SquadLeader l in PlayerInfo.Leaders) {
+            leaders.Add(l.data);
+        }
+        //this.equipment = PlayerInfo.Equipment;
     }
 
 }

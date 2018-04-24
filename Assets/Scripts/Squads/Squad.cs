@@ -9,6 +9,7 @@ public class Squad : MonoBehaviour {
     public float squadSpeed;
     public string squadName;
     public int squadDamage;
+    public SquadLeader leader;
     public List<GameObject> equipment;  //list of all equipment held by squad
     public SoldierSet soldiers;  //2 soldiers that come with the squad leader
     public int healthLimit;  //health limit goes down if you lose squad members, starts at totalHealth
