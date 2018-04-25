@@ -6,8 +6,10 @@ using System.Linq; //Enables LINQ queries
 public abstract class Unit : PT_MonoBehaviour {
     static public bool DEBUG = true;
 
+    public string name;
     public float speed = 2; //the speed at which unit walks
     public float health = 10;
+    public float damage = 1;
 
     public GameObject haloPrefab; //selection halo prefab that will be used when this unit is selected
     public GameObject muzzlePrefab;
@@ -164,18 +166,14 @@ public abstract class Unit : PT_MonoBehaviour {
     }
 
     void doDamage(GameObject enemy){
-//<<<<<<< HEAD
-        enemy.GetComponent<Unit>().health--;
-        if (enemy.GetComponent<Unit>().health <= 0)
-        {
-            enemy.GetComponent<Unit>().Die();
-        }
-//=======
 		if ((enemy.GetComponent<Unit> ().inCover) && (Random.value > 0.5)) {
 			return;
 		}
 		enemy.GetComponent<Unit> ().health--;
-//>>>>>>> 5d6d2c8da489278b943a300831b8da131b3191b3
+        if (enemy.GetComponent<Unit>().health <= 0)
+        {
+            enemy.GetComponent<Unit>().Die();
+        }
     }
 
     public void Die()
