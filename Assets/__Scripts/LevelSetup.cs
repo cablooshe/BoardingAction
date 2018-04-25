@@ -7,6 +7,7 @@ public class LevelSetup : MonoBehaviour {
     public GameObject unitPrefab;
 	// Use this for initialization
 	void Start () {
+        spawnLoc.Add(new Vector3(-9, 0, 0.65f));
         IList<Squad> squads = PlayerInfo.Squads;
         for(int i = 0; i < squads.Count;i++){
             Squad test = squads[i];
@@ -17,6 +18,7 @@ public class LevelSetup : MonoBehaviour {
             float mov = test.squadSpeed;
             GameObject unit;
             unit = Instantiate(unitPrefab) as GameObject;
+            unit.transform.position = spawnLoc[i];
             unit.GetComponent<PUnit>().health = hp;
             unit.GetComponent<PUnit>().speed = mov;
             unit.GetComponent<PUnit>().name = name;
