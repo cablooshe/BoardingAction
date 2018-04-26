@@ -21,6 +21,8 @@ public class ButtonTextSwitcher : MonoBehaviour {
     public GameObject Choice07;
     public GameObject Choice08;
     public int ChoiceMade;
+    public bool isLeaderScript;
+    public bool disableOption;
 
     public List<Button> slots;
     public List<GameObject> choices;
@@ -73,16 +75,21 @@ public class ButtonTextSwitcher : MonoBehaviour {
 
     public void ChangeText(int chosenLeader) {
         slots[CurrentSlot - 1].GetComponentInChildren<Text>().text = choices[chosenLeader - 1].GetComponentInChildren<Text>().text;
-        slots[CurrentSlot - 1].interactable = false;
+        if (disableOption == true) {
+            slots[CurrentSlot - 1].interactable = false;
+        }
         choices[chosenLeader - 1].SetActive(false);
         PlayerInfo.Squads[CurrentSlot - 1].leader = PlayerInfo.Leaders[chosenLeader - 1];
     }
 
     private void Start() {
-        Choice01.GetComponentInChildren<Text>().text = PlayerInfo.Leaders[0].data.leaderName;
-        Choice02.GetComponentInChildren<Text>().text = PlayerInfo.Leaders[1].data.leaderName;
-        Choice03.GetComponentInChildren<Text>().text = PlayerInfo.Leaders[2].data.leaderName;
-        Choice04.GetComponentInChildren<Text>().text = PlayerInfo.Leaders[3].data.leaderName;
+        if (isLeaderScript) {
+            Choice01.GetComponentInChildren<Text>().text = PlayerInfo.Leaders[0].data.leaderName;
+            Choice02.GetComponentInChildren<Text>().text = PlayerInfo.Leaders[1].data.leaderName;
+            Choice03.GetComponentInChildren<Text>().text = PlayerInfo.Leaders[2].data.leaderName;
+            Choice04.GetComponentInChildren<Text>().text = PlayerInfo.Leaders[3].data.leaderName;
+        }
+
         /*
         slots.Add(Slot1);
         slots.Add(Slot2);
