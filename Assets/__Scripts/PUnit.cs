@@ -8,20 +8,14 @@ using System.Linq; //Enables LINQ queries
 //mage is a subclass of PT_MonoBehavior
 public class PUnit : Unit {
 
-
+	[Header("PUnit: Associated Prefabs - Set in Inspector")]
     public GameObject tapIndicatorPrefab;
 
+	[Header("PUnit: Mouse Info")]
     public float mTapTime = 0.5f; //how long is considered a tap
     public float mDragDist = 10; //how long is considered a drag
-
-    public float activeScreenWidth = 1; //the % of the screen to usee
-
-
-    //these are the min and max distance between two line points
-
-    
-
-    public MPhase mPhase = MPhase.idle;
+	public float activeScreenWidth = 1; //the % of the screen to use
+	public MPhase mPhase = MPhase.idle;
 
     protected new void Awake() {
         base.Awake();
@@ -136,55 +130,21 @@ public class PUnit : Unit {
 
         GameObject clickedGO = mouseInfos[0].hitInfo.collider.gameObject;
         //if mouse wasnt clicked on anything, this throuws an error, however mousedown only calls when clicked on something,, so we're safe
-
-        GameObject taggedParent = Utils.FindTaggedParent(clickedGO);
-        if(taggedParent == null) {
-            actionStartTag = "";
-        } else {
-            actionStartTag = taggedParent.tag;
-            //this should be either ground, mage, or enemy
-        }
     }
 
     override public void RightClick()
     {
         if (DEBUG) print("Mage.RightClick()");
 
-        //now this cares what was tapped
-        switch (actionStartTag) {
-            case "Mage":
-                break;
-            case "Ground":
-                WalkTo(lastMouseInfo.loc);
-                //ShowTap(lastMouseInfo.loc);
-                break;
-            default:
-                WalkTo(lastMouseInfo.loc);
-                break;
-        }
+		WalkTo (lastMouseInfo.loc);
     }
     override public void MouseDrag()
     {
-        if (DEBUG) print("Mage.MouseDrag()");
-        //WalkTo(mouseInfos[mouseInfos.Count - 1].loc);
-
-        //drag is meaningless unless the mouse started on teh ground
-        if (actionStartTag != "Ground") return;
-
-        //if there is no element selected, the player should follow the mouse
-        WalkTo(mouseInfos[mouseInfos.Count - 1].loc);
-
+		// We might need this later, but now it is USELESS (almost as much as Gordon)
     }
     override public void MouseDragUp()
     {
-        if (DEBUG) print("Mage.MouseDragUp()");
-
-        if (actionStartTag != "Ground") return;
-
-
-        StopWalking();
-
-        //Stop walking
+		// We might need this later, but now it is USELESS (almost as much as Gordon's comments)
     }
 
 

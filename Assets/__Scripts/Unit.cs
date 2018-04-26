@@ -6,43 +6,44 @@ using System.Linq; //Enables LINQ queries
 public abstract class Unit : PT_MonoBehaviour {
     static public bool DEBUG = true;
 
+	[Header("Unit: Squad Characteristics")]
     public string name;
     public float speed = 2; //the speed at which unit walks
     public float health = 10;
     public float damage = 1;
+	public float attackRadius = 2;
+	public float coverRadius = 1;
+	public float attackSpeed = 1f; //amount of seconds between attacks
 
+	[Header("Unit: Associated Prefabs - Set in Inspector")]
     public GameObject haloPrefab; //selection halo prefab that will be used when this unit is selected
-    public GameObject muzzlePrefab;
+	public GameObject muzzlePrefab;
+	public GameObject muzzleFlashFront;
+	public GameObject halo;
+	public GameObject corpse;
 
-    public bool __________________________________;
-
-    public GameObject halo;
-
-    private int attackSpeed = 1; //amount of seconds between attacks
-    private int updateAttack = 1;
-    public GameObject muzzleFlashFront;
-
-
+	[Header("Unit: Current Status")]
     public bool _selected; //is this unit selected
+	public bool walking = false;
+	public bool isTargeting = false;
+	public bool inCover = false;
+	public Vector3 walkTarget;
+
+	private float updateAttack = 1;
 
     private Transform viewCharacterTrans;
 
     protected float lineZ = -0.1f;
 
     public List<MouseInfo> mouseInfos = new List<MouseInfo>();
-    public string actionStartTag; //["mage", "Ground", "Enemy"]
 
-    public bool walking = false;
-    public Vector3 walkTarget;
-    public Transform characterTrans;
+	public Transform characterTrans;
 
-    public List<Transform> transforms;
+	public List<Transform> transforms;
 
-    public bool isTargeting = false;
+	[Header("Unit: Enemy Info")]
     public GameObject targetSelected;
-    public float attackRadius = 2;
-	protected string enemyTag = "EnemyUnit";
-	public bool inCover = false;
+    protected string enemyTag = "EnemyUnit";
 
     public bool selected
     {
@@ -50,8 +51,6 @@ public abstract class Unit : PT_MonoBehaviour {
         set { _selected = value; }
     }
 
-    [Header("Set in Inspector")]
-    public GameObject corpse;
 
 
     // Use this for initialization
@@ -197,8 +196,11 @@ public abstract class Unit : PT_MonoBehaviour {
 						toAttack = hitColliders [i].gameObject;
 					}
 				}
-			} else if (hitColliders [i].tag == "Structure")
+			} else if ((hitColliders [i].tag == "Structure")
+			           && (hitColliders [i].GetComponent<Structure> ().isCover)
+			           && (Vector3.Distance (hitColliders [i].transform.position, localPos) < coverRadius)) {
 				inCover = true;
+			}
             i++;
         }
 
