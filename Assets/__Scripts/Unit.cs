@@ -9,11 +9,16 @@ public abstract class Unit : PT_MonoBehaviour {
 	[Header("Unit: Squad Characteristics")]
     public string name;
     public float speed = 2; //the speed at which unit walks
-    public float health = 10;
+    public float maxHealth = 10;
     public float damage = 1;
 	public float attackRadius = 2;
 	public float coverRadius = 1;
 	public float attackSpeed = 1f; //amount of seconds between attacks
+
+    protected int unitCount = 3;
+    public float death1;
+    public float death2;
+    public int numDeaths = 0;
 
 	[Header("Unit: Associated Prefabs - Set in Inspector")]
     public GameObject haloPrefab; //selection halo prefab that will be used when this unit is selected
@@ -23,6 +28,8 @@ public abstract class Unit : PT_MonoBehaviour {
 	public GameObject corpse;
 
 	[Header("Unit: Current Status")]
+    public float currentHealth = 10;
+    public float updateMaxHealth = 10;
     public bool _selected; //is this unit selected
 	public bool walking = false;
 	public bool isTargeting = false;
@@ -55,6 +62,8 @@ public abstract class Unit : PT_MonoBehaviour {
 
     // Use this for initialization
     protected void Awake () {
+        death1 = Random.Range(0.3f, 0.6f) * maxHealth;
+        death2 = Random.Range(0.1f, 0.2f) * maxHealth;
         this.selected = false;
         //find the characterTrans to rotate with Face()
         characterTrans = transform.Find("CharacterTrans");
@@ -148,7 +157,7 @@ public abstract class Unit : PT_MonoBehaviour {
     void attack() {
         if (isTargeting)
         {
-            doDamage(targetSelected);
+            targetSelected.GetComponent<Unit>().takeDamage(this.damage);
             attackAnimation(targetSelected);
             targetSelected.GetComponent<Unit>().takeDamageAnimation();
         }
@@ -160,20 +169,46 @@ public abstract class Unit : PT_MonoBehaviour {
         muzzleFlashFront.transform.rotation = this.gameObject.transform.rotation;
     }
 
-    void takeDamageAnimation() {
+    public void takeDamage(float damage) {
+        if((inCover) && (Random.value > 0.5)) {
+            return;
+        }
+        currentHealth-=damage;
+        if ((numDeaths == 0 && death1 > currentHealth) || (numDeaths == 1 && death2 > currentHealth))
+        {
+            loseMember(numDeaths++);
+        }
+
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+    }
+
+    void loseMember(int deathCount) {
+        Instantiate(corpse, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, 0.4f), Quaternion.Euler(Random.Range(0,360),0, Random.Range(0,360)));
+        Destroy(this.transforms[this.transforms.Count - 1].gameObject);
+        this.transforms.RemoveAt(transforms.Count - 1);
 
     }
 
-    void doDamage(GameObject enemy){
+    public void takeDamageAnimation() {
+
+    }
+
+    /*void doDamage(GameObject enemy){
 		if ((enemy.GetComponent<Unit> ().inCover) && (Random.value > 0.5)) {
 			return;
 		}
-		enemy.GetComponent<Unit> ().health--;
-        if (enemy.GetComponent<Unit>().health <= 0)
+		enemy.GetComponent<Unit> ().currentHealth--;
+        if (numDeaths == 0 && enemy.GetComponent<Unit>().death1 > enemy.GetComponent<Unit>().currentHealth) {
+            enemy.GetComponent<Unit>().loseMember(
+        }
+        if (enemy.GetComponent<Unit>().currentHealth <= 0)
         {
             enemy.GetComponent<Unit>().Die();
         }
-    }
+    }*/
 
     public void Die()
     {
@@ -191,11 +226,13 @@ public abstract class Unit : PT_MonoBehaviour {
         {
 			if (hitColliders [i].gameObject != this.gameObject && hitColliders [i].tag == enemyTag) {
 				RaycastHit hit;
-				if (!(Physics.Raycast (localPos, hitColliders [i].gameObject.transform.position - localPos, out hit, attackRadius - 0.1f) && hit.collider.gameObject != hitColliders [i].gameObject)) {
+                /*if (!(Physics.Raycast (localPos, hitColliders [i].gameObject.transform.position - localPos, out hit, attackRadius - 0.1f) && hit.collider.gameObject != hitColliders [i].gameObject)) {
 					if (toAttack == null || Vector3.Distance (toAttack.transform.position, localPos) > Vector3.Distance (hitColliders [i].transform.position, localPos)) {
+                        print("DOING SOMETHING");
 						toAttack = hitColliders [i].gameObject;
 					}
-				}
+				}*/
+                toAttack = hitColliders[i].gameObject;
 			} else if ((hitColliders [i].tag == "Structure")
 			           && (hitColliders [i].GetComponent<Structure> ().isCover)
 			           && (Vector3.Distance (hitColliders [i].transform.position, localPos) < coverRadius)) {
@@ -219,12 +256,16 @@ public abstract class Unit : PT_MonoBehaviour {
         }
         Vector3 localPos = this.transform.position;
         RaycastHit hit;
-        if (!(Physics.Raycast(localPos, target.transform.position - localPos, out hit, attackRadius - 0.1f) && hit.collider.gameObject != target))
+        /*if (!(Physics.Raycast(localPos, target.transform.position - localPos, out hit, attackRadius - 0.1f) && hit.collider.gameObject != target))
         {
             if (attackRadius >= Vector3.Distance(target.transform.position, localPos))
             {
                 return true;
             }
+        }*/
+        if (attackRadius >= Vector3.Distance(target.transform.position, localPos))
+        {
+            return true;
         }
         return false;
     }

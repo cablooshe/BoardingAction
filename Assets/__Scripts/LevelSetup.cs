@@ -19,7 +19,8 @@ public class LevelSetup : MonoBehaviour {
             GameObject unit;
             unit = Instantiate(unitPrefab) as GameObject;
             unit.transform.position = spawnLoc[i];
-            unit.GetComponent<PUnit>().health = hp;
+            unit.GetComponent<PUnit>().currentHealth = hp;
+            unit.GetComponent<PUnit>().maxHealth = unit.GetComponent<PUnit>().updateMaxHealth = hp;
             unit.GetComponent<PUnit>().speed = mov;
             unit.GetComponent<PUnit>().name = name;
             unit.GetComponent<PUnit>().damage = dam;
