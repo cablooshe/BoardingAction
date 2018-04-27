@@ -13,32 +13,14 @@ public class SquadLeader : MonoBehaviour {
         data.squadClass = squadClass;
         switch (data.squadClass) {
             case "Scout":
-                data.speed = 3 + (1 * data.level);
+                data.speed = 20 + (10 * data.level);
                 data.health = 80 + (10 * data.level);
                 //TODO: Equip Weapon
-                data.damage = 20;  //TODO: how does weapon affect this?
-                break;
-            case "Idiot":
-                data.speed = 3 + (1 * data.level);
-                data.health = 80 + (10 * data.level);
-                //TODO: Equip Weapon
-                data.damage = 20;  //TODO: how does weapon affect this?
-                break;
-            case "Bully":
-                data.speed = 3 + (1 * data.level);
-                data.health = 80 + (10 * data.level);
-                //TODO: Equip Weapon
-                data.damage = 20;  //TODO: how does weapon affect this?
-                break;
-            case "Generic":
-                data.speed = 3 + (1 * data.level);
-                data.health = 80 + (10 * data.level);
-                //TODO: Equip Weapon
-                data.damage = 20;  //TODO: how does weapon affect this?
+                data.damage = 50;  //TODO: how does weapon affect this?
                 break;
             default:
                 break;
-        } 
+        }
         this.data.damage = (int)(Random.value * 10);
     }
 
