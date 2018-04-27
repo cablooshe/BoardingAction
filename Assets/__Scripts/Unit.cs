@@ -6,7 +6,10 @@ using System.Linq; //Enables LINQ queries
 public abstract class Unit : PT_MonoBehaviour {
     static public bool DEBUG = true;
 
-	[Header("Unit: Squad Characteristics")]
+    [Header("Set in Inspector")]
+    public bool isObjective = false;
+
+    [Header("Unit: Squad Characteristics")]
     public string name;
     public float speed = 2; //the speed at which unit walks
     public float maxHealth = 10;
@@ -221,7 +224,13 @@ public abstract class Unit : PT_MonoBehaviour {
 
     public void Die()
     {
+        print("Die");
         Instantiate(corpse, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z - 1), gameObject.transform.rotation);
+        if (isObjective)
+        {
+            print("Dead");
+            GameObject.Find("Map").GetComponent<Map>().CompletedObjective();
+        }
         Destroy(gameObject);
     }
 
