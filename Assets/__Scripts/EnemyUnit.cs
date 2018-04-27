@@ -7,8 +7,7 @@ public class EnemyUnit : Unit {
     [Header("Set in Inspector: EnemyUnit")]
     public Vector3[] patrolPoints;
 
-    //private bool onPatrol = false;
-    private Vector3 patrolDest;
+    private bool onPatrol = false;
 
     // Use this for initialization
     /*protected new void Awake()
@@ -28,65 +27,64 @@ public class EnemyUnit : Unit {
     // Use this for initialization
     void Start () {
 		enemyTag = "PUnit";
-        Patrol();
-        //WalkTo(patrolDest);
-    }
+	}
 	
 	// Update is called once per frame
-	protected void Update () {
-        /*if (((patrolDest.x - GetComponent<Rigidbody>().position.x) + (GetComponent<Rigidbody>().position.y - pos.y)) < speed * Time.fixedDeltaTime)
+	protected new void FixedUpdate () {
+        //keep muzzle flash with unit
+        if (muzzleFlashFront != null)
         {
-            Patrol();
-        }*/
-        /*if(GetComponent<Rigidbody>().velocity == Vector3.zero)
+            muzzleFlashFront.transform.position = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, this.gameObject.transform.position.z - 1f);
+        }
+        //print("HERE1:" + onPatrol);
+        if (walking)
         {
-            print("Stopped");
-            Patrol();
-        }*/
-        /*if (onPatrol)
-        {
-            if (!walking)
+            if ((walkTarget - pos).magnitude < speed * Time.fixedDeltaTime)
             {
-                //onPatrol = false;
-                Patrol();
+                //if mage is very close to walktarget, just stop
+                pos = walkTarget;
+                StopWalking();
+                onPatrol = false;
+            }
+            else
+            {
+                //otherwise, walk                
+                GetComponent<Rigidbody>().velocity = (walkTarget - pos).normalized * speed;
             }
         }
         else
         {
-            Patrol();
-        }*/
-        if (!walking)
+            //if not walking, velocity should be zero
+            GetComponent<Rigidbody>().velocity = Vector3.zero;
+            onPatrol = false;
+        }
+        //print("Here:" + onPatrol);
+        if (!onPatrol)
         {
-            walking = true;
-            patrolDest = patrolPoints[Random.Range(0, patrolPoints.Length)];
-            WalkTo(patrolDest);
+            Patrol();
+        }
+
+        if (!isTargeting || !targetInRange(targetSelected))
+        {
+            findTargetInRange();
+        }
+
+        //DO Attack based on attack speed
+        if (Time.time >= updateAttack)
+        {
+            // Change the next update (current second+attackSpeed)
+            updateAttack = Mathf.FloorToInt(Time.time) + attackSpeed;
+            // Call your function
+            attack();
         }
     }
 
     void Patrol()
     {
-        //onPatrol = true;
-        walking = true;
-        patrolDest = patrolPoints[Random.Range(0, patrolPoints.Length)];
-        WalkTo(patrolDest);
-    }
-
-    void OnCollisionEnter(Collision c)
-    {
-        //print("Colliding");
-        GameObject go = c.gameObject;
-        if (go.tag == "PUnit" && go.GetComponent<PUnit>().walking == false)
-        {
-            StopWalking();
-        }
-        if (go.tag == "Door")
-        {
-            go.GetComponentInParent<DoubleDoor>().OpenDoors();
-        }
-        /*Room currentRoom = go.transform.parent.GetComponent<Room> (); 
-		if (currentRoom != null) {
-			currentRoom.makeVisible ();
-		}*/
+        onPatrol = true;
+        int ndx = Random.Range(0, patrolPoints.Length);
+        print(ndx);
+        WalkTo(patrolPoints[ndx]);
     }
 
     override public void MouseDown()

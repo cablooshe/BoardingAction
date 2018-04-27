@@ -119,11 +119,10 @@ public abstract class Unit : PT_MonoBehaviour {
 
         if (walking)
         {
-            if (((walkTarget.x - pos.x) + (walkTarget.y - pos.y)) < speed * Time.fixedDeltaTime)
+            if ((walkTarget - pos).magnitude < speed * Time.fixedDeltaTime)
             {
                 //if mage is very close to walktarget, just stop
-                //Vector3 stopPos = new Vector3(walkTarget.x, walkTarget.y, pos.z);
-                //pos = stopPos;
+                pos = walkTarget;
                 StopWalking();
             }
             else
