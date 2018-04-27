@@ -53,6 +53,9 @@ public abstract class Unit : PT_MonoBehaviour {
     protected string enemyTag = "EnemyUnit";
     //public bool randomPatrol;
 
+
+    [Header("Unit: Animation Info")]
+    protected Animator anim;
     public bool selected
     {
         get { return _selected; }
@@ -119,7 +122,7 @@ public abstract class Unit : PT_MonoBehaviour {
 
         if (walking)
         {
-            if ((walkTarget - pos).magnitude < speed * Time.fixedDeltaTime)
+            if ((walkTarget - pos).magnitude < .02)
             {
                 //if mage is very close to walktarget, just stop
                 pos = walkTarget;

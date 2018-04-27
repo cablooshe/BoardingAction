@@ -19,6 +19,7 @@ public class PUnit : Unit {
 
     protected new void Awake() {
         base.Awake();
+        anim = GetComponent<Animator>();
         /* S = this;
          this.selected = false;
          mPhase = MPhase.idle;
@@ -39,9 +40,26 @@ public class PUnit : Unit {
         halo.transform.position = new Vector3(this.pos.x, this.pos.y, this.pos.z - 0.15f);
         
     }
+    new public void StopWalking() {
+        anim.SetBool("Walking", false);
+        walking = false;
+        GetComponent<Rigidbody>().velocity = Vector3.zero;
+        anim.SetBool("Walking", false);
+    }
+
+    void updateAnimation() {
+        if (walking)
+        {
+            anim.SetBool("Walking", true);
+        }
+        else
+            anim.SetBool("Walking", false);
+    }
 
     void Update() {
         toggleHalo();
+        updateAnimation();
+
         if (!selected) return;
         //find whether the mouse button 0 was pressed or released this frame
         bool b0Down = Input.GetMouseButtonDown(0);

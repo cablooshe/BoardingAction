@@ -88,7 +88,6 @@ public class EnemyUnit : Unit {
     {
         onPatrol = true;
         ndx = Random.Range(0, patrolPoints.Length);
-        print(ndx);
         WalkTo(patrolPoints[ndx]);
     }
 
