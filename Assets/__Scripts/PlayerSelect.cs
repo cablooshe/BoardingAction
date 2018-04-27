@@ -248,7 +248,8 @@ public class PlayerSelect : MonoBehaviour {
         {
             foreach (GameObject u in unitsSelected)
             {
-                u.GetComponent<PUnit>().selected = false;
+                if (u != null)
+                    u.GetComponent<PUnit>().selected = false;
             }
             unitsSelected.Clear();
             foreach (GameObject unit in GameObject.FindGameObjectsWithTag("PUnit"))

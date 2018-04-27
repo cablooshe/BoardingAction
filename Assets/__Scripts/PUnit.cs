@@ -171,6 +171,13 @@ public class PUnit : Unit {
 		}*/
     }
 
+	void OnTriggerEnter(Collider other) {
+		GameObject go = other.gameObject;
+		if (go.tag == "Pickup") {
+			PickUp otherPickUp = go.GetComponent<PickUp> ();
+			otherPickUp.GetPickedUp ();
+		}
+	}
 
     
     public void ClearInput() {
