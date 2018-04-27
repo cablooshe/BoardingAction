@@ -23,6 +23,7 @@ public class ButtonTextSwitcher : MonoBehaviour {
     public int ChoiceMade;
     public bool isLeaderScript;
     public bool disableOption;
+    public bool deactivateOption;
 
     public List<Button> slots;
     public List<GameObject> choices;
@@ -75,11 +76,15 @@ public class ButtonTextSwitcher : MonoBehaviour {
 
     public void ChangeText(int chosenLeader) {
         slots[CurrentSlot - 1].GetComponentInChildren<Text>().text = choices[chosenLeader - 1].GetComponentInChildren<Text>().text;
-        if (disableOption == true) {
+        if (deactivateOption) {
             slots[CurrentSlot - 1].interactable = false;
         }
-        choices[chosenLeader - 1].SetActive(false);
-        PlayerInfo.Squads[CurrentSlot - 1].leader = PlayerInfo.Leaders[chosenLeader - 1];
+        if (disableOption == true) {
+            choices[chosenLeader - 1].SetActive(false);
+        }
+        if (isLeaderScript) {
+            PlayerInfo.Squads[CurrentSlot - 1].leader = PlayerInfo.Leaders[chosenLeader - 1];
+        }
     }
 
     private void Start() {
