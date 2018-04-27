@@ -462,7 +462,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1149319919361476}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 6.6464233, y: 4.2004356, z: 0.65}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4526517112879478}
@@ -778,7 +778,7 @@ MeshRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 8b49d141e7c75904194ad99c5cd70c30, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1016,7 +1016,7 @@ MeshRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 8b49d141e7c75904194ad99c5cd70c30, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1118,7 +1118,7 @@ MeshRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 8b49d141e7c75904194ad99c5cd70c30, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1254,7 +1254,7 @@ MeshRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 8b49d141e7c75904194ad99c5cd70c30, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1288,7 +1288,7 @@ MeshRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 8b49d141e7c75904194ad99c5cd70c30, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1322,7 +1322,7 @@ MeshRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 8b49d141e7c75904194ad99c5cd70c30, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1746,25 +1746,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: 
   speed: 2
-  health: 10
+  maxHealth: 10
   damage: 1
+  attackRadius: 2
+  coverRadius: 1
+  attackSpeed: 1
+  death1: 0
+  death2: 0
+  numDeaths: 0
   haloPrefab: {fileID: 1891231325107654, guid: 021b10cf8a142034fb3b21f7db057c77, type: 2}
   muzzlePrefab: {fileID: 1524977901687380, guid: 412956d6a1d6840498a41820b2e7d16e,
     type: 2}
-  __________________________________: 0
-  halo: {fileID: 0}
   muzzleFlashFront: {fileID: 0}
+  halo: {fileID: 0}
+  corpse: {fileID: 1177295529553878, guid: 7a44cb136f2c00948be4dbd63c3681f0, type: 2}
+  currentHealth: 10
+  updateMaxHealth: 10
   _selected: 0
-  actionStartTag: 
   walking: 0
+  isTargeting: 0
+  inCover: 0
   walkTarget: {x: 0, y: 0, z: 0}
   characterTrans: {fileID: 0}
   transforms: []
-  isTargeting: 0
   targetSelected: {fileID: 0}
-  attackRadius: 2
-  inCover: 0
-  corpse: {fileID: 1177295529553878, guid: 7a44cb136f2c00948be4dbd63c3681f0, type: 2}
   tapIndicatorPrefab: {fileID: 0}
   mTapTime: 0.1
   mDragDist: 5

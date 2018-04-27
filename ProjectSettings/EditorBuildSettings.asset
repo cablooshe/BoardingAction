@@ -12,5 +12,5 @@ EditorBuildSettings:
     path: Assets/Scenes/PreMissionMenu.unity
     guid: 69400a869516d3642b4ff59e4e39727c
   - enabled: 1
-    path: Assets/_Gameplay_Map_2.unity
-    guid: d58d06e37f988564b88e589191532740
+    path: Assets/_Gameplay_Map_3.unity
+    guid: 3808209bc3b5fcf4db5108b4e46003a6
