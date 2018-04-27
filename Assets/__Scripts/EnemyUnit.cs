@@ -80,6 +80,7 @@ public class EnemyUnit : Unit {
         if (go.tag == "Door")
         {
             go.GetComponentInParent<DoubleDoor>().OpenDoors();
+            Patrol();
         }
         /*Room currentRoom = go.transform.parent.GetComponent<Room> (); 
 		if (currentRoom != null) {
