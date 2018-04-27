@@ -36,7 +36,7 @@ public abstract class Unit : PT_MonoBehaviour {
 	public bool inCover = false;
 	public Vector3 walkTarget;
 
-	private float updateAttack = 1;
+	protected float updateAttack = 1;
 
     private Transform viewCharacterTrans;
 
@@ -51,7 +51,6 @@ public abstract class Unit : PT_MonoBehaviour {
 	[Header("Unit: Enemy Info")]
     public GameObject targetSelected;
     protected string enemyTag = "EnemyUnit";
-    public Vector3[] patrolPoints;
     //public bool randomPatrol;
 
     public bool selected
@@ -87,9 +86,9 @@ public abstract class Unit : PT_MonoBehaviour {
     public void WalkTo(Vector3 xTarget)
     {
         walking = true;
-        walkTarget = xTarget; //set theh point to walk to
+        walkTarget = xTarget; //set the point to walk to
         walkTarget.z = 0; //force z=0
-        Face(walkTarget); //look in the direction of walktarget
+        Face(walkTarget); //look in the direction of walkTarget
     }
 
     public void StopWalking()
@@ -136,8 +135,6 @@ public abstract class Unit : PT_MonoBehaviour {
         {
             //if not walking, velocity should be zero
             GetComponent<Rigidbody>().velocity = Vector3.zero;
-            print("walking: " + walking);
-            Patrol();
         }
 
         if (!isTargeting || !targetInRange(targetSelected))
@@ -156,17 +153,10 @@ public abstract class Unit : PT_MonoBehaviour {
 
     }
 
-    void Patrol()
-    {
-        walking = true;
-        int ndx = Random.Range(0, patrolPoints.Length);
-        //print(ndx);
-        WalkTo(patrolPoints[ndx]);
-    }
 
     //_________________________________________________Targeting and attack/damage methods__________________________________________________\\
 
-    void attack() {
+    public void attack() {
         if (isTargeting)
         {
             targetSelected.GetComponent<Unit>().takeDamage(this.damage);
@@ -175,7 +165,7 @@ public abstract class Unit : PT_MonoBehaviour {
         }
     }
 
-    void attackAnimation(GameObject target) {
+    public void attackAnimation(GameObject target) {
         muzzleFlashFront = Instantiate(muzzlePrefab) as GameObject;
         muzzleFlashFront.transform.position = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, this.gameObject.transform.position.z-1f);
         muzzleFlashFront.transform.rotation = this.gameObject.transform.rotation;
@@ -197,7 +187,7 @@ public abstract class Unit : PT_MonoBehaviour {
         }
     }
 
-    void loseMember(int deathCount) {
+    public void loseMember(int deathCount) {
         Instantiate(corpse, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, 0.4f), Quaternion.Euler(Random.Range(0,360),0, Random.Range(0,360)));
         Destroy(this.transforms[this.transforms.Count - 1].gameObject);
         this.transforms.RemoveAt(transforms.Count - 1);
@@ -228,7 +218,7 @@ public abstract class Unit : PT_MonoBehaviour {
         Destroy(gameObject);
     }
 
-    void findTargetInRange(){
+    public void findTargetInRange(){
         Vector3 localPos = this.transform.position;
         Collider[] hitColliders = Physics.OverlapSphere(localPos, attackRadius);
         int i = 0;
@@ -262,7 +252,7 @@ public abstract class Unit : PT_MonoBehaviour {
         }
     }
 
-    bool targetInRange(GameObject target){
+    public bool targetInRange(GameObject target){
         if (target == null){
             return false;
         }
