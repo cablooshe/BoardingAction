@@ -7,12 +7,8 @@ public class EnemyUnit : Unit {
     [Header("Set in Inspector: EnemyUnit")]
     public Vector3[] patrolPoints;
 
-<<<<<<< HEAD
     //private bool onPatrol = false;
     private Vector3 patrolDest;
-=======
-    private bool onPatrol = false;
->>>>>>> parent of 84639b5... players will spawn into map 3.  Pickups added to map though not sure if there are benefits to picking them up yet.  Added colors to tell friend from foe.  Edited enemy stats on map3
 
     // Use this for initialization
     /*protected new void Awake()
@@ -58,7 +54,6 @@ public class EnemyUnit : Unit {
         else
         {
             Patrol();
-<<<<<<< HEAD
         }*/
         if (!walking)
         {
@@ -67,9 +62,6 @@ public class EnemyUnit : Unit {
             WalkTo(patrolDest);
         }
     }
-=======
-        }
->>>>>>> parent of 84639b5... players will spawn into map 3.  Pickups added to map though not sure if there are benefits to picking them up yet.  Added colors to tell friend from foe.  Edited enemy stats on map3
 
     void Patrol()
     {
@@ -91,21 +83,10 @@ public class EnemyUnit : Unit {
         {
             go.GetComponentInParent<DoubleDoor>().OpenDoors();
         }
-<<<<<<< HEAD
         /*Room currentRoom = go.transform.parent.GetComponent<Room> (); 
 		if (currentRoom != null) {
 			currentRoom.makeVisible ();
 		}*/
-=======
-    }
-
-    void Patrol()
-    {
-        onPatrol = true;
-        int ndx = Random.Range(0, patrolPoints.Length);
-        print(ndx);
-        WalkTo(patrolPoints[ndx]);
->>>>>>> parent of 84639b5... players will spawn into map 3.  Pickups added to map though not sure if there are benefits to picking them up yet.  Added colors to tell friend from foe.  Edited enemy stats on map3
     }
 
     override public void MouseDown()
