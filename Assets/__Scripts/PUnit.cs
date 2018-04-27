@@ -41,7 +41,6 @@ public class PUnit : Unit {
         
     }
     new public void StopWalking() {
-        anim.SetBool("Walking", false);
         walking = false;
         GetComponent<Rigidbody>().velocity = Vector3.zero;
         anim.SetBool("Walking", false);

@@ -122,12 +122,12 @@ public abstract class Unit : PT_MonoBehaviour {
 
         if (walking)
         {
-
+            //Mathf.Abs((walkTarget.x - pos.x) + (walkTarget.y - pos.y))
             if (Mathf.Abs((walkTarget.x - pos.x) + (walkTarget.y - pos.y)) < speed * Time.fixedDeltaTime)
             {
                 // print("CLOSE");
                 //if mage is very close to walktarget, just stop
-                pos = walkTarget;
+                //pos = walkTarget;
                 //Vector3 stopPos = new Vector3(walkTarget.x, walkTarget.y, pos.z);
                 //pos = stopPos;
                 StopWalking();
