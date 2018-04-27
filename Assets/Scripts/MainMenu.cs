@@ -7,7 +7,7 @@ public class MainMenu : MonoBehaviour {
 
     public void PlayGame() {
         PlayerInfo.CurrentSceneIndex = 2;
-        PlayerInfo.squads = new List<Squad>() {
+        PlayerInfo.Squads = new List<Squad>() {
             new Squad(),
             new Squad(),
             new Squad(),
@@ -15,10 +15,14 @@ public class MainMenu : MonoBehaviour {
         };
         PlayerInfo.Leaders = new List<SquadLeader> {
             (new SquadLeader("Speedy", "Scout")),
-            (new SquadLeader("Gordon't", "Idiot")),
-            (new SquadLeader("Jake", "Bully")),
-            (new SquadLeader("Leader4", "Generic"))
+            (new SquadLeader("B I G B O I", "Heavy")),
+            (new SquadLeader("Average Joe", "Balanced")),
+            (new SquadLeader("1v1meRust", "Sniper"))
         };
+        for (int i = 0; i < PlayerInfo.Squads.Count; i++) {
+            PlayerInfo.Squads[i].soldiers = new SoldierSet("Type " + i, 20, 2, 1);
+            PlayerInfo.Leaders[i].data.level = 1;
+        }
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
