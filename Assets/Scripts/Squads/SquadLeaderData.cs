@@ -14,7 +14,7 @@ public class SquadLeaderData {
     public List<string> abilities; //TODO: Abilities
     public int damage;
     public float speed;
-    public int level = 1;
+    public int level;
     public int exp;
 
 }
