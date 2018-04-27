@@ -57,9 +57,7 @@ public class EnemyUnit : Unit {
         }*/
         if (!walking)
         {
-            walking = true;
-            patrolDest = patrolPoints[Random.Range(0, patrolPoints.Length)];
-            WalkTo(patrolDest);
+            Patrol();
         }
     }
 
