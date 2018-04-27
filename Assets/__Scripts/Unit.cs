@@ -44,6 +44,8 @@ public abstract class Unit : PT_MonoBehaviour {
 	[Header("Unit: Enemy Info")]
     public GameObject targetSelected;
     protected string enemyTag = "EnemyUnit";
+    public Vector3[] patrolPoints;
+    //public bool randomPatrol;
 
     public bool selected
     {
@@ -75,9 +77,9 @@ public abstract class Unit : PT_MonoBehaviour {
     //______________________________WALKING AND FACING METHODS______________________________________\\
     public void WalkTo(Vector3 xTarget)
     {
+        walking = true;
         walkTarget = xTarget; //set theh point to walk to
         walkTarget.z = 0; //force z=0
-        walking = true;
         Face(walkTarget); //look in the direction of walktarget
     }
 
@@ -125,6 +127,8 @@ public abstract class Unit : PT_MonoBehaviour {
         {
             //if not walking, velocity should be zero
             GetComponent<Rigidbody>().velocity = Vector3.zero;
+            print("walking: " + walking);
+            Patrol();
         }
 
         if (!isTargeting || !targetInRange(targetSelected))
@@ -141,6 +145,14 @@ public abstract class Unit : PT_MonoBehaviour {
             attack();
         }
 
+    }
+
+    void Patrol()
+    {
+        walking = true;
+        int ndx = Random.Range(0, patrolPoints.Length);
+        //print(ndx);
+        WalkTo(patrolPoints[ndx]);
     }
 
     //_________________________________________________Targeting and attack/damage methods__________________________________________________\\
