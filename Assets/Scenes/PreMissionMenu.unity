@@ -257,6 +257,7 @@ GameObject:
   - component: {fileID: 8975396}
   - component: {fileID: 8975395}
   - component: {fileID: 8975394}
+  - component: {fileID: 8975398}
   m_Layer: 5
   m_Name: SquadsPanel
   m_TagString: Untagged
@@ -365,6 +366,42 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &8975398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 8975393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fc01069d80abd24dbe121bd1ccad617, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Slot1: {fileID: 2106196765}
+  Slot2: {fileID: 0}
+  Slot3: {fileID: 0}
+  Slot4: {fileID: 0}
+  CurrentSlot: 0
+  Choice01: {fileID: 949747658}
+  Choice02: {fileID: 2020787745}
+  Choice03: {fileID: 1707686059}
+  Choice04: {fileID: 1805668092}
+  Choice05: {fileID: 1524741760}
+  Choice06: {fileID: 0}
+  Choice07: {fileID: 0}
+  Choice08: {fileID: 0}
+  ChoiceMade: 0
+  isLeaderScript: 0
+  disableOption: 0
+  deactivateOption: 0
+  slots:
+  - {fileID: 2106196765}
+  choices:
+  - {fileID: 949747658}
+  - {fileID: 2020787745}
+  - {fileID: 1707686059}
+  - {fileID: 1805668092}
+  - {fileID: 1524741760}
 --- !u!1 &26172087
 GameObject:
   m_ObjectHideFlags: 0
@@ -374,6 +411,7 @@ GameObject:
   m_Component:
   - component: {fileID: 26172088}
   - component: {fileID: 26172089}
+  - component: {fileID: 26172090}
   m_Layer: 5
   m_Name: ChoiceList1
   m_TagString: Untagged
@@ -456,6 +494,41 @@ MonoBehaviour:
   Result15: {fileID: 0}
   Result16: {fileID: 0}
   Start: {fileID: 2143746265}
+--- !u!114 &26172090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 26172087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fc01069d80abd24dbe121bd1ccad617, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Slot1: {fileID: 674693432}
+  Slot2: {fileID: 885602233}
+  Slot3: {fileID: 2076913879}
+  Slot4: {fileID: 265027668}
+  CurrentSlot: 0
+  Choice01: {fileID: 2106196763}
+  Choice02: {fileID: 0}
+  Choice03: {fileID: 0}
+  Choice04: {fileID: 0}
+  Choice05: {fileID: 0}
+  Choice06: {fileID: 0}
+  Choice07: {fileID: 0}
+  Choice08: {fileID: 0}
+  ChoiceMade: 0
+  isLeaderScript: 0
+  disableOption: 0
+  deactivateOption: 1
+  slots:
+  - {fileID: 674693432}
+  - {fileID: 885602233}
+  - {fileID: 2076913879}
+  - {fileID: 265027668}
+  choices:
+  - {fileID: 2106196763}
 --- !u!1 &57020798
 GameObject:
   m_ObjectHideFlags: 0
@@ -740,6 +813,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 26172090}
+        m_MethodName: ChoiceOption01
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &83043050
@@ -792,7 +876,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -350, y: -300}
-  m_SizeDelta: {x: 150, y: 50}
+  m_SizeDelta: {x: 185.2, y: 43}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &147780299
 GameObject:
@@ -1234,11 +1318,11 @@ MonoBehaviour:
   Choice16: {fileID: 0}
   BackButton: {fileID: 0}
   ChoiceMade: 0
-  Result01: {fileID: 26172087}
-  Result02: {fileID: 26172087}
-  Result03: {fileID: 26172087}
-  Result04: {fileID: 26172087}
-  Result05: {fileID: 26172087}
+  Result01: {fileID: 8975393}
+  Result02: {fileID: 8975393}
+  Result03: {fileID: 8975393}
+  Result04: {fileID: 8975393}
+  Result05: {fileID: 8975393}
   Result06: {fileID: 0}
   Result07: {fileID: 0}
   Result08: {fileID: 0}
@@ -1387,20 +1471,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 265027667}
-        m_MethodName: TriggerDialogue
+      - m_Target: {fileID: 26172090}
+        m_MethodName: SlotChoice04
         m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: SetActive
-        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2682,9 +2755,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 26172090}
+        m_MethodName: SlotChoice01
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3097,8 +3170,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 885602236}
-        m_MethodName: TriggerDialogue
+      - m_Target: {fileID: 26172090}
+        m_MethodName: SlotChoice02
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3107,17 +3180,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
@@ -3246,6 +3308,17 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 253085743}
+        m_MethodName: ChoiceOption01
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 8975398}
         m_MethodName: ChoiceOption01
         m_Mode: 1
         m_Arguments:
@@ -4572,6 +4645,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 8975398}
+        m_MethodName: ChoiceOption05
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1524741763
@@ -5182,6 +5266,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 8975398}
+        m_MethodName: ChoiceOption03
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1707686062
@@ -5229,7 +5324,6 @@ GameObject:
   - component: {fileID: 1728551624}
   - component: {fileID: 1728551623}
   - component: {fileID: 1728551627}
-  - component: {fileID: 1728551628}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -5345,6 +5439,7 @@ MonoBehaviour:
   ChoiceMade: 0
   isLeaderScript: 1
   disableOption: 1
+  deactivateOption: 0
   slots:
   - {fileID: 1149681761}
   - {fileID: 1467540501}
@@ -5359,35 +5454,6 @@ MonoBehaviour:
   - {fileID: 1381688297}
   - {fileID: 1587890454}
   - {fileID: 1090305322}
---- !u!114 &1728551628
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1728551622}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0fc01069d80abd24dbe121bd1ccad617, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Slot1: {fileID: 0}
-  Slot2: {fileID: 0}
-  Slot3: {fileID: 0}
-  Slot4: {fileID: 0}
-  CurrentSlot: 0
-  Choice01: {fileID: 0}
-  Choice02: {fileID: 0}
-  Choice03: {fileID: 0}
-  Choice04: {fileID: 0}
-  Choice05: {fileID: 0}
-  Choice06: {fileID: 0}
-  Choice07: {fileID: 0}
-  Choice08: {fileID: 0}
-  ChoiceMade: 0
-  isLeaderScript: 0
-  disableOption: 0
-  slots: []
-  choices: []
 --- !u!1 &1788556771
 GameObject:
   m_ObjectHideFlags: 0
@@ -5539,6 +5605,17 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 253085743}
+        m_MethodName: ChoiceOption04
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 8975398}
         m_MethodName: ChoiceOption04
         m_Mode: 1
         m_Arguments:
@@ -6118,7 +6195,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Back
+  m_Text: CONFIRM
 --- !u!222 &1975376359
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6286,6 +6363,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 8975398}
+        m_MethodName: ChoiceOption02
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &2020787748
@@ -6409,20 +6497,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2076913882}
-        m_MethodName: TriggerDialogue
+      - m_Target: {fileID: 26172090}
+        m_MethodName: SlotChoice03
         m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: SetActive
-        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -6559,6 +6636,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8975394}
         m_MethodName: ChoiceOption01
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 8975398}
+        m_MethodName: SlotChoice01
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

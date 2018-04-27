@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SquadLeader : MonoBehaviour {
 
+    //all of the Squad Leader's variables are saved in a separate serializable class, so the data can be saved
     public SquadLeaderData data;
 
 
@@ -18,19 +19,19 @@ public class SquadLeader : MonoBehaviour {
                 //TODO: Equip Weapon
                 data.damage = 20;  //TODO: how does weapon affect this?
                 break;
-            case "Idiot":
+            case "Heavy":
                 data.speed = 3 + (1 * data.level);
                 data.health = 80 + (10 * data.level);
                 //TODO: Equip Weapon
                 data.damage = 20;  //TODO: how does weapon affect this?
                 break;
-            case "Bully":
+            case "Balanced":
                 data.speed = 3 + (1 * data.level);
                 data.health = 80 + (10 * data.level);
                 //TODO: Equip Weapon
                 data.damage = 20;  //TODO: how does weapon affect this?
                 break;
-            case "Generic":
+            case "Sniper":
                 data.speed = 3 + (1 * data.level);
                 data.health = 80 + (10 * data.level);
                 //TODO: Equip Weapon
