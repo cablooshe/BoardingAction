@@ -174,7 +174,7 @@ public class PUnit : Unit {
     }*/
 
     void OnCollisionEnter (Collision c) {
-        print("Colliding");
+        //print("Colliding");
         GameObject go = c.gameObject;
         if (go.tag == "PUnit" && go.GetComponent<PUnit>().walking == false) {
             StopWalking();

@@ -34,27 +34,6 @@ public class EnemyUnit : Unit {
 	
 	// Update is called once per frame
 	protected void Update () {
-        /*if (((patrolDest.x - GetComponent<Rigidbody>().position.x) + (GetComponent<Rigidbody>().position.y - pos.y)) < speed * Time.fixedDeltaTime)
-        {
-            Patrol();
-        }*/
-        /*if(GetComponent<Rigidbody>().velocity == Vector3.zero)
-        {
-            print("Stopped");
-            Patrol();
-        }*/
-        /*if (onPatrol)
-        {
-            if (!walking)
-            {
-                //onPatrol = false;
-                Patrol();
-            }
-        }
-        else
-        {
-            Patrol();
-        }*/
         if (!walking)
         {
             Patrol();
@@ -83,7 +62,6 @@ public class EnemyUnit : Unit {
             Patrol();
         }
     }
-
 
     override public void MouseDown()
     {

@@ -10,7 +10,8 @@ public class PickUp : MonoBehaviour {
 
 	 
 	public void GetPickedUp() {
-		// This will do more later, but for now...
+        // This will do more later, but for now...
+        this.GetComponentInParent<Map>().CompletedObjective();
 		Destroy(this.gameObject);
 	}
 }
