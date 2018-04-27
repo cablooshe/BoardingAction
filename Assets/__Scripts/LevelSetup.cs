@@ -7,7 +7,10 @@ public class LevelSetup : MonoBehaviour {
     public GameObject unitPrefab;
 	// Use this for initialization
 	void Start () {
-        spawnLoc.Add(new Vector3(-9, 0, 0.65f));
+        spawnLoc.Add(new Vector3(32, 8, 0.65f));
+        spawnLoc.Add(new Vector3(29, 11, 0.65f));
+        spawnLoc.Add(new Vector3(24, 12, 0.65f));
+        spawnLoc.Add(new Vector3(28, 10, 0.65f));
         IList<Squad> squads = PlayerInfo.Squads;
         for(int i = 0; i < squads.Count;i++){
             Squad test = squads[i];
@@ -19,11 +22,11 @@ public class LevelSetup : MonoBehaviour {
             GameObject unit;
             unit = Instantiate(unitPrefab) as GameObject;
             unit.transform.position = spawnLoc[i];
-            unit.GetComponent<PUnit>().currentHealth = hp;
-            unit.GetComponent<PUnit>().maxHealth = unit.GetComponent<PUnit>().updateMaxHealth = hp;
-            unit.GetComponent<PUnit>().speed = mov;
+            unit.GetComponent<PUnit>().currentHealth = unit.GetComponent<PUnit>().maxHealth = unit.GetComponent<PUnit>().updateMaxHealth = 500;
+            unit.GetComponent<PUnit>().speed = 3;
             unit.GetComponent<PUnit>().name = name;
-            unit.GetComponent<PUnit>().damage = dam;
+            unit.GetComponent<PUnit>().damage = Random.Range(-10,10) + 30;
+            unit.GetComponent<PUnit>().attackRadius = 6;
         }
         
 	}

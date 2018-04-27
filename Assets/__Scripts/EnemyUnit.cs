@@ -8,6 +8,7 @@ public class EnemyUnit : Unit {
     public Vector3[] patrolPoints;
 
     private bool onPatrol = false;
+    private int ndx;
 
     // Use this for initialization
     /*protected new void Awake()
@@ -63,6 +64,10 @@ public class EnemyUnit : Unit {
         {
             Patrol();
         }
+        if (Vector3.Distance(this.gameObject.transform.position, patrolPoints[ndx]) < 1)
+        {
+            onPatrol = false;
+        }
 
         if (!isTargeting || !targetInRange(targetSelected))
         {
@@ -82,7 +87,7 @@ public class EnemyUnit : Unit {
     void Patrol()
     {
         onPatrol = true;
-        int ndx = Random.Range(0, patrolPoints.Length);
+        ndx = Random.Range(0, patrolPoints.Length);
         print(ndx);
         WalkTo(patrolPoints[ndx]);
     }

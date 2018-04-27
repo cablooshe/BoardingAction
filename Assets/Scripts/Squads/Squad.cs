@@ -17,10 +17,10 @@ public class Squad : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        //squadHealth = squadHealth + soldiers.health;
-        //healthLimit = squadHealth;
-        //squadDamage = squadDamage + soldiers.damage;
-        //squadSpeed = squadSpeed * soldiers.speedMult;
+        squadHealth = squadHealth + soldiers.health + leader.data.health ;
+        healthLimit = squadHealth;
+        squadDamage = squadDamage + soldiers.damage + leader.data.damage;
+        squadSpeed = squadSpeed * soldiers.speedMult + leader.data.speed;
 
     }
 	
