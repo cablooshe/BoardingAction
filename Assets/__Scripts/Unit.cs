@@ -37,6 +37,7 @@ public abstract class Unit : PT_MonoBehaviour {
 	public bool walking = false;
 	public bool isTargeting = false;
 	public bool inCover = false;
+	public bool isDead = false;
 	public Vector3 walkTarget;
 
 	protected float updateAttack = 1;
@@ -69,8 +70,6 @@ public abstract class Unit : PT_MonoBehaviour {
 
     // Use this for initialization
     protected void Awake () {
-        death1 = Random.Range(0.3f, 0.6f) * maxHealth;
-        death2 = Random.Range(0.1f, 0.2f) * maxHealth;
         this.selected = false;
         //find the characterTrans to rotate with Face()
         characterTrans = transform.Find("CharacterTrans");
@@ -86,7 +85,13 @@ public abstract class Unit : PT_MonoBehaviour {
         halo.GetComponent<Renderer>().enabled = false;
         halo.transform.position = new Vector3(this.pos.x, this.pos.y, this.pos.z - 0.15f);*/
     }
-	
+
+    protected void Start()
+    {
+        death1 = Random.Range(0.3f, 0.6f) * maxHealth;
+        death2 = Random.Range(0.1f, 0.2f) * maxHealth;
+    }
+
 
     //______________________________WALKING AND FACING METHODS______________________________________\\
     public void WalkTo(Vector3 xTarget)
@@ -224,11 +229,12 @@ public abstract class Unit : PT_MonoBehaviour {
 
     public void Die()
     {
-        print("Die");
+		if (isDead)
+			return;
         Instantiate(corpse, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z - 1), gameObject.transform.rotation);
-        if (isObjective)
+		isDead = true;
+		if (isObjective)
         {
-            print("Dead");
             GameObject.Find("Map").GetComponent<Map>().CompletedObjective();
         }
         Destroy(gameObject);
