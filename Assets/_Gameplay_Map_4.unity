@@ -10481,7 +10481,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 509eb33bbacdb2c44a3bbc98a76db63e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitsSelected: []
   isSelecting: 0
   mousePosition1: {x: 0, y: 0, z: 0}
   mDragDist: 2

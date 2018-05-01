@@ -6515,6 +6515,48 @@ RectTransform:
   m_AnchoredPosition: {x: -679.93774, y: 0.000051902258}
   m_SizeDelta: {x: -167.845, y: 0}
   m_Pivot: {x: 4.0515523, y: 0.00000014901161}
+--- !u!1001 &1095412492
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4395633186544198, guid: db209e863c6f4a54887a70bb6e8dcf81, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4395633186544198, guid: db209e863c6f4a54887a70bb6e8dcf81, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4395633186544198, guid: db209e863c6f4a54887a70bb6e8dcf81, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4395633186544198, guid: db209e863c6f4a54887a70bb6e8dcf81, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4395633186544198, guid: db209e863c6f4a54887a70bb6e8dcf81, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4395633186544198, guid: db209e863c6f4a54887a70bb6e8dcf81, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4395633186544198, guid: db209e863c6f4a54887a70bb6e8dcf81, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4395633186544198, guid: db209e863c6f4a54887a70bb6e8dcf81, type: 2}
+      propertyPath: m_RootOrder
+      value: 13
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: db209e863c6f4a54887a70bb6e8dcf81, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &1109957146
 Prefab:
   m_ObjectHideFlags: 0
@@ -7618,7 +7660,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 509eb33bbacdb2c44a3bbc98a76db63e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitsSelected: []
   isSelecting: 0
   mousePosition1: {x: 0, y: 0, z: 0}
   mDragDist: 2
