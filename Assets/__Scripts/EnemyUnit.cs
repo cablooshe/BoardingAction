@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyUnit : Unit {
+	public enum behavior { standard, charge };
 
     [Header("Set in Inspector: EnemyUnit")]
     public Vector3[] patrolPoints;
+	public behavior unitBehavior = behavior.standard;
 
     //private bool onPatrol = false;
     private Vector3 patrolDest;
@@ -29,11 +31,19 @@ public class EnemyUnit : Unit {
     void Start () {
 		enemyTag = "PUnit";
         Patrol();
+		base.Start ();
         //WalkTo(patrolDest);
     }
 	
 	// Update is called once per frame
 	protected void Update () {
+		if (isTargeting) {
+			if (unitBehavior == behavior.charge)
+				WalkTo (targetSelected.transform.position);
+			else
+				StopWalking ();
+			return;
+		}
         if (!walking)
         {
             Patrol();
