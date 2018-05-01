@@ -16,4 +16,11 @@ public class PauseMenu : MonoBehaviour {
         Debug.Log("QUIT!");
         Application.Quit();
     }
+
+    public void SaveGame()
+    {
+        Debug.Log("SAVING");
+        SaveLoad.Save();
+       
+    }
 }
