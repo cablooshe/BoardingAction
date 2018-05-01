@@ -1744,6 +1744,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77c2d1cf98188044c8f3ea954602afe8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isObjective: 0
   name: 
   speed: 2
   maxHealth: 10
@@ -1766,13 +1767,12 @@ MonoBehaviour:
   walking: 0
   isTargeting: 0
   inCover: 0
+  isDead: 0
   walkTarget: {x: 0, y: 0, z: 0}
   characterTrans: {fileID: 0}
   transforms: []
   targetSelected: {fileID: 0}
-  patrolPoints:
-  - {x: 0, y: 0, z: 0}
-  - {x: 4, y: 4, z: 0}
+  patrolPoints: []
 --- !u!135 &135086031057012976
 SphereCollider:
   m_ObjectHideFlags: 1
