@@ -37,6 +37,7 @@ public abstract class Unit : PT_MonoBehaviour {
 	public bool walking = false;
 	public bool isTargeting = false;
 	public bool inCover = false;
+	public bool isDead = false;
 	public Vector3 walkTarget;
 
 	protected float updateAttack = 1;
@@ -224,11 +225,12 @@ public abstract class Unit : PT_MonoBehaviour {
 
     public void Die()
     {
-        print("Die");
+		if (isDead)
+			return;
         Instantiate(corpse, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z - 1), gameObject.transform.rotation);
-        if (isObjective)
+		isDead = true;
+		if (isObjective)
         {
-            print("Dead");
             GameObject.Find("Map").GetComponent<Map>().CompletedObjective();
         }
         Destroy(gameObject);
