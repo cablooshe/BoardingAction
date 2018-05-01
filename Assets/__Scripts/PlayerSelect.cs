@@ -38,7 +38,7 @@ public class MouseInfo
 
 public class PlayerSelect : MonoBehaviour {
 
-    public List<GameObject> unitsSelected;
+    public static List<GameObject> unitsSelected;
     public bool isSelecting = false;
     public Vector3 mousePosition1;
 

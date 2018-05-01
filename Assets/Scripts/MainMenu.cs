@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour {
 
     public void PlayGame() {
+        
         PlayerInfo.CurrentSceneIndex = 2;
         PlayerInfo.Squads = new List<Squad>() {
             new Squad(),
