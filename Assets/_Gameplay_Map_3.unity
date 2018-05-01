@@ -671,28 +671,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 727550586}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1897301504}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
       - m_Target: {fileID: 83769314}
         m_MethodName: ChoiceOption03
         m_Mode: 1
@@ -702,7 +680,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
@@ -1035,7 +1013,7 @@ MonoBehaviour:
   ChoiceMade: 0
   Result01: {fileID: 0}
   Result02: {fileID: 1331690359}
-  Result03: {fileID: 1897301504}
+  Result03: {fileID: 1328021185}
   Result04: {fileID: 0}
   Result05: {fileID: 0}
   Result06: {fileID: 0}
@@ -2096,9 +2074,31 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: PlayGame
+      - m_Target: {fileID: 1897301506}
+        m_MethodName: ChoiceOption01
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 83769312}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1897301504}
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3659,6 +3659,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 635857966}
+  - component: {fileID: 635857967}
   m_Layer: 5
   m_Name: OptionsMenu
   m_TagString: Untagged
@@ -3688,6 +3689,53 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -4}
   m_SizeDelta: {x: 399, y: 411.6}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &635857967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 635857965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be9b4e3324555b94cb26a1d2ceb1fa2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ChoiceList: {fileID: 635857965}
+  Choice01: {fileID: 1421960915}
+  Choice02: {fileID: 0}
+  Choice03: {fileID: 0}
+  Choice04: {fileID: 0}
+  Choice05: {fileID: 0}
+  Choice06: {fileID: 0}
+  Choice07: {fileID: 0}
+  Choice08: {fileID: 0}
+  Choice09: {fileID: 0}
+  Choice10: {fileID: 0}
+  Choice11: {fileID: 0}
+  Choice12: {fileID: 0}
+  Choice13: {fileID: 0}
+  Choice14: {fileID: 0}
+  Choice15: {fileID: 0}
+  Choice16: {fileID: 0}
+  BackButton: {fileID: 0}
+  ChoiceMade: 0
+  Result01: {fileID: 1897301504}
+  Result02: {fileID: 0}
+  Result03: {fileID: 0}
+  Result04: {fileID: 0}
+  Result05: {fileID: 0}
+  Result06: {fileID: 0}
+  Result07: {fileID: 0}
+  Result08: {fileID: 0}
+  Result09: {fileID: 0}
+  Result10: {fileID: 0}
+  Result11: {fileID: 0}
+  Result12: {fileID: 0}
+  Result13: {fileID: 0}
+  Result14: {fileID: 0}
+  Result15: {fileID: 0}
+  Result16: {fileID: 0}
+  Start: {fileID: 0}
 --- !u!4 &645358935 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4213235211497562, guid: d319568ea79e991489a662e9d06acddf,
@@ -8863,7 +8911,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1897301504}
         m_MethodName: SetActive
         m_Mode: 6
         m_Arguments:
@@ -8877,6 +8925,17 @@ MonoBehaviour:
       - m_Target: {fileID: 635857965}
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 635857967}
+        m_MethodName: ChoiceOption01
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -11066,12 +11125,12 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1809458741}
-        m_MethodName: 
+      - m_Target: {fileID: 1897301506}
+        m_MethodName: ChoiceOption02
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -11634,15 +11693,15 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11500000, guid: 150dc8a7ba8b7d74dbeb96e1b101ea52, type: 3}
-        m_MethodName: set_name
-        m_Mode: 5
+      - m_Target: {fileID: 1897301509}
+        m_MethodName: QuitGame
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: PauseMenu.QuitGame
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -11978,6 +12037,7 @@ GameObject:
   - component: {fileID: 1897301508}
   - component: {fileID: 1897301507}
   - component: {fileID: 1897301506}
+  - component: {fileID: 1897301509}
   m_Layer: 5
   m_Name: Pause_Menu_Panel
   m_TagString: Untagged
@@ -12035,7 +12095,7 @@ MonoBehaviour:
   Choice16: {fileID: 0}
   BackButton: {fileID: 0}
   ChoiceMade: 0
-  Result01: {fileID: 0}
+  Result01: {fileID: 727550586}
   Result02: {fileID: 635857965}
   Result03: {fileID: 0}
   Result04: {fileID: 0}
@@ -12085,6 +12145,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1897301504}
+--- !u!114 &1897301509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1897301504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 150dc8a7ba8b7d74dbeb96e1b101ea52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1899010347
 GameObject:
   m_ObjectHideFlags: 0
