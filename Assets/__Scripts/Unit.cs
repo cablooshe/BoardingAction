@@ -70,8 +70,6 @@ public abstract class Unit : PT_MonoBehaviour {
 
     // Use this for initialization
     protected void Awake () {
-        death1 = Random.Range(0.3f, 0.6f) * maxHealth;
-        death2 = Random.Range(0.1f, 0.2f) * maxHealth;
         this.selected = false;
         //find the characterTrans to rotate with Face()
         characterTrans = transform.Find("CharacterTrans");
@@ -87,7 +85,13 @@ public abstract class Unit : PT_MonoBehaviour {
         halo.GetComponent<Renderer>().enabled = false;
         halo.transform.position = new Vector3(this.pos.x, this.pos.y, this.pos.z - 0.15f);*/
     }
-	
+
+    protected void Start()
+    {
+        death1 = Random.Range(0.3f, 0.6f) * maxHealth;
+        death2 = Random.Range(0.1f, 0.2f) * maxHealth;
+    }
+
 
     //______________________________WALKING AND FACING METHODS______________________________________\\
     public void WalkTo(Vector3 xTarget)
