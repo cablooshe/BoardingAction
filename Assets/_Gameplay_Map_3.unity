@@ -7194,7 +7194,7 @@ GameObject:
   - component: {fileID: 1238926166}
   - component: {fileID: 1238926165}
   m_Layer: 0
-  m_Name: MenuMusic
+  m_Name: Music
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7209,9 +7209,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 60e0a0f6fbc9de2499ef01528a8b7765, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 4381a599500048543a08817e44a4902c, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.551
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -7522,6 +7522,7 @@ GameObject:
   - component: {fileID: 1278415666}
   - component: {fileID: 1278415671}
   - component: {fileID: 1278415672}
+  - component: {fileID: 1278415673}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -7618,7 +7619,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 509eb33bbacdb2c44a3bbc98a76db63e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitsSelected: []
   isSelecting: 0
   mousePosition1: {x: 0, y: 0, z: 0}
   mDragDist: 2
@@ -7636,6 +7636,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnLoc: []
   unitPrefab: {fileID: 1453615982531426, guid: 6c499b660a1ff97409b7a792adfd37a4, type: 2}
+--- !u!114 &1278415673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1278415665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4943dde1f860548479862942036163b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  squadName: {fileID: 10897888}
+  HP: {fileID: 1890572392}
 --- !u!1001 &1283845970
 Prefab:
   m_ObjectHideFlags: 0
@@ -8172,7 +8185,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
