@@ -17,12 +17,14 @@ public class HighlightInfo : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (PlayerSelect.unitsSelected.Count > 0) {
-            squadName.text = PlayerSelect.unitsSelected[0].name;
-            HP.text = PlayerSelect.unitsSelected[0].name;
-            Debug.Log(HP.text);
-        } else {
-            squadName.text = "";
+        if (PlayerSelect.unitsSelected != null) {
+            if (PlayerSelect.unitsSelected.Count > 0) {
+                squadName.text = System.Convert.ToString(PlayerSelect.unitsSelected[0].GetComponent<PUnit>().name);
+                HP.text = System.Convert.ToString(PlayerSelect.unitsSelected[0].GetComponent<PUnit>().currentHealth);
+                Debug.Log(HP.text);
+            } else {
+                squadName.text = "";
+            }
         }
 	}
 }
