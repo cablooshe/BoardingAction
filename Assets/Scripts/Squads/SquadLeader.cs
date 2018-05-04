@@ -2,13 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SquadLeader : MonoBehaviour {
+public class SquadLeader {
 
     //all of the Squad Leader's variables are saved in a separate serializable class, so the data can be saved
     public SquadLeaderData data;
 
 
-    public SquadLeader (string leaderName, string squadClass) {
+    //constructor for initialization, to avoid errors
+    public SquadLeader() {
+        data = new SquadLeaderData();
+        data.leaderName = "";
+        data.squadClass = "";
+        data.level = 1;
+        data.speed = 1;
+        data.damage = 1;
+        data.exp = 0;
+    }
+
+
+    public SquadLeader(string leaderName, string squadClass) {
         data = new SquadLeaderData();
         data.leaderName = leaderName;
         data.squadClass = squadClass;
@@ -39,13 +51,14 @@ public class SquadLeader : MonoBehaviour {
                 break;
             default:
                 break;
-        } 
+        }
+        this.data.level = 1;
         this.data.damage = (int)(Random.value * 10);
     }
 
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+    // Update is called once per frame
+    void Update() {
+
+    }
 }

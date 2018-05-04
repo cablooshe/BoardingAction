@@ -83,7 +83,27 @@ public class ButtonTextSwitcher : MonoBehaviour {
             choices[chosenLeader - 1].SetActive(false);
         }
         if (isLeaderScript) {
-            PlayerInfo.Squads[CurrentSlot - 1].leader = PlayerInfo.Leaders[chosenLeader - 1];
+            PlayerInfo.Squads[CurrentSlot - 1].leader = PlayerInfo.Leaders[ChoiceMade - 1];
+        } else {
+            SoldierSet sol = new SoldierSet();
+            switch (ChoiceMade) {
+                case 0:
+                    sol = new SoldierSet();
+                    break;
+                case 1:
+                    sol = new SoldierSet();
+                    break;
+                case 2:
+                    sol = new SoldierSet();
+                    break;
+                case 3:
+                    sol = new SoldierSet();
+                    break;
+                default:
+                    break;
+
+            }
+            PlayerInfo.Squads[CurrentSlot - 1].soldiers = sol;
         }
     }
 
@@ -116,14 +136,10 @@ public class ButtonTextSwitcher : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-		
         if (CurrentSlot != 0 && ChoiceMade != 0) {
             ChangeText(ChoiceMade);
             CurrentSlot = 0;
             ChoiceMade = 0;
         }
-
-
-
-	}
+    }
 }
