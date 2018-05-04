@@ -47,6 +47,12 @@ public class PUnit : Unit {
     }
 
     void updateAnimation() {
+        if (isTargeting)
+        {
+            anim.SetBool("Attacking", true);
+
+        }
+        else anim.SetBool("Attacking", false);
         if (walking)
         {
             anim.SetBool("Walking", true);
