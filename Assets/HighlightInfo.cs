@@ -17,7 +17,7 @@ public class HighlightInfo : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        List<GameObject> selected = this.gameObject.GetComponent<PlayerSelect>().unitsSelected;
+        /*List<GameObject> selected = this.gameObject.GetComponent<PlayerSelect>().unitsSelected;
         if (selected != null) {
           //  Debug.Log(selected.Count);
             // Debug.Log("spot 1");
@@ -33,6 +33,6 @@ public class HighlightInfo : MonoBehaviour {
             } else {
                 squadName.text = "";
             }
-        }
+        }*/
 	}
 }
