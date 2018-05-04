@@ -12,6 +12,9 @@ public class LevelSetup : MonoBehaviour {
         spawnLoc.Add(new Vector3(24, 12, 0.65f));
         spawnLoc.Add(new Vector3(28, 10, 0.65f));
         IList<Squad> squads = PlayerInfo.Squads;
+        if(squads == null) {
+            return;
+        }
         for(int i = 0; i < squads.Count;i++){
             Squad test = squads[i];
             SquadLeader leader = test.leader;
