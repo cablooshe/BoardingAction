@@ -46,6 +46,10 @@ public class PUnit : Unit {
         anim.SetBool("Walking", false);
     }
 
+    public void dropCover() {
+        Debug.Log("COVER DROPPED");
+    }
+
     void updateAnimation() {
         if (isTargeting)
         {
