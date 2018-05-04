@@ -39,6 +39,7 @@ public abstract class Unit : PT_MonoBehaviour {
 	public bool inCover = false;
 	public bool isDead = false;
 	public Vector3 walkTarget;
+	public List<GameObject> coverList;
 
 	protected float updateAttack = 1;
 
@@ -174,7 +175,7 @@ public abstract class Unit : PT_MonoBehaviour {
 	public void attack() {
 		if (isTargeting)
 		{
-			targetSelected.GetComponent<Unit>().takeDamage(this.damage);
+			targetSelected.GetComponent<Unit>().takeDamage(this.damage, this.gameObject);
 			attackAnimation(targetSelected);
 			targetSelected.GetComponent<Unit>().takeDamageAnimation();
 		}
@@ -186,9 +187,14 @@ public abstract class Unit : PT_MonoBehaviour {
 		muzzleFlashFront.transform.rotation = this.gameObject.transform.rotation;
 	}
 
-	public void takeDamage(float damage) {
+	public void takeDamage(float damage, GameObject enemy) {
+		Vector3 enemyPosition = Vector3.Lerp (this.transform.position, enemy.transform.position);
 		if((inCover) && (Random.value > 0.5)) {
-			return;
+			foreach (GameObject c in coverList) {
+				Vector3 coverPosition = Vector3.Lerp (this.transform.position, c.transform.position);
+				if (Vector3.Angle (enemyPosition, coverPosition) < 30)
+					return;
+			}
 		}
 		currentHealth-=damage;
 		if ((numDeaths == 0 && death1 > currentHealth) || (numDeaths == 1 && death2 > currentHealth))
