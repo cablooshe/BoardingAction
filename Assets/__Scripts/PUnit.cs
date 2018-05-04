@@ -52,7 +52,7 @@ public class PUnit : Unit {
             anim.SetBool("Attacking", true);
 
         }
-        else anim.SetBool("Attacking", false);
+        //else { anim.SetBool("Attacking", false); }
         if (walking)
         {
             anim.SetBool("Walking", true);
