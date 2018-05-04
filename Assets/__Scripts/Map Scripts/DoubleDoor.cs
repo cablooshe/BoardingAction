@@ -77,6 +77,10 @@ public class DoubleDoor : MonoBehaviour {
 			}
 		}
 		if (isOpen && (Time.time > closeTime)) {
+            Collider[] c = Physics.OverlapSphere(this.gameObject.transform.position, 1.5f);
+            foreach(Collider c1 in c) {
+                if (c1.tag == "PUnit") return;
+            }
 			CloseDoors ();
 		}
 	}		
