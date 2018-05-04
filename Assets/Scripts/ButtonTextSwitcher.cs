@@ -88,16 +88,19 @@ public class ButtonTextSwitcher : MonoBehaviour {
             SoldierSet sol = new SoldierSet();
             switch (ChoiceMade) {
                 case 0:
-                    sol = new SoldierSet();
+                    sol = new SoldierSet("Sneaky", 10, 3, 2);
                     break;
                 case 1:
-                    sol = new SoldierSet();
+                    sol = new SoldierSet("Bombastic", 10, 1, 4);
                     break;
                 case 2:
-                    sol = new SoldierSet();
+                    sol = new SoldierSet("Nerdy", 20, 2, 2);
                     break;
                 case 3:
-                    sol = new SoldierSet();
+                    sol = new SoldierSet("Tanky", 40, 1, 1);
+                    break;
+                case 4:
+                    sol = new SoldierSet("Assault-y", 10, 2, 3);
                     break;
                 default:
                     break;
