@@ -17,11 +17,19 @@ public class HighlightInfo : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (PlayerSelect.units != null) {
-            if (PlayerSelect.units.Count > 0) {
-                squadName.text = System.Convert.ToString(PlayerSelect.units[0].GetComponent<PUnit>().name);
-                HP.text = System.Convert.ToString(PlayerSelect.units[0].GetComponent<PUnit>().currentHealth);
-                Debug.Log(HP.text);
+        List<GameObject> selected = this.gameObject.GetComponent<PlayerSelect>().unitsSelected;
+        if (selected != null) {
+            Debug.Log(selected.Count);
+            Debug.Log("spot 1");
+            if (selected.Count > 0) {
+                Debug.Log("spot 2");
+
+                Debug.Log(System.Convert.ToString(selected[0].GetComponent<PUnit>().name));
+                Debug.Log(System.Convert.ToString(selected[0].GetComponent<PUnit>().currentHealth));
+
+                squadName.text = System.Convert.ToString(selected[0].GetComponent<PUnit>().name);
+                HP.text = System.Convert.ToString(selected[0].GetComponent<PUnit>().currentHealth);
+
             } else {
                 squadName.text = "";
             }
