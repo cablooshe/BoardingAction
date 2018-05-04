@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour {
 
+    public int sceneNum;
+
     public void PlayGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
@@ -22,5 +24,10 @@ public class PauseMenu : MonoBehaviour {
         Debug.Log("SAVING");
         SaveLoad.Save();
        
+    }
+
+    public void RestartScene()
+    {
+        SceneManager.LoadScene(sceneNum);
     }
 }
