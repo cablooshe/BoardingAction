@@ -188,10 +188,10 @@ public abstract class Unit : PT_MonoBehaviour {
 	}
 
 	public void takeDamage(float damage, GameObject enemy) {
-		Vector3 enemyPosition = Vector3.Lerp (this.transform.position, enemy.transform.position);
+		Vector3 enemyPosition = enemy.transform.position - this.transform.position;
 		if((inCover) && (Random.value > 0.5)) {
 			foreach (GameObject c in coverList) {
-				Vector3 coverPosition = Vector3.Lerp (this.transform.position, c.transform.position);
+				Vector3 coverPosition = c.transform.position - this.transform.position;
 				if (Vector3.Angle (enemyPosition, coverPosition) < 30)
 					return;
 			}
@@ -252,6 +252,7 @@ public abstract class Unit : PT_MonoBehaviour {
 		int i = 0;
 		GameObject toAttack = null;
 		inCover = false;
+		coverList = new List<GameObject> ();
 		while (i < hitColliders.Length)
 		{
 			if (hitColliders [i].gameObject != this.gameObject && hitColliders [i].tag == enemyTag) {
@@ -267,6 +268,7 @@ public abstract class Unit : PT_MonoBehaviour {
 				&& (hitColliders [i].GetComponent<Structure> ().isCover)
 				&& (Vector3.Distance (hitColliders [i].transform.position, localPos) < coverRadius)) {
 				inCover = true;
+				coverList.Add(hitColliders[i].gameObject);
 			}
 			i++;
 		}
