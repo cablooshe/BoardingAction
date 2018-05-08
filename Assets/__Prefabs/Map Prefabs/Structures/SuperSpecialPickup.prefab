@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114927999164345702}
   - component: {fileID: 136109110206915480}
   - component: {fileID: 33461506162140294}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SuperSpecialPickup
   m_TagString: Pickup
   m_Icon: {fileID: 0}
@@ -98,6 +98,7 @@ MonoBehaviour:
   itemType: 0
   posFavor: 1
   negFavor: 0
+  rotationsPerSecond: 0.1
 --- !u!136 &136109110206915480
 CapsuleCollider:
   m_ObjectHideFlags: 1
