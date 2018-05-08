@@ -4,7 +4,7 @@ using UnityEngine;
 using System.Linq; //Enables LINQ queries
 
 public abstract class Unit : PT_MonoBehaviour {
-	static public bool DEBUG = true;
+    static public bool DEBUG = false;
 
 	[Header("Set in Inspector")]
 	public bool isObjective = false;

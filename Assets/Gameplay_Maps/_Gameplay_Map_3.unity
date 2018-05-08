@@ -7824,7 +7824,7 @@ MonoBehaviour:
   cameraSpeed: 10
   zoomSpeed: 30
   minZoom: 1
-  maxZoom: 20
+  maxZoom: 50
 --- !u!81 &1278415667
 AudioListener:
   m_ObjectHideFlags: 0
