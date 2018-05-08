@@ -62,6 +62,27 @@ public class PUnit : Unit {
         Debug.Log("COVER DROPPED");
     }
 
+    public void throwGrenade() {
+        Debug.Log("GRENADE THROWN");
+    }
+
+    public void placeCharge() {
+        Debug.Log("CHARGE PLACED");
+    }
+
+    public void deployDrone() {
+        Debug.Log("DRONE DEPLOYED");
+    }
+
+    public void deployTurret() {
+        Debug.Log("TURRET DEPLOYED");
+    }
+
+    public void hackConsole() {
+        Debug.Log("CONSOLE HACKED");
+    }
+
+
     void updateAnimation() {
 
         if (!walking && this.inCover)
