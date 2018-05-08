@@ -264,5 +264,16 @@ public class PlayerSelect : MonoBehaviour {
         }
         isSelecting = false;
     }
+
+    public void Select(GameObject unit) {
+        foreach (GameObject u in unitsSelected)
+        {
+            if (u != null)
+                u.GetComponent<PUnit>().selected = false;
+        }
+        unitsSelected.Clear();
+        unit.GetComponent<PUnit>().selected = true;
+        unitsSelected.Add(unit);
+    }
 }
 
