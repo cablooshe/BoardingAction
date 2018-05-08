@@ -59,8 +59,7 @@ public class EnemyUnit : Unit {
     }
 
     void OnCollisionEnter(Collision c)
-    {
-        //print("Colliding");
+    {        
         GameObject go = c.gameObject;
         if (go.tag == "PUnit" && go.GetComponent<PUnit>().walking == false)
         {
@@ -71,6 +70,7 @@ public class EnemyUnit : Unit {
             go.GetComponentInParent<DoubleDoor>().OpenDoors();
             Patrol();
         }
+       
     }
 
     override public void MouseDown()

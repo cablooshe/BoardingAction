@@ -7,7 +7,7 @@ public class CameraMovement : MonoBehaviour {
     public float cameraSpeed = 10f;
     public float zoomSpeed = 30f;
     public float minZoom = 1f;
-    public float maxZoom = 20f;
+    public float maxZoom = 50f;
     
 
 	// Use this for initialization
@@ -18,20 +18,20 @@ public class CameraMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-        if (Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
         {
             transform.Translate(new Vector3(cameraSpeed * Time.deltaTime, 0, 0));
         }
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
         {
             transform.Translate(new Vector3(-cameraSpeed * Time.deltaTime, 0, 0));
         }
-        if (Input.GetKey(KeyCode.DownArrow))
+        if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
         {
             Vector3 move = Quaternion.Euler(-transform.rotation.eulerAngles.x, 0, 0) * new Vector3(0, -cameraSpeed * Time.deltaTime, 0);
             transform.Translate(move);
         }
-        if (Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
         {
             Vector3 move = Quaternion.Euler(-transform.rotation.eulerAngles.x, 0, 0) * new Vector3(0, cameraSpeed * Time.deltaTime, 0);
             transform.Translate(move);

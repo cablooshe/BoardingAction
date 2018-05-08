@@ -10,12 +10,23 @@ public class PUnit : Unit {
 
 	[Header("PUnit: Associated Prefabs - Set in Inspector")]
     public GameObject tapIndicatorPrefab;
+    public GameObject explosion;
+  
 
-	[Header("PUnit: Mouse Info")]
+
+    [Header("PUnit: Mouse Info")]
     public float mTapTime = 0.5f; //how long is considered a tap
     public float mDragDist = 10; //how long is considered a drag
 	public float activeScreenWidth = 1; //the % of the screen to use
 	public MPhase mPhase = MPhase.idle;
+    public bool prepGrenade = false;
+    public float grenadeCoolDown = 10f;
+    public float grenadeRange = 15f;
+   
+    public bool grenadeReady = true;
+    
+    
+    
 
     protected new void Awake() {
         base.Awake();
@@ -40,7 +51,8 @@ public class PUnit : Unit {
         halo.transform.position = new Vector3(this.pos.x, this.pos.y, this.pos.z - 0.15f);
         
     }
-    new public void StopWalking() {
+    public new void StopWalking() {
+        GetComponent<Rigidbody>().velocity = Vector3.zero;
         walking = false;
         GetComponent<Rigidbody>().velocity = Vector3.zero;
         anim.SetBool("Walking", false);
@@ -51,23 +63,39 @@ public class PUnit : Unit {
     }
 
     void updateAnimation() {
+
+        if (!walking && this.inCover)
+        {
+            anim.SetBool("InCover", true);
+        }
+        else {
+            anim.SetBool("InCover", false);
+        }
         if (isTargeting)
         {
             anim.SetBool("Attacking", true);
 
         }
+        else{
+            anim.SetBool("Attacking", false);
+        }
         //else { anim.SetBool("Attacking", false); }
         if (walking)
         {
             anim.SetBool("Walking", true);
+            anim.SetFloat("WalkSpeed", this.gameObject.GetComponent<Rigidbody>().velocity.magnitude*0.5f);
         }
-        else
+        else{
             anim.SetBool("Walking", false);
+            anim.SetFloat("WalkSpeed", 0f);
+
+        }
     }
 
     void Update() {
         toggleHalo();
         updateAnimation();
+
 
         if (!selected) return;
         //find whether the mouse button 0 was pressed or released this frame
@@ -120,6 +148,33 @@ public class PUnit : Unit {
             }
         }
 
+      
+        if(timestamp <= Time.time && !grenadeReady)
+        {
+            
+            print("grenade ready");
+            grenadeReady = true;
+            halo.GetComponent<SelectionHalo>().mat.color = Color.green;
+        }
+
+        if (Input.GetKey(KeyCode.Q) && !prepGrenade)
+        {
+           if (timestamp <= Time.time)
+            {
+                readyGrenade();
+            } else
+            {
+                print("grenade not ready");                
+            }
+        }
+
+    }
+
+    void readyGrenade()
+    {
+        prepGrenade = true;
+        walking = false;
+        halo.GetComponent<SelectionHalo>().mat.color = Color.red;
     }
 
     //Pulls inifo about the mouse, adds it to mouseInfos, and returns it
@@ -163,15 +218,57 @@ public class PUnit : Unit {
     {
         if (DEBUG) print("Mage.RightClick()");
 
-		WalkTo (lastMouseInfo.loc);
+	
+
+        if (!prepGrenade)
+        {
+            WalkTo(lastMouseInfo.loc);
+        }
+        else
+        {
+            throwGrenade(lastMouseInfo.loc);
+        }
+       
     }
+
     override public void MouseDrag()
     {
 		// We might need this later, but now it is USELESS (almost as much as Gordon)
     }
     override public void MouseDragUp()
     {
-		// We might need this later, but now it is USELESS (almost as much as Gordon's comments)
+        // We might need this later, but now it is USELESS (almost as much as Gordon's comments)
+    }
+
+    void throwGrenade(Vector3 xTarget)
+    {
+        float dist = Vector3.Distance(transform.position, xTarget);
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position,-transform.TransformDirection(xTarget), dist,LayerMask.GetMask("Default")))
+        {
+            print("collide");
+            Debug.DrawRay(transform.position, xTarget, Color.red, 100000, true);
+            prepGrenade = false;
+            halo.GetComponent<SelectionHalo>().mat.color = Color.green;
+            return;
+        }
+
+        if (dist < grenadeRange)
+        {
+            GameObject exp;
+            exp = Instantiate(explosion) as GameObject;
+            exp.transform.position = xTarget;
+            prepGrenade = false;
+            halo.GetComponent<SelectionHalo>().mat.color = Color.blue;
+            timestamp = Time.time + grenadeCoolDown;
+            grenadeReady = false;
+        }
+        else
+        {
+            print("too far");
+            prepGrenade = false;
+            halo.GetComponent<SelectionHalo>().mat.color = Color.green;
+        }
     }
 
 
@@ -184,9 +281,9 @@ public class PUnit : Unit {
     }*/
 
     void OnCollisionEnter (Collision c) {
-        //print("Colliding");
+        print("Colliding");
         GameObject go = c.gameObject;
-        if (go.tag == "PUnit" && go.GetComponent<PUnit>().walking == false) {
+        if ((go.tag == "PUnit" && go.GetComponent<PUnit>().walking == false) || go.tag == "Structure") {
             StopWalking();
         }
 		if (go.tag == "Door") {

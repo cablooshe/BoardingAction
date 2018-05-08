@@ -4,7 +4,7 @@ using UnityEngine;
 using System.Linq; //Enables LINQ queries
 
 public abstract class Unit : PT_MonoBehaviour {
-	static public bool DEBUG = true;
+    static public bool DEBUG = false;
 
 	[Header("Set in Inspector")]
 	public bool isObjective = false;
@@ -52,8 +52,9 @@ public abstract class Unit : PT_MonoBehaviour {
 	public Transform characterTrans;
 
 	public List<Transform> transforms;
+    public float timestamp; //used for cooldowns
 
-	[Header("Unit: Enemy Info")]
+    [Header("Unit: Enemy Info")]
 	public GameObject targetSelected;
 	protected string enemyTag = "EnemyUnit";
 	//public bool randomPatrol;
@@ -77,6 +78,7 @@ public abstract class Unit : PT_MonoBehaviour {
 		transforms.Add(characterTrans.Find("SquadLeader"));
 		transforms.Add(characterTrans.Find("Member1"));
 		transforms.Add(characterTrans.Find("Member2"));
+        timestamp = Time.time;
 
 		//viewCharacterTrans = characterTrans.Find("View_Character");
 
@@ -115,15 +117,16 @@ public abstract class Unit : PT_MonoBehaviour {
 		//use atan2 to get the rotation around z that ponts the x axis of mage:charactertrans towards poi
 		float rZ = Mathf.Rad2Deg * Mathf.Atan2(delta.y, delta.x);
 		//set the rotation of charactwertrans (doesnt rotate just yet)
-		//characterTrans.rotation = Quaternion.Euler(0, 0, rZ);
-		foreach (Transform t in transforms)
+		characterTrans.rotation = Quaternion.Euler(0, 0, rZ);
+		/*foreach (Transform t in transforms)
 		{
 			t.rotation = Quaternion.Euler(-rZ, 90, -90);
-		}
+		}*/
 	}
 
 	protected void FixedUpdate()
 	{//happens every physics step, 50 times per second
+
 		//keep muzzle flash with unit
 		if (muzzleFlashFront != null) {
 			muzzleFlashFront.transform.position = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, this.gameObject.transform.position.z - 1f);
@@ -158,6 +161,8 @@ public abstract class Unit : PT_MonoBehaviour {
 			findTargetInRange();
 		}
 
+        findCover();
+
 		//DO Attack based on attack speed
 		if (Time.time >= updateAttack)
 		{
@@ -167,12 +172,19 @@ public abstract class Unit : PT_MonoBehaviour {
 			attack();
 		}
 
-	}
+        //if the unit isnt moving, stop walking
+        if (this.gameObject.GetComponent<Rigidbody>().velocity.magnitude < 0.09f)
+        {
+            this.StopWalking();
+        }
 
 
-	//_________________________________________________Targeting and attack/damage methods__________________________________________________\\
+    }
 
-	public void attack() {
+
+    //_________________________________________________Targeting and attack/damage methods__________________________________________________\\
+
+    public void attack() {
 		if (isTargeting)
 		{
 			targetSelected.GetComponent<Unit>().takeDamage(this.damage, this.gameObject);
@@ -188,25 +200,45 @@ public abstract class Unit : PT_MonoBehaviour {
 	}
 
 	public void takeDamage(float damage, GameObject enemy) {
-		Vector3 enemyPosition = Vector3.Lerp (this.transform.position, enemy.transform.position);
+		Vector3 enemyPosition = enemy.transform.position - this.transform.position;
 		if((inCover) && (Random.value > 0.5)) {
 			foreach (GameObject c in coverList) {
-				Vector3 coverPosition = Vector3.Lerp (this.transform.position, c.transform.position);
+				Vector3 coverPosition = c.transform.position - this.transform.position;
 				if (Vector3.Angle (enemyPosition, coverPosition) < 30)
 					return;
 			}
 		}
-		currentHealth-=damage;
-		if ((numDeaths == 0 && death1 > currentHealth) || (numDeaths == 1 && death2 > currentHealth))
-		{
-			loseMember(numDeaths++);
-		}
-
-		if (currentHealth <= 0)
-		{
-			Die();
-		}
+        takeDamage(damage);
 	}
+
+    //handling types of direct damage, such as those from exsplosion
+    public void takeDamage(string type)
+    {
+        switch (type)
+        {
+            case "explosion":
+                takeDamage(Random.Range(100, 200));
+                break;
+            default:
+                takeDamage(10.0f);
+                break;
+        }   
+    }
+
+    //used for taking damage from things that cover does not apply to, such as exsplosions
+    public void takeDamage(float damage)
+    {
+        currentHealth -= damage;
+        if ((numDeaths == 0 && death1 > currentHealth) || (numDeaths == 1 && death2 > currentHealth))
+        {
+            loseMember(numDeaths++);
+        }
+
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+    }
 
 	public void loseMember(int deathCount) {
 		Instantiate(corpse, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, 0.4f), Quaternion.Euler(Random.Range(0,360),0, Random.Range(0,360)));
@@ -247,11 +279,11 @@ public abstract class Unit : PT_MonoBehaviour {
 	}
 
 	public void findTargetInRange(){
-		Vector3 localPos = this.transform.position;
+		Vector3 localPos = this.characterTrans.position;
 		Collider[] hitColliders = Physics.OverlapSphere(localPos, attackRadius);
 		int i = 0;
-		GameObject toAttack = null;
-		inCover = false;
+        GameObject toAttack = null;
+        coverList = new List<GameObject> ();
 		while (i < hitColliders.Length)
 		{
 			if (hitColliders [i].gameObject != this.gameObject && hitColliders [i].tag == enemyTag) {
@@ -263,10 +295,6 @@ public abstract class Unit : PT_MonoBehaviour {
 					}
 				}*/
 				toAttack = hitColliders[i].gameObject;
-			} else if ((hitColliders [i].tag == "Structure")
-				&& (hitColliders [i].GetComponent<Structure> ().isCover)
-				&& (Vector3.Distance (hitColliders [i].transform.position, localPos) < coverRadius)) {
-				inCover = true;
 			}
 			i++;
 		}
@@ -278,9 +306,30 @@ public abstract class Unit : PT_MonoBehaviour {
 			isTargeting = false;
 			targetSelected = null;
 		}
-	}
 
-	public bool targetInRange(GameObject target){
+    }
+
+    public void findCover(){
+        Vector3 localPos = this.characterTrans.position;
+        inCover = false;
+        Collider[] coverColliders = Physics.OverlapSphere(localPos, coverRadius);
+        coverList.Clear();
+        int i = 0;
+        while (i < coverColliders.Length)
+        {
+            if ((coverColliders[i].tag == "Structure")
+                && (coverColliders[i].GetComponent<Structure>().isCover))
+            {
+                //&& (Vector3.Distance(coverColliders[i].transform.position, localPos) < coverRadius)){
+
+                inCover = true;
+                coverList.Add(coverColliders[i].gameObject);
+            }
+            i++;
+        }
+    }
+
+        public bool targetInRange(GameObject target){
 		if (target == null){
 			return false;
 		}

@@ -95,5 +95,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationsPerSecond: 0.1
-  haloColor: {r: 0.025951538, g: 0.7058823, b: 0.20368998, a: 1}
+  haloColor: {r: 0.025951581, g: 0.7058823, b: 0.22758603, a: 1}
   visible: 0
+  mat: {fileID: 0}

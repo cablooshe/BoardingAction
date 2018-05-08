@@ -2187,6 +2187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 150dc8a7ba8b7d74dbeb96e1b101ea52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneNum: 0
 --- !u!1001 &308180659
 Prefab:
   m_ObjectHideFlags: 0
@@ -4513,8 +4514,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58ac943bd857d3046a97b4ad04a19b33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numObjectives: 4
+  numObjectives: 04000000
+  spawnsPerPhase: 00000000
+  spawns: []
   countComplete: 0
+  objectivePhase: 0
+  lastSpawn: 0
 --- !u!1001 &767726741
 Prefab:
   m_ObjectHideFlags: 0
@@ -7772,6 +7777,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 150dc8a7ba8b7d74dbeb96e1b101ea52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneNum: 0
 --- !u!4 &1273773775 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4593168254262284, guid: 2fd9c9e8b2a5f024095e23eedf7ffe88,
@@ -7818,7 +7824,7 @@ MonoBehaviour:
   cameraSpeed: 10
   zoomSpeed: 30
   minZoom: 1
-  maxZoom: 20
+  maxZoom: 50
 --- !u!81 &1278415667
 AudioListener:
   m_ObjectHideFlags: 0
@@ -12525,6 +12531,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 150dc8a7ba8b7d74dbeb96e1b101ea52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneNum: 0
 --- !u!1 &1899010347
 GameObject:
   m_ObjectHideFlags: 0

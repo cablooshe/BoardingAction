@@ -10,7 +10,7 @@ public class SelectionHalo : MonoBehaviour {
     [Header("Set Dynamically")]
     public bool visible = false;
 
-    Material mat;
+    public Material mat;
 
 	// Use this for initialization
 	void Start () {
