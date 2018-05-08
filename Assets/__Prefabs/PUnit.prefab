@@ -2042,10 +2042,12 @@ MonoBehaviour:
   inCover: 0
   isDead: 0
   walkTarget: {x: 0, y: 0, z: 0}
+  coverList: []
   characterTrans: {fileID: 0}
   transforms: []
   targetSelected: {fileID: 0}
   tapIndicatorPrefab: {fileID: 0}
+  explosion: {fileID: 131164, guid: 3c5f4e32698bdb04eaed647f60310510, type: 2}
   mTapTime: 0.1
   mDragDist: 5
   activeScreenWidth: 1

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LevelSetup : MonoBehaviour {
     public List<Vector3> spawnLoc;
-    public GameObject unitPrefab;
+    public GameObject unitPrefab;   
 	// Use this for initialization
 	void Start () {
         spawnLoc.Add(new Vector3(32, 8, 0.65f));
