@@ -244,7 +244,7 @@ public class PUnit : Unit {
     {
         float dist = Vector3.Distance(transform.position, xTarget);
         RaycastHit hit;
-        if (Physics.Raycast(transform.position,transform.TransformDirection(xTarget), dist,LayerMask.GetMask("Default", "Floor")))
+        if (Physics.Raycast(transform.position,-transform.TransformDirection(xTarget), dist,LayerMask.GetMask("Default")))
         {
             print("collide");
             Debug.DrawRay(transform.position, xTarget, Color.red, 100000, true);
