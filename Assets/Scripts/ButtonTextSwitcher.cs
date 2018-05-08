@@ -80,6 +80,7 @@ public class ButtonTextSwitcher : MonoBehaviour {
             slots[CurrentSlot - 1].interactable = false;
         }
         if (disableOption == true) {
+            Debug.Log("DISABLE THE BUTTON YOU FOOL");
             choices[chosenLeader - 1].SetActive(false);
         }
         if (isLeaderScript) {
