@@ -30,4 +30,9 @@ public class PauseMenu : MonoBehaviour {
     {
         SceneManager.LoadScene(sceneNum);
     }
+
+    public void PauseGame()
+    {
+        SceneManager.SetActiveScene() = false;
+    }
 }

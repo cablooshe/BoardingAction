@@ -61,7 +61,7 @@ public class PUnit : Unit {
     public void dropCover()
     {
         Debug.Log("COVER DROPPED");
-        Vector3 coverRot = transform.rotation.eulerAngles;
+        Vector3 coverRot = characterTrans.rotation.eulerAngles;
         Vector3 coverPos = transform.position;
         GameObject go = Instantiate(deployableCover) as GameObject;
         deployableCover.transform.rotation = Quaternion.Euler(coverRot.x, coverRot.y, coverRot.z);
@@ -194,6 +194,18 @@ public class PUnit : Unit {
                 print("grenade not ready");                
             }
         }
+        if (Input.GetKey(KeyCode.Alpha2) && !prepGrenade)
+        {
+            if (cooledDown())
+            {
+                anim.SetTrigger("DeployingCover");
+            }
+            else
+            {
+                print("grenade not ready");
+            }
+        }
+
 
     }
 
