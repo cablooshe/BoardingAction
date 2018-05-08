@@ -8,10 +8,22 @@ public class PickUp : MonoBehaviour {
 	[Header("PickUp: Set in Inspector")]
 	public PickUpType itemType;
 	public int posFavor = 1;
-	public int negFavor = 0;
+    public int negFavor = 0;
+    public float rotationsPerSecond = 0.1f;
 
-	 
-	public void GetPickedUp() {
+    private void Update()
+    {
+        Rotate();
+    }
+
+    private void Rotate()
+    {
+        float rZ = -(rotationsPerSecond * Time.time * 360) % 360f;
+        transform.rotation = Quaternion.Euler(0, 0, rZ);
+    }
+
+
+    public void GetPickedUp() {
         // This will do more later, but for now...
 		if (itemType == PickUpType.secondaryObjectiveCouncil) {
 			PlayerInfo.CouncilFavor = PlayerInfo.CouncilFavor + posFavor;
