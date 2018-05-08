@@ -40,7 +40,8 @@ public class PUnit : Unit {
         halo.transform.position = new Vector3(this.pos.x, this.pos.y, this.pos.z - 0.15f);
         
     }
-    new public void StopWalking() {
+    public new void StopWalking() {
+        GetComponent<Rigidbody>().velocity = Vector3.zero;
         walking = false;
         GetComponent<Rigidbody>().velocity = Vector3.zero;
         anim.SetBool("Walking", false);
@@ -51,6 +52,7 @@ public class PUnit : Unit {
     }
 
     void updateAnimation() {
+
         if (!walking && this.inCover)
         {
             anim.SetBool("InCover", true);
@@ -62,6 +64,9 @@ public class PUnit : Unit {
         {
             anim.SetBool("Attacking", true);
 
+        }
+        else{
+            anim.SetBool("Attacking", false);
         }
         //else { anim.SetBool("Attacking", false); }
         if (walking)
@@ -78,7 +83,6 @@ public class PUnit : Unit {
 
     void Update() {
         toggleHalo();
-        updateAnimation();
 
         if (!selected) return;
         //find whether the mouse button 0 was pressed or released this frame
@@ -130,6 +134,9 @@ public class PUnit : Unit {
                 MouseDrag(); //still dragging
             }
         }
+
+        updateAnimation();
+
 
     }
 
@@ -195,9 +202,9 @@ public class PUnit : Unit {
     }*/
 
     void OnCollisionEnter (Collision c) {
-        //print("Colliding");
+        print("Colliding");
         GameObject go = c.gameObject;
-        if (go.tag == "PUnit" && go.GetComponent<PUnit>().walking == false) {
+        if ((go.tag == "PUnit" && go.GetComponent<PUnit>().walking == false) || go.tag == "Structure") {
             StopWalking();
         }
 		if (go.tag == "Door") {

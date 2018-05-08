@@ -115,11 +115,11 @@ public abstract class Unit : PT_MonoBehaviour {
 		//use atan2 to get the rotation around z that ponts the x axis of mage:charactertrans towards poi
 		float rZ = Mathf.Rad2Deg * Mathf.Atan2(delta.y, delta.x);
 		//set the rotation of charactwertrans (doesnt rotate just yet)
-		//characterTrans.rotation = Quaternion.Euler(0, 0, rZ);
-		foreach (Transform t in transforms)
+		characterTrans.rotation = Quaternion.Euler(0, 0, rZ);
+		/*foreach (Transform t in transforms)
 		{
 			t.rotation = Quaternion.Euler(-rZ, 90, -90);
-		}
+		}*/
 	}
 
 	protected void FixedUpdate()
@@ -159,6 +159,8 @@ public abstract class Unit : PT_MonoBehaviour {
 			findTargetInRange();
 		}
 
+        findCover();
+
 		//DO Attack based on attack speed
 		if (Time.time >= updateAttack)
 		{
@@ -169,9 +171,9 @@ public abstract class Unit : PT_MonoBehaviour {
 		}
 
         //if the unit isnt moving, stop walking
-        if (this.gameObject.GetComponent<Rigidbody>().velocity.magnitude < 0.04f)
+        if (this.gameObject.GetComponent<Rigidbody>().velocity.magnitude < 0.09f)
         {
-            StopWalking();
+            this.StopWalking();
         }
 
 
@@ -255,12 +257,13 @@ public abstract class Unit : PT_MonoBehaviour {
 	}
 
 	public void findTargetInRange(){
-		Vector3 localPos = this.transform.position;
+		Vector3 localPos = this.characterTrans.position;
+        if (this.gameObject.tag == "PUnit")
+            print(localPos);
 		Collider[] hitColliders = Physics.OverlapSphere(localPos, attackRadius);
 		int i = 0;
-		GameObject toAttack = null;
-		inCover = false;
-		coverList = new List<GameObject> ();
+        GameObject toAttack = null;
+        coverList = new List<GameObject> ();
 		while (i < hitColliders.Length)
 		{
 			if (hitColliders [i].gameObject != this.gameObject && hitColliders [i].tag == enemyTag) {
@@ -272,11 +275,6 @@ public abstract class Unit : PT_MonoBehaviour {
 					}
 				}*/
 				toAttack = hitColliders[i].gameObject;
-			} else if ((hitColliders [i].tag == "Structure")
-				&& (hitColliders [i].GetComponent<Structure> ().isCover)
-				&& (Vector3.Distance (hitColliders [i].transform.position, localPos) < coverRadius)) {
-				inCover = true;
-				coverList.Add(hitColliders[i].gameObject);
 			}
 			i++;
 		}
@@ -288,9 +286,30 @@ public abstract class Unit : PT_MonoBehaviour {
 			isTargeting = false;
 			targetSelected = null;
 		}
-	}
 
-	public bool targetInRange(GameObject target){
+    }
+
+    public void findCover(){
+        Vector3 localPos = this.characterTrans.position;
+        inCover = false;
+        Collider[] coverColliders = Physics.OverlapSphere(localPos, coverRadius);
+        coverList.Clear();
+        int i = 0;
+        while (i < coverColliders.Length)
+        {
+            if ((coverColliders[i].tag == "Structure")
+                && (coverColliders[i].GetComponent<Structure>().isCover))
+            {
+                //&& (Vector3.Distance(coverColliders[i].transform.position, localPos) < coverRadius)){
+
+                inCover = true;
+                coverList.Add(coverColliders[i].gameObject);
+            }
+            i++;
+        }
+    }
+
+        public bool targetInRange(GameObject target){
 		if (target == null){
 			return false;
 		}
