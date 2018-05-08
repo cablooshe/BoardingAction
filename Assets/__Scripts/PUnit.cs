@@ -11,6 +11,7 @@ public class PUnit : Unit {
 	[Header("PUnit: Associated Prefabs - Set in Inspector")]
     public GameObject tapIndicatorPrefab;
     public GameObject explosion;
+    public GameObject deployableCover;
   
 
 
@@ -60,6 +61,8 @@ public class PUnit : Unit {
 
     public void dropCover() {
         Debug.Log("COVER DROPPED");
+        Vector3 coverRot = transform.rotation.eulerAngles;
+        Vector3 coverPos = transform.position;
     }
 
     public void throwGrenade() {
