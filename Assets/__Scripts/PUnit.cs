@@ -265,6 +265,7 @@ public class PUnit : Unit {
     {
         float dist = Vector3.Distance(transform.position, xTarget);
         RaycastHit hit;
+        /* @TODO
         if (Physics.Raycast(transform.position,-transform.TransformDirection(xTarget), dist,LayerMask.GetMask("Default")))
         {
             print("collide");
@@ -272,7 +273,7 @@ public class PUnit : Unit {
             prepGrenade = false;
             halo.GetComponent<SelectionHalo>().mat.color = Color.green;
             return;
-        }
+        }*/
 
         if (dist < grenadeRange)
         {
