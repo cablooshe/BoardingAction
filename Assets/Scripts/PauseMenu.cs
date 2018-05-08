@@ -33,6 +33,11 @@ public class PauseMenu : MonoBehaviour {
 
     public void PauseGame()
     {
-        SceneManager.SetActiveScene() = false;
+        Time.timeScale = 0;
+    }
+
+    public void ResumeGame()
+    {
+        Time.timeScale = 1;
     }
 }
