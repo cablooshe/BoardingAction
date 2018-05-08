@@ -18,7 +18,7 @@ public class HighlightInfo : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         List<GameObject> selected = this.gameObject.GetComponent<PlayerSelect>().unitsSelected;
-        if (selected != null) {
+        if (selected != null && selected.Count > 0) {
             PUnit leaderOne = selected[0].GetComponent<PUnit>();
           //  Debug.Log(selected.Count);
             // Debug.Log("spot 1");
