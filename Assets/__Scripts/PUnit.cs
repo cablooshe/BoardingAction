@@ -59,10 +59,14 @@ public class PUnit : Unit {
         anim.SetBool("Walking", false);
     }
 
-    public void dropCover() {
+    public void dropCover()
+    {
         Debug.Log("COVER DROPPED");
         Vector3 coverRot = transform.rotation.eulerAngles;
         Vector3 coverPos = transform.position;
+        GameObject go = Instantiate(deployableCover) as GameObject;
+        deployableCover.transform.rotation = Quaternion.Euler(coverRot.x, coverRot.y, coverRot.z);
+        deployableCover.transform.position = coverPos;
     }
 
     public void throwGrenade() {
