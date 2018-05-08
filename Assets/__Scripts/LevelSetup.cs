@@ -71,7 +71,7 @@ public class LevelSetup : MonoBehaviour {
 
 
     void Start () {
-        /**
+       /** 
         spawnLoc.Add(new Vector3(32, 8, 0.65f));
         spawnLoc.Add(new Vector3(32, 8, 0.65f));
         spawnLoc.Add(new Vector3(29, 11, 0.65f));
@@ -93,7 +93,7 @@ public class LevelSetup : MonoBehaviour {
             float mov = test.squadSpeed;
             GameObject unit;
             unit = Instantiate(unitPrefab) as GameObject;
-            unit.transform.position = spawnLoc[i];
+           // unit.transform.position = spawnLoc[i];
             unit.GetComponent<PUnit>().currentHealth = unit.GetComponent<PUnit>().maxHealth = unit.GetComponent<PUnit>().updateMaxHealth = 500;
             unit.GetComponent<PUnit>().speed = 3;
             unit.GetComponent<PUnit>().name = name;
