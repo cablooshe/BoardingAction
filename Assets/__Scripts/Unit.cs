@@ -124,6 +124,7 @@ public abstract class Unit : PT_MonoBehaviour {
 
 	protected void FixedUpdate()
 	{//happens every physics step, 50 times per second
+
 		//keep muzzle flash with unit
 		if (muzzleFlashFront != null) {
 			muzzleFlashFront.transform.position = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, this.gameObject.transform.position.z - 1f);
@@ -167,12 +168,19 @@ public abstract class Unit : PT_MonoBehaviour {
 			attack();
 		}
 
-	}
+        //if the unit isnt moving, stop walking
+        if (this.gameObject.GetComponent<Rigidbody>().velocity.magnitude < 0.04f)
+        {
+            StopWalking();
+        }
 
 
-	//_________________________________________________Targeting and attack/damage methods__________________________________________________\\
+    }
 
-	public void attack() {
+
+    //_________________________________________________Targeting and attack/damage methods__________________________________________________\\
+
+    public void attack() {
 		if (isTargeting)
 		{
 			targetSelected.GetComponent<Unit>().takeDamage(this.damage, this.gameObject);

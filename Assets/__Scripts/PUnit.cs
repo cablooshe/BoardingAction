@@ -51,6 +51,13 @@ public class PUnit : Unit {
     }
 
     void updateAnimation() {
+        if (!walking && this.inCover)
+        {
+            anim.SetBool("InCover", true);
+        }
+        else {
+            anim.SetBool("InCover", false);
+        }
         if (isTargeting)
         {
             anim.SetBool("Attacking", true);
@@ -60,9 +67,13 @@ public class PUnit : Unit {
         if (walking)
         {
             anim.SetBool("Walking", true);
+            anim.SetFloat("WalkSpeed", this.gameObject.GetComponent<Rigidbody>().velocity.magnitude*0.5f);
         }
-        else
+        else{
             anim.SetBool("Walking", false);
+            anim.SetFloat("WalkSpeed", 0f);
+
+        }
     }
 
     void Update() {
