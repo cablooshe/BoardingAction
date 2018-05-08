@@ -284,6 +284,8 @@ public class PUnit : Unit {
         print("Colliding");
         GameObject go = c.gameObject;
         if ((go.tag == "PUnit" && go.GetComponent<PUnit>().walking == false) || go.tag == "Structure") {
+            StopWalking();
+        }
 		if (go.tag == "Door") {
 			go.GetComponentInParent<DoubleDoor>().OpenDoors();
 		}
