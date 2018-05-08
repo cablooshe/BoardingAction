@@ -24,8 +24,7 @@ public class PUnit : Unit {
     public float grenadeCoolDown = 10f;
     public float grenadeRange = 15f;
    
-    public bool grenadeReady = true;
-    
+    public bool grenadeReady = true;    
     
     
 
