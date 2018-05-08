@@ -280,8 +280,6 @@ public abstract class Unit : PT_MonoBehaviour {
 
 	public void findTargetInRange(){
 		Vector3 localPos = this.characterTrans.position;
-        if (this.gameObject.tag == "PUnit")
-            print(localPos);
 		Collider[] hitColliders = Physics.OverlapSphere(localPos, attackRadius);
 		int i = 0;
         GameObject toAttack = null;
