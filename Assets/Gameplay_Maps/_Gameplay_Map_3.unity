@@ -8199,7 +8199,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cd402c9a6fbd4246ab4a93828c0c980, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnLoc: []
+  spawnLoc:
+  - {x: 32, y: 8, z: 0.65}
+  - {x: 29, y: 11, z: 0.65}
+  - {x: 24, y: 12, z: 0.65}
+  - {x: 28, y: 10, z: 0.65}
   unitPrefab: {fileID: 1453615982531426, guid: 6c499b660a1ff97409b7a792adfd37a4, type: 2}
 --- !u!114 &1278415673
 MonoBehaviour:
