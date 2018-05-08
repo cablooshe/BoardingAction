@@ -237,14 +237,11 @@ public class PUnit : Unit {
     void throwGrenade(Vector3 xTarget)
     {
         float dist = Vector3.Distance(transform.position, xTarget);
-        int structure = 2;
-        int door = 4;
-        int layerM1 = 1 << structure;
-        int layerM2 = 1 << door;
-        int layerMask = layerM1 | layerM2;
-        if (Physics.Raycast(transform.position, xTarget, dist,~(2 | 4)))
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position,transform.TransformDirection(xTarget), dist,LayerMask.GetMask("Default", "Floor")))
         {
             print("collide");
+            Debug.DrawRay(transform.position, xTarget, Color.red, 100000, true);
             prepGrenade = false;
             halo.GetComponent<SelectionHalo>().mat.color = Color.green;
             return;
