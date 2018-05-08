@@ -17,6 +17,8 @@ public abstract class Unit : PT_MonoBehaviour {
 	public float attackRadius = 2;
 	public float coverRadius = 1;
 	public float attackSpeed = 1f; //amount of seconds between attacks
+	public bool isBoss = false;
+	public float bossShootRadius = 1;
 
 	protected int unitCount = 3;
 	public float death1;
@@ -187,6 +189,10 @@ public abstract class Unit : PT_MonoBehaviour {
     public void attack() {
 		if (isTargeting)
 		{
+			if (isBoss) {
+				if (Vector3.Distance (targetSelected.transform.position, transform.position) > bossShootRadius)
+					return;
+			}
 			targetSelected.GetComponent<Unit>().takeDamage(this.damage, this.gameObject);
 			attackAnimation(targetSelected);
 			targetSelected.GetComponent<Unit>().takeDamageAnimation();
