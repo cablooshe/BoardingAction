@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class LevelSetup : MonoBehaviour {
     public List<Vector3> spawnLoc;
-<<<<<<< HEAD
     public GameObject unitPrefab;
     public List<GameObject> units;
 
@@ -72,13 +71,9 @@ public class LevelSetup : MonoBehaviour {
 
 
     void Start () {
+        /**
         spawnLoc.Add(new Vector3(32, 8, 0.65f));
-=======
-    public GameObject unitPrefab;   
-	// Use this for initialization
-	void Start () {
-        /*spawnLoc.Add(new Vector3(32, 8, 0.65f));
->>>>>>> 7c30b2a0ae4f9b0da87ae256d9c9269b52584aff
+        spawnLoc.Add(new Vector3(32, 8, 0.65f));
         spawnLoc.Add(new Vector3(29, 11, 0.65f));
         spawnLoc.Add(new Vector3(24, 12, 0.65f));
         spawnLoc.Add(new Vector3(28, 10, 0.65f));*/
@@ -123,6 +118,7 @@ public class LevelSetup : MonoBehaviour {
 
 
     }
+    
 
     private void Update() {
         
