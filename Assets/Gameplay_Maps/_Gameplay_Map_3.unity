@@ -8975,20 +8975,20 @@ MonoBehaviour:
   unitPrefab: {fileID: 1453615982531426, guid: 6c499b660a1ff97409b7a792adfd37a4, type: 2}
   units: []
   squadPressed: 0
-  squadName: {fileID: 0}
-  HP: {fileID: 0}
-  squad1N: {fileID: 0}
-  squad2N: {fileID: 0}
-  squad3N: {fileID: 0}
-  squad4N: {fileID: 0}
-  squad1P: {fileID: 0}
-  squad2P: {fileID: 0}
-  squad3P: {fileID: 0}
-  squad4P: {fileID: 0}
-  squad1H: {fileID: 0}
-  squad2H: {fileID: 0}
-  squad3H: {fileID: 0}
-  squad4H: {fileID: 0}
+  squadName: {fileID: 10897888}
+  HP: {fileID: 1890572392}
+  squad1N: {fileID: 195097503}
+  squad2N: {fileID: 332154179}
+  squad3N: {fileID: 381434384}
+  squad4N: {fileID: 931386253}
+  squad1P: {fileID: 1326456732}
+  squad2P: {fileID: 2125506939}
+  squad3P: {fileID: 187757653}
+  squad4P: {fileID: 1406202530}
+  squad1H: {fileID: 115990235}
+  squad2H: {fileID: 1872618470}
+  squad3H: {fileID: 1305250696}
+  squad4H: {fileID: 827704817}
 --- !u!114 &1278415673
 MonoBehaviour:
   m_ObjectHideFlags: 0
