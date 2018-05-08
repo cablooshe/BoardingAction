@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4609130995276458}
   - component: {fileID: 33052179327579420}
   - component: {fileID: 23011696739877400}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 114001338371912834}
   - component: {fileID: 136276073917032514}
   - component: {fileID: 33612502145304598}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Pickup
   m_TagString: Pickup
   m_Icon: {fileID: 0}

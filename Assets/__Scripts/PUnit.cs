@@ -58,10 +58,14 @@ public class PUnit : Unit {
         anim.SetBool("Walking", false);
     }
 
-    public void dropCover() {
+    public void dropCover()
+    {
         Debug.Log("COVER DROPPED");
         Vector3 coverRot = transform.rotation.eulerAngles;
         Vector3 coverPos = transform.position;
+        GameObject go = Instantiate(deployableCover) as GameObject;
+        deployableCover.transform.rotation = Quaternion.Euler(coverRot.x, coverRot.y, coverRot.z);
+        deployableCover.transform.position = coverPos;
     }
 
     public void throwGrenade() {
@@ -180,9 +184,9 @@ public class PUnit : Unit {
             halo.GetComponent<SelectionHalo>().mat.color = Color.green;
         }
 
-        if (Input.GetKey(KeyCode.Q) && !prepGrenade)
+        if (Input.GetKey(KeyCode.Alpha1) && !prepGrenade)
         {
-           if (timestamp <= Time.time)
+           if (cooledDown())
             {
                 readyGrenade();
             } else
@@ -193,11 +197,25 @@ public class PUnit : Unit {
 
     }
 
+    bool cooledDown()
+    {
+        return timestamp <= Time.time;
+    }
+
+    //used to put unit in grenade throwing state
     void readyGrenade()
     {
         prepGrenade = true;
         walking = false;
         halo.GetComponent<SelectionHalo>().mat.color = Color.red;
+    }
+
+    //used if grenade is not thrown
+    void unreadyGrenade()
+    {
+        prepGrenade = false;
+        walking = false;
+        halo.GetComponent<SelectionHalo>().mat.color = Color.green;
     }
 
     //Pulls inifo about the mouse, adds it to mouseInfos, and returns it
@@ -267,15 +285,15 @@ public class PUnit : Unit {
     {
         float dist = Vector3.Distance(transform.position, xTarget);
         RaycastHit hit;
-        /* @TODO
-        if (Physics.Raycast(transform.position,-transform.TransformDirection(xTarget), dist,LayerMask.GetMask("Default")))
+        /* @TODO*/
+        if (Physics.Raycast(transform.position,xTarget - transform.position, dist,LayerMask.GetMask("Default")))
         {
             print("collide");
-            Debug.DrawRay(transform.position, xTarget, Color.red, 100000, true);
+            Debug.DrawRay(transform.position, xTarget - transform.position, Color.red, 100000, true);
             prepGrenade = false;
             halo.GetComponent<SelectionHalo>().mat.color = Color.green;
             return;
-        }*/
+        }
 
         if (dist < grenadeRange)
         {

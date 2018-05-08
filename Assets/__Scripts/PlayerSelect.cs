@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 //The MPhase enum is used to track the phase of mouse interaction
 public enum MPhase
@@ -42,6 +43,7 @@ public class PlayerSelect : MonoBehaviour {
     public static List<GameObject> units;
     public bool isSelecting = false;
     public Vector3 mousePosition1;
+    public bool usingUI = false; // Set to true when using UI
 
 
     //Mouse selection related stuff
@@ -194,6 +196,11 @@ public class PlayerSelect : MonoBehaviour {
         }
         // If we let go of the left mouse button, end selection
         if (Input.GetMouseButtonUp(0)) {
+            if (usingUI) {
+                usingUI = false;
+                isSelecting = false;
+                return;
+            }
             if(isSelecting) {
                 foreach(GameObject u in unitsSelected) {
                     u.GetComponent<PUnit>().selected = false;
@@ -221,7 +228,11 @@ public class PlayerSelect : MonoBehaviour {
 
     public void MouseTap() {
 
-        if (unitsSelected.Count != 0)
+        if (usingUI) {
+            usingUI = true;
+            return;
+        }
+            if (unitsSelected.Count != 0)
         {
             foreach (GameObject u in unitsSelected)
             {
@@ -245,6 +256,10 @@ public class PlayerSelect : MonoBehaviour {
     }
 
     public void MouseDragUp() {
+        if (usingUI) {
+            usingUI = false;
+            return;
+        }
         if (isSelecting)
         {
             foreach (GameObject u in unitsSelected)
