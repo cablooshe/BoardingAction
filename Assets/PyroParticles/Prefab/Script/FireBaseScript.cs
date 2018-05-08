@@ -159,13 +159,13 @@ namespace DigitalRuby.PyroParticles
             Collider[] objects = UnityEngine.Physics.OverlapSphere(pos, radius);
             foreach (Collider h in objects)
             {
-                Rigidbody r = h.GetComponent<Rigidbody>();
+                /*Rigidbody r = h.GetComponent<Rigidbody>();
                 if (r != null)
                 {
                     
                     r.AddExplosionForce(force, pos, radius);
 
-                }
+                }*/
 
                 Unit u = h.GetComponent<Unit>();
                 if (u){
