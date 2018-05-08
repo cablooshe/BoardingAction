@@ -34,37 +34,25 @@ public class LevelSetup : MonoBehaviour {
     // Use this for initialization
 
     public void highlightSquad1() {
-        units[0].GetComponent<PUnit>()._selected = true;
-        units[1].GetComponent<PUnit>()._selected = false;
-        units[2].GetComponent<PUnit>()._selected = false;
-        units[3].GetComponent<PUnit>()._selected = false;
+        PlayerSelect.Select(units[0]);
         squadName.text = units[0].GetComponent<PUnit>().name;
         HP.text = System.Convert.ToString(units[0].GetComponent<PUnit>().currentHealth);
     }
 
     public void highlightSquad2() {
-        units[0].GetComponent<PUnit>()._selected = false;
-        units[1].GetComponent<PUnit>()._selected = true;
-        units[2].GetComponent<PUnit>()._selected = false;
-        units[3].GetComponent<PUnit>()._selected = false;
+        PlayerSelect.Select(units[1]);
         squadName.text = units[1].GetComponent<PUnit>().name;
         HP.text = System.Convert.ToString(units[1].GetComponent<PUnit>().currentHealth);
     }
 
     public void highlightSquad3() {
-        units[0].GetComponent<PUnit>()._selected = false;
-        units[1].GetComponent<PUnit>()._selected = false;
-        units[2].GetComponent<PUnit>()._selected = true;
-        units[3].GetComponent<PUnit>()._selected = false;
+        PlayerSelect.Select(units[2]);
         squadName.text = units[2].GetComponent<PUnit>().name;
         HP.text = System.Convert.ToString(units[2].GetComponent<PUnit>().currentHealth);
     }
 
     public void highlightSquad4() {
-        units[0].GetComponent<PUnit>()._selected = false;
-        units[1].GetComponent<PUnit>()._selected = false;
-        units[2].GetComponent<PUnit>()._selected = false;
-        units[3].GetComponent<PUnit>()._selected = true;
+        PlayerSelect.Select(units[3]);
         squadName.text = units[3].GetComponent<PUnit>().name;
         HP.text = System.Convert.ToString(units[3].GetComponent<PUnit>().currentHealth);
     }
