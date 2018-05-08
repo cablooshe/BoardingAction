@@ -75,12 +75,12 @@ public class ButtonTextSwitcher : MonoBehaviour {
     }
 
     public void ChangeText(int chosenLeader) {
+        Debug.Log("ChoiceMade: " + ChoiceMade);
         slots[CurrentSlot - 1].GetComponentInChildren<Text>().text = choices[chosenLeader - 1].GetComponentInChildren<Text>().text;
         if (deactivateOption) {
             slots[CurrentSlot - 1].interactable = false;
         }
         if (disableOption == true) {
-            Debug.Log("DISABLE THE BUTTON YOU FOOL");
             choices[chosenLeader - 1].SetActive(false);
         }
         if (isLeaderScript) {

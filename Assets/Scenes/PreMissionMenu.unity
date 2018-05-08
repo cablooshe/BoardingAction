@@ -8328,7 +8328,7 @@ MonoBehaviour:
   ChoiceMade: 0
   isLeaderScript: 1
   disableOption: 1
-  deactivateOption: 0
+  deactivateOption: 1
   slots:
   - {fileID: 1149681761}
   - {fileID: 1467540501}
