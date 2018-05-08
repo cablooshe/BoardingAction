@@ -8,6 +8,8 @@ TagManager:
   - EnemyUnit
   - Structure
   - Pickup
+  - Door
+  - explosion
   layers:
   - Default
   - TransparentFX
@@ -20,7 +22,7 @@ TagManager:
   - Units
   - Environment
   - Floor
-  - 
+  - FireLayer
   - 
   - 
   - 

@@ -52,8 +52,9 @@ public abstract class Unit : PT_MonoBehaviour {
 	public Transform characterTrans;
 
 	public List<Transform> transforms;
+    public float timestamp; //used for cooldowns
 
-	[Header("Unit: Enemy Info")]
+    [Header("Unit: Enemy Info")]
 	public GameObject targetSelected;
 	protected string enemyTag = "EnemyUnit";
 	//public bool randomPatrol;
@@ -77,6 +78,7 @@ public abstract class Unit : PT_MonoBehaviour {
 		transforms.Add(characterTrans.Find("SquadLeader"));
 		transforms.Add(characterTrans.Find("Member1"));
 		transforms.Add(characterTrans.Find("Member2"));
+        timestamp = Time.time;
 
 		//viewCharacterTrans = characterTrans.Find("View_Character");
 
@@ -206,17 +208,37 @@ public abstract class Unit : PT_MonoBehaviour {
 					return;
 			}
 		}
-		currentHealth-=damage;
-		if ((numDeaths == 0 && death1 > currentHealth) || (numDeaths == 1 && death2 > currentHealth))
-		{
-			loseMember(numDeaths++);
-		}
-
-		if (currentHealth <= 0)
-		{
-			Die();
-		}
+        takeDamage(damage);
 	}
+
+    //handling types of direct damage, such as those from exsplosion
+    public void takeDamage(string type)
+    {
+        switch (type)
+        {
+            case "explosion":
+                takeDamage(Random.Range(100, 200));
+                break;
+            default:
+                takeDamage(10.0f);
+                break;
+        }   
+    }
+
+    //used for taking damage from things that cover does not apply to, such as exsplosions
+    public void takeDamage(float damage)
+    {
+        currentHealth -= damage;
+        if ((numDeaths == 0 && death1 > currentHealth) || (numDeaths == 1 && death2 > currentHealth))
+        {
+            loseMember(numDeaths++);
+        }
+
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+    }
 
 	public void loseMember(int deathCount) {
 		Instantiate(corpse, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, 0.4f), Quaternion.Euler(Random.Range(0,360),0, Random.Range(0,360)));
