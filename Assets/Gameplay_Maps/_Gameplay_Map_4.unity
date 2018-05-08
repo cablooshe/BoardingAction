@@ -1093,6 +1093,16 @@ Prefab:
       propertyPath: attackRadius
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 114624696931745008, guid: 6c499b660a1ff97409b7a792adfd37a4,
+        type: 2}
+      propertyPath: currentHealth
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 114624696931745008, guid: 6c499b660a1ff97409b7a792adfd37a4,
+        type: 2}
+      propertyPath: updateMaxHealth
+      value: 1000
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6c499b660a1ff97409b7a792adfd37a4, type: 2}
   m_IsPrefabParent: 0
