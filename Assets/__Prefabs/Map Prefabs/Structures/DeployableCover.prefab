@@ -22,8 +22,7 @@ GameObject:
   - component: {fileID: 33919572343521062}
   - component: {fileID: 65964665961510500}
   - component: {fileID: 23941530643515626}
-  - component: {fileID: 114113537358423540}
-  - component: {fileID: 114055786452530344}
+  - component: {fileID: 114969334539206070}
   m_Layer: 0
   m_Name: MiniWall
   m_TagString: Structure
@@ -39,6 +38,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4118416804438478}
+  - component: {fileID: 114456932032679754}
   m_Layer: 0
   m_Name: DeployableCover
   m_TagString: Untagged
@@ -52,8 +52,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1756968665209470}
-  m_LocalRotation: {x: -0.00000008673396, y: -0.0000019365439, z: 0.44023487, w: 0.89788264}
-  m_LocalPosition: {x: -0.6717964, y: -19.07684, z: 0.5101122}
+  m_LocalRotation: {x: 0.0000037625432, y: -0.0000023089815, z: 0.70709985, w: 0.70711374}
+  m_LocalPosition: {x: -1.5499706, y: -20.210052, z: 0.51009524}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4195442833384784}
@@ -126,7 +126,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114055786452530344
+--- !u!114 &114456932032679754
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1756968665209470}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 047790d8a3a59b0488b51d4565b75df6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  durability: 50
+  isCover: 1
+  isTemporary: 1
+  tempLife: 5
+--- !u!114 &114969334539206070
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -137,19 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 047790d8a3a59b0488b51d4565b75df6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  durability: 100
+  durability: 50
   isCover: 1
---- !u!114 &114113537358423540
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1630788643636422}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e0f2185287dce7479df3e042a8e3eda, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  external: 0
-  durability: 200
-  window: 0
+  isTemporary: 1
+  tempLife: 30

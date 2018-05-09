@@ -22,6 +22,7 @@ public class PUnit : Unit {
 	public MPhase mPhase = MPhase.idle;
     public bool prepGrenade = false;
     public float grenadeCoolDown = 10f;
+    public float coverCoolDown = 5f;
     public float grenadeRange = 15f;
    
     public bool grenadeReady = true;    
@@ -60,12 +61,19 @@ public class PUnit : Unit {
 
     public void dropCover()
     {
+        if (!cooledDown())
+        {
+            print("Cover not ready");
+            return;
+        }
         Debug.Log("COVER DROPPED");
         Vector3 coverRot = characterTrans.rotation.eulerAngles;
         Vector3 coverPos = transform.position;
         GameObject go = Instantiate(deployableCover) as GameObject;
         deployableCover.transform.rotation = Quaternion.Euler(coverRot.x, coverRot.y, coverRot.z);
         deployableCover.transform.position = coverPos;
+        timestamp = Time.time + coverCoolDown;
+        halo.GetComponent<SelectionHalo>().mat.color = Color.blue;
     }
 
     public void throwGrenade() {
@@ -123,7 +131,6 @@ public class PUnit : Unit {
         toggleHalo();
         updateAnimation();
 
-
         if (!selected) return;
         //find whether the mouse button 0 was pressed or released this frame
         bool b0Down = Input.GetMouseButtonDown(0);
@@ -174,9 +181,8 @@ public class PUnit : Unit {
                 MouseDrag(); //still dragging
             }
         }
-
       
-        if(timestamp <= Time.time && !grenadeReady)
+        if(timestamp <= Time.time)
         {
             
             print("grenade ready");

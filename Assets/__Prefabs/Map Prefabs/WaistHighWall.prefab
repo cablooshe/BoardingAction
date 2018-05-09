@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 33428661298764988}
   - component: {fileID: 65118618333241348}
   - component: {fileID: 23631898893321214}
-  - component: {fileID: 114543891356925440}
   - component: {fileID: 114175900306761838}
   m_Layer: 9
   m_Name: WaistHighWall
@@ -110,17 +109,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   durability: 100
   isCover: 1
---- !u!114 &114543891356925440
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1761757932475616}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e0f2185287dce7479df3e042a8e3eda, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  external: 0
-  durability: 200
-  window: 0
+  isTemporary: 0
+  tempLife: 5
