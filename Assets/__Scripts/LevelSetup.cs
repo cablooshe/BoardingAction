@@ -33,6 +33,10 @@ public class LevelSetup : MonoBehaviour {
     public Text squad4H;
     // Use this for initialization
 
+    public GameObject squad2Panel;
+    public GameObject squad3Panel;
+    public GameObject squad4Panel;
+
     public void highlightSquad1() {
         this.GetComponent<PlayerSelect>().usingUI = true;
         this.GetComponent<PlayerSelect>().Select(units[0]);
@@ -93,21 +97,55 @@ public class LevelSetup : MonoBehaviour {
             unit.GetComponent<PUnit>().attackRadius = 6;
             units.Add(unit);
         }
-        squad1N.text = units[0].GetComponent<PUnit>().name;
-        squad2N.text = units[1].GetComponent<PUnit>().name;
-        squad3N.text = units[2].GetComponent<PUnit>().name;
-        squad4N.text = units[3].GetComponent<PUnit>().name;
+        switch(units.Count) {
+            case 0:
+                break;
+            case 1:
+                squad1N.text = units[0].GetComponent<PUnit>().name;
+                squad1P.text = System.Convert.ToString(3 - units[0].GetComponent<PUnit>().numDeaths);
+                squad1H.text = System.Convert.ToString(units[0].GetComponent<PUnit>().currentHealth);
+                squad2Panel.SetActive(false);
+                squad3Panel.SetActive(false);
+                squad4Panel.SetActive(false);
+                break;
+            case 2:
+                squad1N.text = units[0].GetComponent<PUnit>().name;
+                squad2N.text = units[1].GetComponent<PUnit>().name;
+                squad1P.text = System.Convert.ToString(3 - units[0].GetComponent<PUnit>().numDeaths);
+                squad2P.text = System.Convert.ToString(3 - units[1].GetComponent<PUnit>().numDeaths);
+                squad1H.text = System.Convert.ToString(units[0].GetComponent<PUnit>().currentHealth);
+                squad2H.text = System.Convert.ToString(units[1].GetComponent<PUnit>().currentHealth);
+                squad3Panel.SetActive(false);
+                squad4Panel.SetActive(false);
+                break;
+            case 3:
+                squad1N.text = units[0].GetComponent<PUnit>().name;
+                squad2N.text = units[1].GetComponent<PUnit>().name;
+                squad3N.text = units[2].GetComponent<PUnit>().name;
+                squad1P.text = System.Convert.ToString(3 - units[0].GetComponent<PUnit>().numDeaths);
+                squad2P.text = System.Convert.ToString(3 - units[1].GetComponent<PUnit>().numDeaths);
+                squad3P.text = System.Convert.ToString(3 - units[2].GetComponent<PUnit>().numDeaths);
+                squad1H.text = System.Convert.ToString(units[0].GetComponent<PUnit>().currentHealth);
+                squad2H.text = System.Convert.ToString(units[1].GetComponent<PUnit>().currentHealth);
+                squad3H.text = System.Convert.ToString(units[2].GetComponent<PUnit>().currentHealth);
+                squad4Panel.SetActive(false);
+                break;
+            case 4:
+                squad1N.text = units[0].GetComponent<PUnit>().name;
+                squad2N.text = units[1].GetComponent<PUnit>().name;
+                squad3N.text = units[2].GetComponent<PUnit>().name;
+                squad4N.text = units[3].GetComponent<PUnit>().name;
+                squad1P.text = System.Convert.ToString(3 - units[0].GetComponent<PUnit>().numDeaths);
+                squad2P.text = System.Convert.ToString(3 - units[1].GetComponent<PUnit>().numDeaths);
+                squad3P.text = System.Convert.ToString(3 - units[2].GetComponent<PUnit>().numDeaths);
+                squad4P.text = System.Convert.ToString(3 - units[3].GetComponent<PUnit>().numDeaths);
+                squad1H.text = System.Convert.ToString(units[0].GetComponent<PUnit>().currentHealth);
+                squad2H.text = System.Convert.ToString(units[1].GetComponent<PUnit>().currentHealth);
+                squad3H.text = System.Convert.ToString(units[2].GetComponent<PUnit>().currentHealth);
+                squad4H.text = System.Convert.ToString(units[3].GetComponent<PUnit>().currentHealth);
+                break;
 
-        squad1P.text = System.Convert.ToString(3 - units[0].GetComponent<PUnit>().numDeaths);
-        squad2P.text = System.Convert.ToString(3 - units[1].GetComponent<PUnit>().numDeaths);
-        squad3P.text = System.Convert.ToString(3 - units[2].GetComponent<PUnit>().numDeaths);
-        squad4P.text = System.Convert.ToString(3 - units[3].GetComponent<PUnit>().numDeaths);
-
-        squad1H.text = System.Convert.ToString(units[0].GetComponent<PUnit>().currentHealth);
-        squad2H.text = System.Convert.ToString(units[1].GetComponent<PUnit>().currentHealth);
-        squad3H.text = System.Convert.ToString(units[2].GetComponent<PUnit>().currentHealth);
-        squad4H.text = System.Convert.ToString(units[3].GetComponent<PUnit>().currentHealth);
-
+        }
 
     }
     

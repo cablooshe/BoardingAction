@@ -9012,6 +9012,9 @@ MonoBehaviour:
   squad2H: {fileID: 1872618470}
   squad3H: {fileID: 1305250696}
   squad4H: {fileID: 827704817}
+  squad2Panel: {fileID: 186823646}
+  squad3Panel: {fileID: 989165858}
+  squad4Panel: {fileID: 165276775}
 --- !u!114 &1278415673
 MonoBehaviour:
   m_ObjectHideFlags: 0
