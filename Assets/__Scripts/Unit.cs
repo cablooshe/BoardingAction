@@ -248,7 +248,7 @@ public abstract class Unit : PT_MonoBehaviour {
 
 	public void loseMember(int deathCount) {
 		Instantiate(corpse, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, 0.4f), Quaternion.Euler(Random.Range(0,360),0, Random.Range(0,360)));
-		Destroy(this.transforms[this.transforms.Count - 1].gameObject);
+		this.transforms[this.transforms.Count - 1].gameObject.SetActive(false);
 		this.transforms.RemoveAt(transforms.Count - 1);
 
 	}
