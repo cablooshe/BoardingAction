@@ -77,6 +77,7 @@ public class ButtonTextSwitcher : MonoBehaviour {
     }
 
     public void ChangeText(int chosenLeader) {
+        
         Debug.Log("ChoiceMade: " + ChoiceMade);
         slots[CurrentSlot - 1].GetComponentInChildren<Text>().text = choices[chosenLeader - 1].GetComponentInChildren<Text>().text;
         if (deactivateOption) {
@@ -89,6 +90,7 @@ public class ButtonTextSwitcher : MonoBehaviour {
             PlayerInfo.Squads[CurrentSlot - 1].leader = PlayerInfo.Leaders[ChoiceMade - 1];
         } else {
             SoldierSet sol = new SoldierSet();
+            squadAbilities.text = "";
             switch (ChoiceMade) {
                 case 0:
                     sol = new SoldierSet("Sneaky", 10, 3, 2);
@@ -111,6 +113,7 @@ public class ButtonTextSwitcher : MonoBehaviour {
                     squadAbilities.text = "Abilities: Enrage Mode, Deployable Cover, and Heal.";
                     break;
                 default:
+                    squadAbilities.text = "Please choose a squad.";
                     break;
 
             }
