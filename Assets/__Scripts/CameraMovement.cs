@@ -8,6 +8,8 @@ public class CameraMovement : MonoBehaviour {
     public float zoomSpeed = 30f;
     public float minZoom = 1f;
     public float maxZoom = 50f;
+
+    public float edgeDist = 50f;
     
 
 	// Use this for initialization
@@ -18,20 +20,24 @@ public class CameraMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-        if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
+
+        float x = Input.mousePosition.x;
+        float y = Input.mousePosition.y;
+
+        if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D) || x > Screen.width - edgeDist)
         {
             transform.Translate(new Vector3(cameraSpeed * Time.deltaTime, 0, 0));
         }
-        if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A) || x < edgeDist)
         {
             transform.Translate(new Vector3(-cameraSpeed * Time.deltaTime, 0, 0));
         }
-        if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S) || y < edgeDist)
         {
             Vector3 move = Quaternion.Euler(-transform.rotation.eulerAngles.x, 0, 0) * new Vector3(0, -cameraSpeed * Time.deltaTime, 0);
             transform.Translate(move);
         }
-        if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W) || y > Screen.height - edgeDist)
         {
             Vector3 move = Quaternion.Euler(-transform.rotation.eulerAngles.x, 0, 0) * new Vector3(0, cameraSpeed * Time.deltaTime, 0);
             transform.Translate(move);
