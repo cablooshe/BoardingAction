@@ -13,7 +13,7 @@ public abstract class Unit : PT_MonoBehaviour {
 	public string name;											// Squad leader's name
 	public float speed = 2; 									// Movement speed
 	public float maxHealth = 10;								// Starting health
-	public float damage = 1;									// Damage per shot
+	public float damage = 3;									// Damage per shot
 	public float attackRadius = 2;								// Max distance to trigger aggro, also generally shoot from
 	public float coverRadius = 1;								// Max distance away from cover while still considered in cover?
 	public float attackSpeed = 1f; 								// Seconds between attacks
@@ -35,6 +35,7 @@ public abstract class Unit : PT_MonoBehaviour {
 	[Header("Unit: Current Status")]							// Current stats of the squad, should change dynamically
 	public float currentHealth = 10;							// How much health does the squad currently have
 	public float updateMaxHealth = 10;							// Current max health (for display purposes, should change when units die)
+	public float updateDamage = 1;
 	public bool _selected; 										// Is this squad selected?
 	public bool walking = false;								// Is this squad currently walking?
 	public bool isTargeting = false;							// Is this squad targeting anything?
@@ -196,7 +197,7 @@ public abstract class Unit : PT_MonoBehaviour {
 				if (Vector3.Distance (targetSelected.transform.position, transform.position) > bossShootRadius)
 					return;
 			}
-			targetSelected.GetComponent<Unit>().takeDamage(this.damage, this.gameObject);
+			targetSelected.GetComponent<Unit>().takeDamage(this.updateDamage, this.gameObject);
 			attackAnimation(targetSelected);
 			targetSelected.GetComponent<Unit>().takeDamageAnimation();
 		}
@@ -264,10 +265,13 @@ public abstract class Unit : PT_MonoBehaviour {
     }
 
 	public void loseMember(int deathCount) { // Make a corpse and try not to mess with the rest of the squad
-		if (numDeaths == 1)
+		if (numDeaths == 1) {
 			updateMaxHealth = death1;
-		else if (numDeaths == 2)
+			updateDamage = Mathf.Ceil(2 * damage / 3);
+		} else if (numDeaths == 2) {
 			updateMaxHealth = death2;
+			updateDamage = Mathf.Ceil(damage / 3);
+		}
 		Instantiate(corpse, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, 0.4f), Quaternion.Euler(Random.Range(0,360),0, Random.Range(0,360)));
 		this.transforms[this.transforms.Count - 1].gameObject.SetActive(false);
 		this.transforms.RemoveAt(transforms.Count - 1);
