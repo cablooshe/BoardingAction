@@ -86,14 +86,6 @@ public abstract class Unit : PT_MonoBehaviour {
 		updateMaxHealth = maxHealth;
 		currentHealth = maxHealth;
 		updateDamage = damage;
-
-		//viewCharacterTrans = characterTrans.Find("View_Character");
-
-		/*halo = Instantiate(haloPrefab) as GameObject;
-        halo.transform.parent = this.transform;
-        halo.transform.position = new Vector3(halo.transform.position.x - .23f, halo.transform.position.y + .05f, halo.transform.position.z);
-        halo.GetComponent<Renderer>().enabled = false;
-        halo.transform.position = new Vector3(this.pos.x, this.pos.y, this.pos.z - 0.15f);*/
 	}
 
 	protected void Start()
@@ -205,7 +197,7 @@ public abstract class Unit : PT_MonoBehaviour {
 	}
 
 	public void attackAnimation(GameObject target) {
-        for(int i = 0; i < transforms.Count(); i++){
+        for(int i = 0; i < transforms.Count(); i++){ //this is fairly self explanatory
 		    muzzleFlashFront = Instantiate(muzzlePrefab) as GameObject;
             if (i == 0) {
 		        muzzleFlashFront.transform.position = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, this.gameObject.transform.position.z-0.5f);
