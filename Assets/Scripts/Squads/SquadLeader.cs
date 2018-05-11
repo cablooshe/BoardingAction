@@ -27,27 +27,27 @@ public class SquadLeader {
         switch (data.squadClass) {
             case "Scout":
                 data.speed = 3 + (1 * data.level);
-                data.health = 80 + (10 * data.level);
+                data.health = 85 + (10 * data.level);
                 //TODO: Equip Weapon
-                data.damage = 20;  //TODO: how does weapon affect this?
+                data.damage = 15;  //TODO: how does weapon affect this?
                 break;
             case "Heavy":
-                data.speed = 3 + (1 * data.level);
-                data.health = 80 + (10 * data.level);
+                data.speed = 1 + (1 * data.level);
+                data.health = 60 + (10 * data.level);
                 //TODO: Equip Weapon
-                data.damage = 20;  //TODO: how does weapon affect this?
+                data.damage = 25;  //TODO: how does weapon affect this?
                 break;
             case "Balanced":
-                data.speed = 3 + (1 * data.level);
-                data.health = 80 + (10 * data.level);
+                data.speed = 2 + (1 * data.level);
+                data.health = 75 + (10 * data.level);
                 //TODO: Equip Weapon
-                data.damage = 20;  //TODO: how does weapon affect this?
+                data.damage = 15;  //TODO: how does weapon affect this?
                 break;
             case "Sniper":
-                data.speed = 3 + (1 * data.level);
+                data.speed = 2 + (1 * data.level);
                 data.health = 80 + (10 * data.level);
                 //TODO: Equip Weapon
-                data.damage = 20;  //TODO: how does weapon affect this?
+                data.damage = 30;  //TODO: how does weapon affect this?
                 break;
             default:
                 break;

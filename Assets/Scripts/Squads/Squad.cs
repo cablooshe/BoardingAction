@@ -21,9 +21,6 @@ public class Squad {
         leader = new SquadLeader();
         soldiers = new SoldierSet();
     }
+    
 
-    //TO DO- THIS DO IT
-    public Squad(SquadLeader leader, SoldierSet set) {
-
-    }
 }
