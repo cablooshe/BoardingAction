@@ -133,9 +133,9 @@ public abstract class Unit : PT_MonoBehaviour {
 	{//happens every physics step, 50 times per second
 
 		//keep muzzle flash with unit
-		if (muzzleFlashFront != null) {
-			muzzleFlashFront.transform.position = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, this.gameObject.transform.position.z - 1f);
-		}
+		//if (muzzleFlashFront != null) {
+		//	muzzleFlashFront.transform.position = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, this.gameObject.transform.position.z - 1f);
+		//}
 
 		if (walking)
 		{
@@ -203,9 +203,23 @@ public abstract class Unit : PT_MonoBehaviour {
 	}
 
 	public void attackAnimation(GameObject target) {
-		muzzleFlashFront = Instantiate(muzzlePrefab) as GameObject;
-		muzzleFlashFront.transform.position = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, this.gameObject.transform.position.z-1f);
-		muzzleFlashFront.transform.rotation = this.gameObject.transform.rotation;
+        for(int i = 0; i < 3; i++){
+		    muzzleFlashFront = Instantiate(muzzlePrefab) as GameObject;
+            if (i == 0) {
+		        muzzleFlashFront.transform.position = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, this.gameObject.transform.position.z-0.5f);
+            } else {
+                muzzleFlashFront.transform.position = new Vector3(this.transforms[i-1].position.x, this.transforms[i - 1].position.y, this.transforms[i - 1].position.z - 0.5f);
+            }
+            muzzleFlashFront.transform.LookAt(target.GetComponent<Unit>().characterTrans.transform.position);
+        //Currently trying to work on slightly random rotations so that shots dont go directly towards the enemies, but not working yet
+        /*muzzleFlashFront.GetComponent<Rigidbody>().velocity = 
+            new Vector3(Random.Range(muzzleFlashFront.transform.forward.x-2, muzzleFlashFront.transform.forward.x+2), 
+                        Random.Range(muzzleFlashFront.transform.forward.y-2, muzzleFlashFront.transform.forward.y+2), 
+                        Random.Range(muzzleFlashFront.transform.forward.z-2, muzzleFlashFront.transform.forward.z+2)) * 15;*/
+            muzzleFlashFront.GetComponent<Rigidbody>().velocity = muzzleFlashFront.transform.forward * 25;
+            print(muzzleFlashFront.GetComponent<Rigidbody>().velocity);
+            Destroy(muzzleFlashFront, 0.5f);
+        }
 	}
 
 	public void takeDamage(float damage, GameObject enemy) {

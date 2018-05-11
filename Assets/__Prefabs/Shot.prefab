@@ -21,10 +21,10 @@ GameObject:
   - component: {fileID: 4263585447874574}
   - component: {fileID: 33291557137446142}
   - component: {fileID: 23469980750991590}
-  - component: {fileID: 114496387218910494}
-  m_Layer: 0
+  - component: {fileID: 54617777771760494}
+  m_Layer: 15
   m_Name: Shot
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36,8 +36,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1524977901687380}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: 0, z: -5}
-  m_LocalScale: {x: 0.5, y: 0.1, z: 0.1}
+  m_LocalPosition: {x: 1.6675504, y: -19.3622, z: 0.645}
+  m_LocalScale: {x: 0.025, y: 0.025, z: 0.25}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -83,15 +83,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1524977901687380}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &114496387218910494
-MonoBehaviour:
+--- !u!54 &54617777771760494
+Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1524977901687380}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a60e1b129f3ad348af8d28ade3d590c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  S: {fileID: 0}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 112
+  m_CollisionDetection: 0
