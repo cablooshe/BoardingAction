@@ -24,7 +24,8 @@ public class PUnit : Unit {
     public float grenadeCoolDown = 10f;
     public float coverCoolDown = 5f;
     public float grenadeRange = 15f;
-   
+    public float enrageModifier = 1.5f;
+    public float enrageCoolDown = 10f;
     public bool grenadeReady = true;    
     
     
@@ -182,10 +183,14 @@ public class PUnit : Unit {
             }
         }
       
+
+
         if(timestamp <= Time.time)
         {
-            
-            print("grenade ready");
+            if (!grenadeReady)
+            {
+                print("grenade ready");
+            }
             grenadeReady = true;
             halo.GetComponent<SelectionHalo>().mat.color = Color.green;
         }
@@ -211,8 +216,43 @@ public class PUnit : Unit {
                 print("grenade not ready");
             }
         }
+        if (Input.GetKey(KeyCode.Alpha3) && !prepGrenade)
+        {
+            enrage();
+        }
+
+        if (cooledDown())
+        {
+            unenrage();
+        }
+
+        
 
 
+    }
+
+    public void enrage()
+    {
+        this.updateDamage = this.updateDamage * this.enrageModifier;
+        int i = 0;
+        for (i = 0; i < this.transforms[0].childCount; i++)
+        {
+            this.transforms[1].GetChild(i).GetComponent<Renderer>().material.SetColor("_Color", Color.magenta);
+            this.transforms[2].GetChild(i).GetComponent<Renderer>().material.SetColor("_Color", Color.magenta);
+        }
+        prepGrenade = false;
+        timestamp = Time.time + enrageCoolDown;
+    }
+
+    public void unenrage()
+    {
+        this.updateDamage = this.updateDamage / this.enrageModifier;
+
+        for (int i = 0; i < this.transforms[0].childCount; i++)
+        {
+            this.transforms[1].GetChild(i).GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+            this.transforms[2].GetChild(i).GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+        }
     }
 
     bool cooledDown()
@@ -292,18 +332,17 @@ public class PUnit : Unit {
 
     override public void MouseDrag()
     {
-		// We might need this later, but now it is USELESS (almost as much as Gordon)
+		// We might need this later, but now it is USELESS (almost as much as Gordon (double lol))
     }
     override public void MouseDragUp()
     {
-        // We might need this later, but now it is USELESS (almost as much as Gordon's comments)
+        // We might need this later, but now it is USELESS (almost as much as Gordon's comments (lol))
     }
 
     void throwGrenade(Vector3 xTarget)
     {
         float dist = Vector3.Distance(transform.position, xTarget);
         RaycastHit hit;
-        /* @TODO*/
         if (Physics.Raycast(transform.position,xTarget - transform.position, dist,LayerMask.GetMask("Default")))
         {
             print("collide");
