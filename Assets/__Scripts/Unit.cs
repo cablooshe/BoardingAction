@@ -197,7 +197,7 @@ public abstract class Unit : PT_MonoBehaviour {
 	}
 
 	public void attackAnimation(GameObject target) {
-        for(int i = 0; i < transforms.Count(); i++){ //this is fairly self explanatory
+        for(int i = 0; i < transforms.Count(); i++){ //for every character within a unit
 		    muzzleFlashFront = Instantiate(muzzlePrefab) as GameObject;
             if (i == 0) {
 		        muzzleFlashFront.transform.position = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, this.gameObject.transform.position.z-0.5f);
@@ -205,9 +205,9 @@ public abstract class Unit : PT_MonoBehaviour {
                 muzzleFlashFront.transform.position = new Vector3(this.transforms[i-1].position.x, this.transforms[i - 1].position.y, this.transforms[i - 1].position.z - 0.5f);
             }
             muzzleFlashFront.transform.LookAt(target.GetComponent<Unit>().characterTrans.transform.position);
-            muzzleFlashFront.transform.Rotate(new Vector3(Random.Range(-15,15), Random.Range(-15, 15), Random.Range(-3, 3)));
-            muzzleFlashFront.GetComponent<Rigidbody>().velocity = muzzleFlashFront.transform.forward * 35;
-            Destroy(muzzleFlashFront, 0.5f);
+            muzzleFlashFront.transform.Rotate(new Vector3(Random.Range(-15,15), Random.Range(-15, 15), Random.Range(-3, 3))); //adds some variance to where each projectile goes
+            muzzleFlashFront.GetComponent<Rigidbody>().velocity = muzzleFlashFront.transform.forward * 35; //default speed is 35
+            Destroy(muzzleFlashFront, 0.5f); //will blow up after half a second
         }
 	}
 

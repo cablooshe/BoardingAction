@@ -381,6 +381,7 @@ MonoBehaviour:
   Slot2: {fileID: 0}
   Slot3: {fileID: 0}
   Slot4: {fileID: 0}
+  squadAbilities: {fileID: 72544665}
   CurrentSlot: 0
   Choice01: {fileID: 949747658}
   Choice02: {fileID: 2020787745}
@@ -652,6 +653,7 @@ MonoBehaviour:
   Slot2: {fileID: 885602233}
   Slot3: {fileID: 2076913879}
   Slot4: {fileID: 265027668}
+  squadAbilities: {fileID: 0}
   CurrentSlot: 0
   Choice01: {fileID: 2106196763}
   Choice02: {fileID: 0}
@@ -2102,7 +2104,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &253085742
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5233,6 +5235,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &949747661
@@ -8313,6 +8326,7 @@ MonoBehaviour:
   Slot2: {fileID: 1467540501}
   Slot3: {fileID: 1590985997}
   Slot4: {fileID: 531323269}
+  squadAbilities: {fileID: 0}
   CurrentSlot: 0
   Choice01: {fileID: 740077898}
   Choice02: {fileID: 1218287288}

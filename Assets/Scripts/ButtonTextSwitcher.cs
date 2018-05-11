@@ -10,7 +10,9 @@ public class ButtonTextSwitcher : MonoBehaviour {
     public Button Slot2;
     public Button Slot3;
     public Button Slot4;
+    public Text squadAbilities;
     public int CurrentSlot;
+    
 
     public GameObject Choice01;
     public GameObject Choice02;
@@ -90,18 +92,23 @@ public class ButtonTextSwitcher : MonoBehaviour {
             switch (ChoiceMade) {
                 case 0:
                     sol = new SoldierSet("Sneaky", 10, 3, 2);
+                    squadAbilities.text = "Abilities: Healing, Take more Damage, and C4.";
                     break;
                 case 1:
                     sol = new SoldierSet("Bombastic", 10, 1, 4);
+                    squadAbilities.text = "Abilities: Grenades, C4, and Enrage Mode.";
                     break;
                 case 2:
                     sol = new SoldierSet("Nerdy", 20, 2, 2);
+                    squadAbilities.text = "Abilities: Deployable Cover, Take more Damage, and Heal.";
                     break;
                 case 3:
                     sol = new SoldierSet("Tanky", 40, 1, 1);
+                    squadAbilities.text = "Abiltiies: Take more Damage, Deployable Cover, and Grenades.";
                     break;
                 case 4:
                     sol = new SoldierSet("Assault-y", 10, 2, 3);
+                    squadAbilities.text = "Abilities: Enrage Mode, Deployable Cover, and Heal.";
                     break;
                 default:
                     break;
