@@ -85,6 +85,7 @@ public abstract class Unit : PT_MonoBehaviour {
 
 		updateMaxHealth = maxHealth;
 		currentHealth = maxHealth;
+		updateDamage = damage;
 
 		//viewCharacterTrans = characterTrans.Find("View_Character");
 
