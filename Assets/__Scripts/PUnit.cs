@@ -182,7 +182,7 @@ public class PUnit : Unit {
             }
         }
       
-        if(timestamp <= Time.time)
+        if(timestamp <= Time.time && !grenadeReady)
         {
             
             print("grenade ready");
