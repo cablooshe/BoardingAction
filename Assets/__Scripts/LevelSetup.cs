@@ -97,7 +97,13 @@ public class LevelSetup : MonoBehaviour {
             unit.GetComponent<PUnit>().attackRadius = 6;
             units.Add(unit);
         }
-        switch(units.Count) {
+
+
+    }
+    
+
+    private void Update() {
+        switch (units.Count) {
             case 0:
                 break;
             case 1:
@@ -146,12 +152,6 @@ public class LevelSetup : MonoBehaviour {
                 break;
 
         }
-
-    }
-    
-
-    private void Update() {
-        
     }
 
 }
