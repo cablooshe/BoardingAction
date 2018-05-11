@@ -198,7 +198,7 @@ public abstract class Unit : PT_MonoBehaviour {
 
 	public void attackAnimation(GameObject target) {
         for(int i = 0; i < transforms.Count(); i++){ //for every character within a unit
-		    muzzleFlashFront = Instantiate(muzzlePrefab) as GameObject;
+            muzzleFlashFront = Instantiate(muzzlePrefab) as GameObject;
             if (i == 0) {
 		        muzzleFlashFront.transform.position = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, this.gameObject.transform.position.z-0.5f);
             } else {
