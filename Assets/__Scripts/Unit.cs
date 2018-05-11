@@ -214,11 +214,6 @@ public abstract class Unit : PT_MonoBehaviour {
             }
             muzzleFlashFront.transform.LookAt(target.GetComponent<Unit>().characterTrans.transform.position);
             muzzleFlashFront.transform.Rotate(new Vector3(Random.Range(-15,15), Random.Range(-15, 15), Random.Range(-3, 3)));
-        //Currently trying to work on slightly random rotations so that shots dont go directly towards the enemies, but not working yet
-        /*muzzleFlashFront.GetComponent<Rigidbody>().velocity = 
-            new Vector3(Random.Range(muzzleFlashFront.transform.forward.x-2, muzzleFlashFront.transform.forward.x+2), 
-                        Random.Range(muzzleFlashFront.transform.forward.y-2, muzzleFlashFront.transform.forward.y+2), 
-                        Random.Range(muzzleFlashFront.transform.forward.z-2, muzzleFlashFront.transform.forward.z+2)) * 15;*/
             muzzleFlashFront.GetComponent<Rigidbody>().velocity = muzzleFlashFront.transform.forward * 35;
             Destroy(muzzleFlashFront, 0.5f);
         }
