@@ -208,7 +208,7 @@ public abstract class Unit : PT_MonoBehaviour {
             muzzleFlashFront.transform.Rotate(new Vector3(Random.Range(-15,15), Random.Range(-15, 15), Random.Range(-3, 3))); //adds some variance to where each projectile goes
             muzzleFlashFront.GetComponent<Rigidbody>().velocity = muzzleFlashFront.transform.forward * 35; //default speed is 35
             Destroy(muzzleFlashFront, 0.5f); //will blow up after half a second
-        }
+        } 
 	}
 
 	public void takeDamage(float damage, GameObject enemy) {
