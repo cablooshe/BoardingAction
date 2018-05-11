@@ -267,10 +267,10 @@ public abstract class Unit : PT_MonoBehaviour {
 	public void loseMember(int deathCount) { // Make a corpse and try not to mess with the rest of the squad
 		if (numDeaths == 1) {
 			updateMaxHealth = death1;
-			updateDamage = 2 * damage / 3;
+			updateDamage = Mathf.Ceil(2 * damage / 3);
 		} else if (numDeaths == 2) {
 			updateMaxHealth = death2;
-			updateDamage = damage / 3;
+			updateDamage = Mathf.Ceil(damage / 3);
 		}
 		Instantiate(corpse, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, 0.4f), Quaternion.Euler(Random.Range(0,360),0, Random.Range(0,360)));
 		this.transforms[this.transforms.Count - 1].gameObject.SetActive(false);
