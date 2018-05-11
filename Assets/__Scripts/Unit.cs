@@ -85,6 +85,7 @@ public abstract class Unit : PT_MonoBehaviour {
 
 		updateMaxHealth = maxHealth;
 		currentHealth = maxHealth;
+		updateDamage = damage;
 
 		//viewCharacterTrans = characterTrans.Find("View_Character");
 
@@ -204,7 +205,7 @@ public abstract class Unit : PT_MonoBehaviour {
 	}
 
 	public void attackAnimation(GameObject target) {
-        for(int i = 0; i < 3; i++){
+        for(int i = 0; i < transforms.Count(); i++){
 		    muzzleFlashFront = Instantiate(muzzlePrefab) as GameObject;
             if (i == 0) {
 		        muzzleFlashFront.transform.position = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, this.gameObject.transform.position.z-0.5f);
@@ -212,13 +213,13 @@ public abstract class Unit : PT_MonoBehaviour {
                 muzzleFlashFront.transform.position = new Vector3(this.transforms[i-1].position.x, this.transforms[i - 1].position.y, this.transforms[i - 1].position.z - 0.5f);
             }
             muzzleFlashFront.transform.LookAt(target.GetComponent<Unit>().characterTrans.transform.position);
+            muzzleFlashFront.transform.Rotate(new Vector3(Random.Range(-15,15), Random.Range(-15, 15), Random.Range(-3, 3)));
         //Currently trying to work on slightly random rotations so that shots dont go directly towards the enemies, but not working yet
         /*muzzleFlashFront.GetComponent<Rigidbody>().velocity = 
             new Vector3(Random.Range(muzzleFlashFront.transform.forward.x-2, muzzleFlashFront.transform.forward.x+2), 
                         Random.Range(muzzleFlashFront.transform.forward.y-2, muzzleFlashFront.transform.forward.y+2), 
                         Random.Range(muzzleFlashFront.transform.forward.z-2, muzzleFlashFront.transform.forward.z+2)) * 15;*/
-            muzzleFlashFront.GetComponent<Rigidbody>().velocity = muzzleFlashFront.transform.forward * 25;
-            print(muzzleFlashFront.GetComponent<Rigidbody>().velocity);
+            muzzleFlashFront.GetComponent<Rigidbody>().velocity = muzzleFlashFront.transform.forward * 35;
             Destroy(muzzleFlashFront, 0.5f);
         }
 	}
@@ -267,10 +268,10 @@ public abstract class Unit : PT_MonoBehaviour {
 	public void loseMember(int deathCount) { // Make a corpse and try not to mess with the rest of the squad
 		if (numDeaths == 1) {
 			updateMaxHealth = death1;
-			updateDamage = 2 * damage / 3;
+			updateDamage = Mathf.Ceil(2 * damage / 3);
 		} else if (numDeaths == 2) {
 			updateMaxHealth = death2;
-			updateDamage = damage / 3;
+			updateDamage = Mathf.Ceil(damage / 3);
 		}
 		Instantiate(corpse, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, 0.4f), Quaternion.Euler(Random.Range(0,360),0, Random.Range(0,360)));
 		this.transforms[this.transforms.Count - 1].gameObject.SetActive(false);

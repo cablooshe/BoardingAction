@@ -70,8 +70,8 @@ public class PUnit : Unit {
         Vector3 coverRot = characterTrans.rotation.eulerAngles;
         Vector3 coverPos = transform.position;
         GameObject go = Instantiate(deployableCover) as GameObject;
-        deployableCover.transform.rotation = Quaternion.Euler(coverRot.x, coverRot.y, coverRot.z);
-        deployableCover.transform.position = coverPos;
+        go.transform.rotation = Quaternion.Euler(coverRot.x, coverRot.y, coverRot.z);
+        go.transform.position = coverPos;
         timestamp = Time.time + coverCoolDown;
         halo.GetComponent<SelectionHalo>().mat.color = Color.blue;
     }
@@ -182,7 +182,7 @@ public class PUnit : Unit {
             }
         }
       
-        if(timestamp <= Time.time && !grenadeReady)
+        if(timestamp <= Time.time)
         {
             
             print("grenade ready");

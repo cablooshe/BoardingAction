@@ -74,7 +74,6 @@ public class LevelSetup : MonoBehaviour {
         spawnLoc.Add(new Vector3(24, 12, 0.65f));
         spawnLoc.Add(new Vector3(28, 10, 0.65f));
         IList<Squad> squads = PlayerInfo.Squads;
-        print(squads.Count);
         if(squads == null) {
             return;
         }
@@ -97,7 +96,13 @@ public class LevelSetup : MonoBehaviour {
             unit.GetComponent<PUnit>().attackRadius = 6;
             units.Add(unit);
         }
-        switch(units.Count) {
+
+
+    }
+    
+
+    private void Update() {
+        switch (units.Count) {
             case 0:
                 break;
             case 1:
@@ -146,12 +151,6 @@ public class LevelSetup : MonoBehaviour {
                 break;
 
         }
-
-    }
-    
-
-    private void Update() {
-        
     }
 
 }
