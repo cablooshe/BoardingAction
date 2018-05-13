@@ -9137,6 +9137,7 @@ GameObject:
   - component: {fileID: 1278415671}
   - component: {fileID: 1278415672}
   - component: {fileID: 1278415673}
+  - component: {fileID: 1278415674}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -9159,6 +9160,7 @@ MonoBehaviour:
   zoomSpeed: 30
   minZoom: 1
   maxZoom: 50
+  edgeDist: 50
 --- !u!81 &1278415667
 AudioListener:
   m_ObjectHideFlags: 0
@@ -9284,6 +9286,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   squadName: {fileID: 10897888}
   HP: {fileID: 1890572392}
+--- !u!114 &1278415674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1278415665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b39bb03ad792c643b8b3c5805658698, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zoomSensitivity: 15
+  zoomSpeed: 5
+  zoomMin: 5
+  zoomMax: 80
 --- !u!1001 &1283845970
 Prefab:
   m_ObjectHideFlags: 0
