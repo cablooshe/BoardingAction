@@ -53,7 +53,7 @@ public class SquadLeader {
                 break;
         }
         this.data.level = 1;
-        this.data.damage = (int)(Random.value * 10);
+        //this.data.damage = (int)(Random.value * 10);
     }
 
 
