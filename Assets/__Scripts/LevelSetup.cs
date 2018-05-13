@@ -83,16 +83,20 @@ public class LevelSetup : MonoBehaviour {
                 continue;
             SquadLeader leader = test.leader;
             string name = leader.data.leaderName;
-            float hp = test.squadHealth;
-            float dam = test.squadDamage;
-            float mov = test.squadSpeed;
+			float hp = leader.data.health + 2 * test.soldiers.health;
+			float dam = leader.data.damage + 2 * test.soldiers.damage;
+			float mov = leader.data.speed * test.soldiers.speedMult;
             GameObject unit;
             unit = Instantiate(unitPrefab) as GameObject;
             unit.transform.position = spawnLoc[i];
-            unit.GetComponent<PUnit>().currentHealth = unit.GetComponent<PUnit>().maxHealth = unit.GetComponent<PUnit>().updateMaxHealth = 500;
+            /*unit.GetComponent<PUnit>().currentHealth = unit.GetComponent<PUnit>().maxHealth = unit.GetComponent<PUnit>().updateMaxHealth = 500;
             unit.GetComponent<PUnit>().speed = 3;
             unit.GetComponent<PUnit>().name = name;
-            unit.GetComponent<PUnit>().damage = Random.Range(-10,10) + 30;
+        	unit.GetComponent<PUnit>().damage = Random.Range(-10,10) + 30;*/
+			unit.GetComponent<PUnit> ().currentHealth = unit.GetComponent<PUnit> ().maxHealth = unit.GetComponent<PUnit> ().updateMaxHealth = hp;
+			unit.GetComponent<PUnit> ().speed = mov;
+			unit.GetComponent<PUnit> ().name = name;
+			unit.GetComponent<PUnit> ().damage = dam;
             unit.GetComponent<PUnit>().attackRadius = 6;
             units.Add(unit);
         }
