@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraEaseZoom : MonoBehaviour {
 
     public float zoomSensitivity = 15.0f;
-    public float zoomSpeed = 5.0f;
+    public float zoomSpeed = 6.0f;
     public float zoomMin = 5.0f;
     public float zoomMax = 80.0f;
 
