@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyUnit : Unit {
-	public enum behavior { standard, charge };
+	public enum behavior { standard, charge, passive };
 
     [Header("Set in Inspector: EnemyUnit")]
     public Vector3[] patrolPoints;
@@ -28,7 +28,7 @@ public class EnemyUnit : Unit {
     }*/
 
     // Use this for initialization
-    void Start () {
+    new void Start () {
 		enemyTag = "PUnit";
         Patrol();
 		base.Start ();
@@ -38,8 +38,10 @@ public class EnemyUnit : Unit {
 	// Update is called once per frame
 	protected void Update () {
 		if (isTargeting) {
-			if (unitBehavior == behavior.charge)
-				WalkTo (targetSelected.transform.position);
+            if (unitBehavior == behavior.charge)
+                WalkTo(targetSelected.transform.position);
+            else if (unitBehavior == behavior.passive)
+                WalkAway(targetSelected.transform.position);
 			else
 				StopWalking ();
 			return;
@@ -71,6 +73,16 @@ public class EnemyUnit : Unit {
             Patrol();
         }
        
+    }
+
+    public void WalkAway(Vector3 xTarget) // Given a position, try to walk to that position
+    {
+        Vector3 DirectionAway = (xTarget - this.gameObject.transform.position);
+        DirectionAway.Normalize();
+        walking = true;
+        walkTarget = this.gameObject.transform.position + DirectionAway; //set the point to walk to
+        walkTarget.z = 0; //force z=0
+        Face(walkTarget); //look in the direction of walkTarget
     }
 
     override public void MouseDown()
