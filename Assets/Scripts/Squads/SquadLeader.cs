@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SquadLeader {
 
@@ -24,6 +25,7 @@ public class SquadLeader {
         data = new SquadLeaderData();
         data.leaderName = leaderName;
         data.squadClass = squadClass;
+      //  data.icon = icon;
         switch (data.squadClass) {
             case "Scout":
                 data.speed = 3 + (1 * data.level);

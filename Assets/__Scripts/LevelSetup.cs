@@ -97,13 +97,7 @@ public class LevelSetup : MonoBehaviour {
             unit.GetComponent<PUnit>().attackRadius = 6;
             units.Add(unit);
         }
-
-
-    }
-    
-
-    private void Update() {
-        switch (units.Count) {
+        switch(units.Count) {
             case 0:
                 break;
             case 1:
@@ -149,6 +143,122 @@ public class LevelSetup : MonoBehaviour {
                 squad2H.text = System.Convert.ToString(units[1].GetComponent<PUnit>().currentHealth);
                 squad3H.text = System.Convert.ToString(units[2].GetComponent<PUnit>().currentHealth);
                 squad4H.text = System.Convert.ToString(units[3].GetComponent<PUnit>().currentHealth);
+                break;
+
+        }
+
+    }
+    
+
+    private void Update() {
+        switch (units.Count) {
+            case 0:
+                break;
+            case 1:
+                if (units[0] != null) {
+                    squad1N.text = units[0].GetComponent<PUnit>().name;
+                    squad1P.text = System.Convert.ToString(3 - units[0].GetComponent<PUnit>().numDeaths);
+                    squad1H.text = System.Convert.ToString(units[0].GetComponent<PUnit>().currentHealth);
+                } else {
+                    squad1P.text = "0";
+                    squad1H.text = "0";
+                }
+
+                squad2Panel.SetActive(false);
+                squad3Panel.SetActive(false);
+                squad4Panel.SetActive(false);
+                break;
+            case 2:
+
+                if (units[0] != null) {
+                    squad1N.text = units[0].GetComponent<PUnit>().name;
+                    squad1P.text = System.Convert.ToString(3 - units[0].GetComponent<PUnit>().numDeaths);
+                    squad1H.text = System.Convert.ToString(units[0].GetComponent<PUnit>().currentHealth);
+                } else {
+                    squad1P.text = "0";
+                    squad1H.text = "0";
+                }
+                if (units[1] != null) {
+                    squad2N.text = units[1].GetComponent<PUnit>().name;
+                    squad2P.text = System.Convert.ToString(3 - units[1].GetComponent<PUnit>().numDeaths);
+                    squad2H.text = System.Convert.ToString(units[1].GetComponent<PUnit>().currentHealth);
+                } else {
+                    squad2P.text = "0";
+                    squad2H.text = "0";
+                }
+
+
+
+                squad3Panel.SetActive(false);
+                squad4Panel.SetActive(false);
+                break;
+            case 3:
+
+                if (units[0] != null) {
+                    squad1N.text = units[0].GetComponent<PUnit>().name;
+                    squad1P.text = System.Convert.ToString(3 - units[0].GetComponent<PUnit>().numDeaths);
+                    squad1H.text = System.Convert.ToString(units[0].GetComponent<PUnit>().currentHealth);
+                } else {
+                    squad1P.text = "0";
+                    squad1H.text = "0";
+                }
+
+                if (units[1] != null) {
+                    squad2N.text = units[1].GetComponent<PUnit>().name;
+                    squad2P.text = System.Convert.ToString(3 - units[1].GetComponent<PUnit>().numDeaths);
+                    squad2H.text = System.Convert.ToString(units[1].GetComponent<PUnit>().currentHealth);
+                } else {
+                    squad2P.text = "0";
+                    squad2H.text = "0";
+                }
+
+                if (units[2] != null) {
+                    squad3N.text = units[2].GetComponent<PUnit>().name;
+                    squad3P.text = System.Convert.ToString(3 - units[2].GetComponent<PUnit>().numDeaths);
+                    squad3H.text = System.Convert.ToString(units[2].GetComponent<PUnit>().currentHealth);
+                } else {
+                    squad3P.text = "0";
+                    squad3H.text = "0";
+                }
+
+                squad4Panel.SetActive(false);
+                break;
+            case 4:
+                if (units[0] != null) {
+                    squad1N.text = units[0].GetComponent<PUnit>().name;
+                    squad1P.text = System.Convert.ToString(3 - units[0].GetComponent<PUnit>().numDeaths);
+                    squad1H.text = System.Convert.ToString(units[0].GetComponent<PUnit>().currentHealth);
+                } else {
+                    squad1P.text = "0";
+                    squad1H.text = "0";
+                }
+
+                if (units[1] != null) {
+                    squad2N.text = units[1].GetComponent<PUnit>().name;
+                    squad2P.text = System.Convert.ToString(3 - units[1].GetComponent<PUnit>().numDeaths);
+                    squad2H.text = System.Convert.ToString(units[1].GetComponent<PUnit>().currentHealth);
+                } else {
+                    squad2P.text = "0";
+                    squad2H.text = "0";
+                }
+
+                if (units[2] != null) {
+                    squad3N.text = units[2].GetComponent<PUnit>().name;
+                    squad3P.text = System.Convert.ToString(3 - units[2].GetComponent<PUnit>().numDeaths);
+                    squad3H.text = System.Convert.ToString(units[2].GetComponent<PUnit>().currentHealth);
+                } else {
+                    squad3P.text = "0";
+                    squad3H.text = "0";
+                }
+
+                if (units[3] != null) {
+                    squad4N.text = units[3].GetComponent<PUnit>().name;
+                    squad4P.text = System.Convert.ToString(3 - units[3].GetComponent<PUnit>().numDeaths);
+                    squad4H.text = System.Convert.ToString(units[3].GetComponent<PUnit>().currentHealth);
+                } else {
+                    squad4P.text = "0";
+                    squad4H.text = "0";
+                }
                 break;
 
         }

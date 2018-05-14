@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class SquadLeaderData {
@@ -16,5 +17,6 @@ public class SquadLeaderData {
     public float speed;
     public int level;
     public int exp;
+    public RawImage icon;
 
 }
