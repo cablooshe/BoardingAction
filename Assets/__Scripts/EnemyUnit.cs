@@ -80,7 +80,7 @@ public class EnemyUnit : Unit {
         Vector3 DirectionAway = (xTarget - this.gameObject.transform.position);
         DirectionAway.Normalize();
         walking = true;
-        walkTarget = xTarget; //set the point to walk to
+        walkTarget = this.gameObject.transform.position + DirectionAway; //set the point to walk to
         walkTarget.z = 0; //force z=0
         Face(walkTarget); //look in the direction of walkTarget
     }
