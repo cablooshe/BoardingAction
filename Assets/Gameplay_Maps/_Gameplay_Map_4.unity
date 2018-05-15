@@ -21338,8 +21338,8 @@ MonoBehaviour:
   maxZoom: 50
   edgeDist: 50
   camBoundLeft: -20
-  camBoundRight: 30
-  camBoundBottom: -40
+  camBoundRight: 25
+  camBoundBottom: -20
   camBoundTop: 70
 --- !u!114 &1918359424
 MonoBehaviour:
