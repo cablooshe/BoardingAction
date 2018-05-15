@@ -69,7 +69,6 @@ public class LevelSetup : MonoBehaviour {
     void Start () {
         
         spawnLoc.Add(new Vector3(32, 8, 0.65f));
-        spawnLoc.Add(new Vector3(32, 8, 0.65f));
         spawnLoc.Add(new Vector3(29, 11, 0.65f));
         spawnLoc.Add(new Vector3(24, 12, 0.65f));
         spawnLoc.Add(new Vector3(28, 10, 0.65f));
@@ -99,6 +98,8 @@ public class LevelSetup : MonoBehaviour {
 			unit.GetComponent<PUnit> ().name = name;
 			unit.GetComponent<PUnit> ().damage = dam;
             unit.GetComponent<PUnit>().attackRadius = 6;
+			unit.GetComponent<PUnit> ().ability1 = test.soldiers.ability1;
+			unit.GetComponent<PUnit> ().ability2 = test.soldiers.ability2;
             units.Add(unit);
         }
         switch(units.Count) {

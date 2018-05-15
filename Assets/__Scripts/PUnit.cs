@@ -7,13 +7,17 @@ using System.Linq; //Enables LINQ queries
 
 //mage is a subclass of PT_MonoBehavior
 public class PUnit : Unit {
+	public enum Ability { grenade, deployCover, enrage, heal, c4 };
+
 
 	[Header("PUnit: Associated Prefabs - Set in Inspector")]
     public GameObject tapIndicatorPrefab;
     public GameObject explosion;
     public GameObject deployableCover;
   
-
+	[Header("PUnit: Abilities")]
+	public Ability ability1 = Ability.grenade;
+	public Ability ability2 = Ability.enrage;
 
     [Header("PUnit: Mouse Info")]
     public float mTapTime = 0.5f; //how long is considered a tap
