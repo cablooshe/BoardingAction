@@ -21352,6 +21352,7 @@ MonoBehaviour:
   isSelecting: 0
   mousePosition1: {x: 0, y: 0, z: 0}
   usingUI: 0
+  cam: {fileID: 0}
   mDragDist: 2
   mPhase: 0
 --- !u!114 &1918359425
@@ -21368,6 +21369,8 @@ MonoBehaviour:
   spawnLoc:
   - {x: 2, y: -20, z: 0.65}
   - {x: -2, y: -18, z: 0.65}
+  - {x: 4, y: -20, z: 0.65}
+  - {x: 4, y: -16, z: 0.65}
   unitPrefab: {fileID: 1453615982531426, guid: 6c499b660a1ff97409b7a792adfd37a4, type: 2}
   units: []
   squadPressed: 0
