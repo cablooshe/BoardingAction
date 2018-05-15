@@ -9,7 +9,7 @@ public class CameraMovement : MonoBehaviour {
     public float minZoom = 1f;
     public float maxZoom = 50f;
 
-    public float edgeDist = 50f;
+    public float edgeDist = 40f;
     
 
 	// Use this for initialization
@@ -24,18 +24,26 @@ public class CameraMovement : MonoBehaviour {
         float x = Input.mousePosition.x;
         float y = Input.mousePosition.y;
 
-        if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D) || x > Screen.width - edgeDist)
+        Debug.Log("x position: " + x + "    y position: " + y);
+
+        if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D) || (x > Screen.width - edgeDist))
         {
-            transform.Translate(new Vector3(cameraSpeed * Time.deltaTime, 0, 0));
+            if (!(x > 875 && y < 80)) {
+                transform.Translate(new Vector3(cameraSpeed * Time.deltaTime, 0, 0));
+            }
         }
         if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A) || x < edgeDist)
         {
-            transform.Translate(new Vector3(-cameraSpeed * Time.deltaTime, 0, 0));
+            if (!(x < 50 && y < 60)) {
+                transform.Translate(new Vector3(-cameraSpeed * Time.deltaTime, 0, 0));
+            }
         }
         if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S) || y < edgeDist)
         {
-            Vector3 move = Quaternion.Euler(-transform.rotation.eulerAngles.x, 0, 0) * new Vector3(0, -cameraSpeed * Time.deltaTime, 0);
-            transform.Translate(move);
+            if (!(x < 50 && y < 80) && !(x > 780 && y < 80)) {
+                Vector3 move = Quaternion.Euler(-transform.rotation.eulerAngles.x, 0, 0) * new Vector3(0, -cameraSpeed * Time.deltaTime, 0);
+                transform.Translate(move);
+            }
         }
         if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W) || y > Screen.height - edgeDist)
         {
