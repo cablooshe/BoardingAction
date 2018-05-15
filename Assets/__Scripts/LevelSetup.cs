@@ -83,6 +83,7 @@ public class LevelSetup : MonoBehaviour {
                 continue;
             SquadLeader leader = test.leader;
             string name = leader.data.leaderName;
+			print (name + " " + test.soldiers.soldierClass);
 			float hp = leader.data.health + 2 * test.soldiers.health;
 			float dam = leader.data.damage + 2 * test.soldiers.damage;
 			float mov = leader.data.speed * test.soldiers.speedMult;

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311947, g: 0.38074005, b: 0.35872722, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -395,6 +395,8 @@ MonoBehaviour:
   isLeaderScript: 0
   disableOption: 0
   deactivateOption: 0
+  actuallyDoesWhatTheScriptNameSuggests: 0
+  onlyOneButton: 1
   slots:
   - {fileID: 2106196765}
   choices:
@@ -667,6 +669,8 @@ MonoBehaviour:
   isLeaderScript: 0
   disableOption: 0
   deactivateOption: 1
+  actuallyDoesWhatTheScriptNameSuggests: 1
+  onlyOneButton: 0
   slots:
   - {fileID: 674693432}
   - {fileID: 885602233}
@@ -2347,6 +2351,17 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 26172090}
+        m_MethodName: SlotChoice04
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 8975398}
         m_MethodName: SlotChoice04
         m_Mode: 1
         m_Arguments:
@@ -4186,6 +4201,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 8975398}
+        m_MethodName: SlotChoice01
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &674693433
@@ -4931,6 +4957,17 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 26172090}
+        m_MethodName: SlotChoice02
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 8975398}
         m_MethodName: SlotChoice02
         m_Mode: 1
         m_Arguments:
@@ -8340,6 +8377,8 @@ MonoBehaviour:
   isLeaderScript: 1
   disableOption: 1
   deactivateOption: 1
+  actuallyDoesWhatTheScriptNameSuggests: 0
+  onlyOneButton: 0
   slots:
   - {fileID: 1149681761}
   - {fileID: 1467540501}
@@ -9961,6 +10000,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 8975398}
+        m_MethodName: SlotChoice03
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &2076913880
@@ -10089,17 +10139,6 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8975394}
         m_MethodName: ChoiceOption01
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 8975398}
-        m_MethodName: SlotChoice01
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

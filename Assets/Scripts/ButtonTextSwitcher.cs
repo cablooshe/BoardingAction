@@ -26,6 +26,8 @@ public class ButtonTextSwitcher : MonoBehaviour {
     public bool isLeaderScript;
     public bool disableOption;
     public bool deactivateOption;
+	public bool actuallyDoesWhatTheScriptNameSuggests;
+	public bool onlyOneButton;
 
     public List<Button> slots;
     public List<GameObject> choices;
@@ -79,38 +81,44 @@ public class ButtonTextSwitcher : MonoBehaviour {
     public void ChangeText(int chosenLeader) {
         
         Debug.Log("ChoiceMade: " + ChoiceMade);
-        slots[CurrentSlot - 1].GetComponentInChildren<Text>().text = choices[chosenLeader - 1].GetComponentInChildren<Text>().text;
+		if (actuallyDoesWhatTheScriptNameSuggests)
+			slots [CurrentSlot - 1].GetComponentInChildren<Text> ().text = choices [0].GetComponentInChildren<Text> ().text;
+		else if (onlyOneButton)
+			slots [0].GetComponentInChildren<Text> ().text = choices [chosenLeader - 1].GetComponentInChildren<Text> ().text;
+		else
+			slots[CurrentSlot - 1].GetComponentInChildren<Text>().text = choices[chosenLeader - 1].GetComponentInChildren<Text>().text;
         if (deactivateOption) {
             slots[CurrentSlot - 1].interactable = false;
         }
         if (disableOption == true) {
             choices[chosenLeader - 1].SetActive(false);
         }
+		if (actuallyDoesWhatTheScriptNameSuggests)
+			return;
         if (isLeaderScript) {
             PlayerInfo.Squads[CurrentSlot - 1].leader = PlayerInfo.Leaders[ChoiceMade - 1];
-			print (PlayerInfo.Squads [CurrentSlot - 1].leader.data.speed);
         } else {
             SoldierSet sol = new SoldierSet();
             squadAbilities.text = "";
             switch (ChoiceMade) {
                 case 1:
-                    sol = new SoldierSet("Sneaky", 10, 3, 2);
+                    sol = new SoldierSet("Sneaky", 10, 1.5f, 2);
                     squadAbilities.text = "Abilities: Healing, Take more Damage, and C4.";
                     break;
                 case 2:
-                    sol = new SoldierSet("Bombastic", 10, 1, 4);
+                    sol = new SoldierSet("Bombastic", 10, 1.0f, 4);
                     squadAbilities.text = "Abilities: Grenades, C4, and Enrage Mode.";
                     break;
                 case 3:
-                    sol = new SoldierSet("Nerdy", 20, 2, 2);
+                    sol = new SoldierSet("Nerdy", 20, 1.25f, 2);
                     squadAbilities.text = "Abilities: Deployable Cover, Take more Damage, and Heal.";
                     break;
                 case 4:
-                    sol = new SoldierSet("Tanky", 40, 1, 1);
+                    sol = new SoldierSet("Tanky", 40, 1.0f, 1);
                     squadAbilities.text = "Abiltiies: Take more Damage, Deployable Cover, and Grenades.";
                     break;
                 case 5:
-                    sol = new SoldierSet("Assault-y", 10, 2, 3);
+                    sol = new SoldierSet("Assault-y", 10, 1.25f, 3);
                     squadAbilities.text = "Abilities: Enrage Mode, Deployable Cover, and Heal.";
                     break;
                 default:
@@ -119,7 +127,7 @@ public class ButtonTextSwitcher : MonoBehaviour {
 
             }
             PlayerInfo.Squads[CurrentSlot - 1].soldiers = sol;
-			print (PlayerInfo.Squads [CurrentSlot - 1].soldiers.speedMult);
+			print (CurrentSlot);
         }
     }
 
