@@ -214,7 +214,6 @@ public abstract class Unit : PT_MonoBehaviour {
 	}
 
 	public virtual void takeDamage(float damage, GameObject enemy) {
-        print("DAMAGD");
 		Vector3 enemyPosition = enemy.transform.position - this.transform.position;
 		if((inCover) && (Random.value > 0.5)) { // Check if cover would block the damage before seeing if there is any cover between squad and enemy to save time
 			foreach (GameObject c in coverList) {
@@ -224,7 +223,7 @@ public abstract class Unit : PT_MonoBehaviour {
 			}
 		}
 
-        
+        takeDamage(damage);
     }
 
     //handling types of direct damage, such as those from exsplosion

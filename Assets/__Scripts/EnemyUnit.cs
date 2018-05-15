@@ -9,12 +9,17 @@ public class EnemyUnit : Unit {
     public Vector3[] patrolPoints;
 	public behavior unitBehavior = behavior.standard;
 
-    //private bool onPatrol = false;
+    private bool onPatrol = true;
     private Vector3 patrolDest;
+
+    private float timeSinceDamage;
+    private float resetPatrol = 1f;
 
 
     protected override void Awake(){
         base.Awake();
+        timeSinceDamage = Time.time;
+        Patrol();
     }
     // Use this for initialization
     /*protected new void Awake()
@@ -44,24 +49,33 @@ public class EnemyUnit : Unit {
 		if (isTargeting) {
             if (unitBehavior == behavior.charge)
                 WalkTo(targetSelected.transform.position);
-            else if (unitBehavior == behavior.passive)
-                WalkAway(targetSelected.transform.position);
+            else if (unitBehavior == behavior.passive) {
+                if (Vector3.Distance(this.characterTrans.position, targetSelected.GetComponent<Unit>().characterTrans.position) < targetSelected.GetComponent<Unit>().attackRadius)
+                    WalkAway(targetSelected.transform.position);
+            }
 			else
 				StopWalking ();
 			return;
 		}
-        if (!walking)
+        if (!walking && onPatrol) //|| (Time.time - timeSinceDamage < resetPatrol))
         {
             Patrol();
         }
+        //else if (!isTargeting) {
+          //  Patrol();
+        //}
     }
 
     void Patrol()
     {
-        //onPatrol = true;
+        onPatrol = true;
         walking = true;
         patrolDest = patrolPoints[Random.Range(0, patrolPoints.Length)];
         WalkTo(patrolDest);
+    }
+
+    void stopPatrol() {
+        onPatrol = false;
     }
 
     void OnCollisionEnter(Collision c)
@@ -91,13 +105,16 @@ public class EnemyUnit : Unit {
 
     override public void takeDamage(float damage, GameObject enemy)
     {
+        timeSinceDamage = Time.time;
+        stopPatrol();
         base.takeDamage(damage, enemy);
-        print("ENEMYDAMAGE");
         if(targetInRange(enemy)){
             targetSelected = enemy;
+            Face(enemy.GetComponent<Unit>().characterTrans.position);
         }
-        else if (Vector3.Distance(this.characterTrans.position, enemy.GetComponent<Unit>().characterTrans.position) > attackRadius/2) {
+        if (Vector3.Distance(this.characterTrans.position, enemy.GetComponent<Unit>().characterTrans.position) > attackRadius/2) {
             WalkTo(enemy.GetComponent<Unit>().characterTrans.position);
+            Face(enemy.GetComponent<Unit>().characterTrans.position);
         }
     }
 

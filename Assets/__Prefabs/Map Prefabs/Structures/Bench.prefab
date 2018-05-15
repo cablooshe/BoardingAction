@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33187482310702374}
   - component: {fileID: 136076478528145482}
   - component: {fileID: 23599852805032994}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cylinder (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 33010216045266708}
   - component: {fileID: 136519963845711548}
   - component: {fileID: 23406173458332384}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,7 +56,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4806373183921148}
   - component: {fileID: 114675883591945948}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bench
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,7 +74,7 @@ GameObject:
   - component: {fileID: 33417697727104106}
   - component: {fileID: 65257529580100870}
   - component: {fileID: 23928460347360382}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
