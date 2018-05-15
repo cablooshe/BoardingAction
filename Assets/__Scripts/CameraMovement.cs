@@ -25,7 +25,7 @@ public class CameraMovement : MonoBehaviour {
 
         if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D) || (x > Screen.width - edgeDist))
         {
-            if (!(x > 875 && y < 80)) {
+            if (!(x > 875 && y < 80) && !(transform.position.x > 30)) {
                 transform.Translate(new Vector3(cameraSpeed * Time.deltaTime, 0, 0));
             }
         }
@@ -37,14 +37,14 @@ public class CameraMovement : MonoBehaviour {
         }
         if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S) || y < edgeDist)
         {
-            if (!(x < 50 && y < 80) && !(x > 780 && y < 80)) {
+            if (!(x < 50 && y < 80) && !(x > 780 && y < 80) && !(transform.position.y < -7)) {
                 Vector3 move = Quaternion.Euler(-transform.rotation.eulerAngles.x, 0, 0) * new Vector3(0, -cameraSpeed * Time.deltaTime, 0);
                 transform.Translate(move);
             }
         }
         if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W) || y > Screen.height - edgeDist)
         {
-            if (!(transform.position.x < -18)) {
+            if (!(transform.position.y > 70)) {
                 Vector3 move = Quaternion.Euler(-transform.rotation.eulerAngles.x, 0, 0) * new Vector3(0, cameraSpeed * Time.deltaTime, 0);
                 transform.Translate(move);
             }
