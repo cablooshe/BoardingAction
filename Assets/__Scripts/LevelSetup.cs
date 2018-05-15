@@ -39,28 +39,28 @@ public class LevelSetup : MonoBehaviour {
 
     public void highlightSquad1() {
         this.GetComponent<PlayerSelect>().usingUI = true;
-        this.GetComponent<PlayerSelect>().Select(units[0]);
+        this.GetComponent<PlayerSelect>().SelectAndCenter(units[0]);
         squadName.text = units[0].GetComponent<PUnit>().name;
         HP.text = System.Convert.ToString(units[0].GetComponent<PUnit>().currentHealth);
     }
 
     public void highlightSquad2() {
         this.GetComponent<PlayerSelect>().usingUI = true;
-        this.GetComponent<PlayerSelect>().Select(units[1]);
+        this.GetComponent<PlayerSelect>().SelectAndCenter(units[1]);
         squadName.text = units[1].GetComponent<PUnit>().name;
         HP.text = System.Convert.ToString(units[1].GetComponent<PUnit>().currentHealth);
     }
 
     public void highlightSquad3() {
         this.GetComponent<PlayerSelect>().usingUI = true;
-        this.GetComponent<PlayerSelect>().Select(units[2]);
+        this.GetComponent<PlayerSelect>().SelectAndCenter(units[2]);
         squadName.text = units[2].GetComponent<PUnit>().name;
         HP.text = System.Convert.ToString(units[2].GetComponent<PUnit>().currentHealth);
     }
 
     public void highlightSquad4() {
         this.GetComponent<PlayerSelect>().usingUI = true;
-        this.GetComponent<PlayerSelect>().Select(units[3]);
+        this.GetComponent<PlayerSelect>().SelectAndCenter(units[3]);
         squadName.text = units[3].GetComponent<PUnit>().name;
         HP.text = System.Convert.ToString(units[3].GetComponent<PUnit>().currentHealth);
     }
