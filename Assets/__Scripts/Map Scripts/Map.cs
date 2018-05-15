@@ -8,6 +8,7 @@ public class Map : MonoBehaviour {
     public int[] numObjectives; // Number of objectives per phase
 	public int[] spawnsPerPhase; // These ints should sum to the length of spawns, and there should be as many of these as the number of objectives phases
 	public GameObject[] spawns; // GameObjects to be spawned
+    public bool isPrimary = true;
 
     [Header("Set Dynamically")]
     public int countComplete = 0;
