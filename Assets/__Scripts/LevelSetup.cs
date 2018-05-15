@@ -69,7 +69,6 @@ public class LevelSetup : MonoBehaviour {
     void Start () {
         
         spawnLoc.Add(new Vector3(32, 8, 0.65f));
-        spawnLoc.Add(new Vector3(32, 8, 0.65f));
         spawnLoc.Add(new Vector3(29, 11, 0.65f));
         spawnLoc.Add(new Vector3(24, 12, 0.65f));
         spawnLoc.Add(new Vector3(28, 10, 0.65f));
