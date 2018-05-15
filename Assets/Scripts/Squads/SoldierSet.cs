@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SoldierSet {
-
-    public string soldierClass; //specialty of the SoldierSet
+	public string soldierClass; //specialty of the SoldierSet
     public int health;  //float?
     public float speedMult;
     public int damage;
+	public PUnit.Ability ability1;
+	public PUnit.Ability ability2;
 
     //constructor for initialization, to avoid errors
     public SoldierSet() {
@@ -22,5 +23,7 @@ public class SoldierSet {
         this.health = health;
         speedMult = speed;
         this.damage = damage;
+		ability1 = PUnit.Ability.grenade;
+		ability2 = PUnit.Ability.deployCover;
     }
 }
