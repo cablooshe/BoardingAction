@@ -98,6 +98,8 @@ public class LevelSetup : MonoBehaviour {
 			unit.GetComponent<PUnit> ().name = name;
 			unit.GetComponent<PUnit> ().damage = dam;
             unit.GetComponent<PUnit>().attackRadius = 6;
+			unit.GetComponent<PUnit> ().ability1 = test.soldiers.ability1;
+			unit.GetComponent<PUnit> ().ability2 = test.soldiers.ability2;
             units.Add(unit);
         }
         switch(units.Count) {

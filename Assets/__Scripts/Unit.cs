@@ -296,8 +296,8 @@ public abstract class Unit : PT_MonoBehaviour {
 		isDead = true;
 		if (isObjective) // If killing this squad was an objective, score the objective
 		{
-			GameObject.Find("Map").GetComponent<Map>().CompletedObjective();
-		}
+            this.GetComponentInParent<Map>().CompletedObjective();
+        }
 		Destroy(gameObject);
 	}
 
