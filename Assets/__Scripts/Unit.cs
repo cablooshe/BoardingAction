@@ -90,8 +90,8 @@ public abstract class Unit : PT_MonoBehaviour {
 
 	protected void Start()
 	{
-		death1 = Mathf.Floor(Random.Range(0.3f, 0.6f) * maxHealth);
-		death2 = Mathf.Floor(Random.Range(0.1f, 0.2f) * maxHealth);
+		death1 = Mathf.Floor(Random.Range(0.4f, 0.6f) * maxHealth);
+		death2 = Mathf.Floor(Random.Range(0.2f, 0.3f) * maxHealth);
 		updateDamage = damage;
 	}
 
