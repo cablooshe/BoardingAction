@@ -12,6 +12,10 @@ public class EnemyUnit : Unit {
     //private bool onPatrol = false;
     private Vector3 patrolDest;
 
+
+    protected override void Awake(){
+        base.Awake();
+    }
     // Use this for initialization
     /*protected new void Awake()
     {
@@ -92,7 +96,7 @@ public class EnemyUnit : Unit {
         if(targetInRange(enemy)){
             targetSelected = enemy;
         }
-        else{
+        else if (Vector3.Distance(this.characterTrans.position, enemy.GetComponent<Unit>().characterTrans.position) > attackRadius/2) {
             WalkTo(enemy.GetComponent<Unit>().characterTrans.position);
         }
     }

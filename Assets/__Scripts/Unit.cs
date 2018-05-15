@@ -223,8 +223,9 @@ public abstract class Unit : PT_MonoBehaviour {
 					return;
 			}
 		}
-        takeDamage(damage);
-	}
+
+        
+    }
 
     //handling types of direct damage, such as those from exsplosion
     public void takeDamage(string type)

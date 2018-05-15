@@ -223,7 +223,7 @@ public class PUnit : Unit {
 
         if (cooledDown())
         {
-            unenrage();
+            //unenrage();
         }
 
         
@@ -405,6 +405,11 @@ public class PUnit : Unit {
     
     public void ClearInput() {
         mPhase = MPhase.idle;
+    }
+
+    public override void takeDamage(float damage, GameObject enemy)
+    {
+        base.takeDamage(damage, enemy);
     }
 
 }
