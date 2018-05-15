@@ -74,7 +74,7 @@ public abstract class Unit : PT_MonoBehaviour {
 
 
 	// Use this for initialization
-	protected void Awake () {
+	protected virtual void Awake () {
 		this.selected = false; // Should never start selected
 		//find the characterTrans to rotate with Face()
 		characterTrans = transform.Find("CharacterTrans");
@@ -194,6 +194,7 @@ public abstract class Unit : PT_MonoBehaviour {
 			targetSelected.GetComponent<Unit>().takeDamage(this.updateDamage, this.gameObject);
 			attackAnimation(targetSelected);
 			targetSelected.GetComponent<Unit>().takeDamageAnimation();
+            
 		}
 	}
 
@@ -212,7 +213,8 @@ public abstract class Unit : PT_MonoBehaviour {
         } 
 	}
 
-	public void takeDamage(float damage, GameObject enemy) {
+	public virtual void takeDamage(float damage, GameObject enemy) {
+        print("DAMAGD");
 		Vector3 enemyPosition = enemy.transform.position - this.transform.position;
 		if((inCover) && (Random.value > 0.5)) { // Check if cover would block the damage before seeing if there is any cover between squad and enemy to save time
 			foreach (GameObject c in coverList) {
@@ -227,6 +229,7 @@ public abstract class Unit : PT_MonoBehaviour {
     //handling types of direct damage, such as those from exsplosion
     public void takeDamage(string type)
     {
+
         switch (type)
         {
             case "explosion":

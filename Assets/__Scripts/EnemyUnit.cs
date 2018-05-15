@@ -80,9 +80,21 @@ public class EnemyUnit : Unit {
         Vector3 DirectionAway = (xTarget - this.gameObject.transform.position);
         DirectionAway.Normalize();
         walking = true;
-        walkTarget = this.gameObject.transform.position + DirectionAway; //set the point to walk to
+        walkTarget = this.gameObject.transform.position - DirectionAway; //set the point to walk to
         walkTarget.z = 0; //force z=0
         Face(walkTarget); //look in the direction of walkTarget
+    }
+
+    override public void takeDamage(float damage, GameObject enemy)
+    {
+        base.takeDamage(damage, enemy);
+        print("ENEMYDAMAGE");
+        if(targetInRange(enemy)){
+            targetSelected = enemy;
+        }
+        else{
+            WalkTo(enemy.GetComponent<Unit>().characterTrans.position);
+        }
     }
 
     override public void MouseDown()
