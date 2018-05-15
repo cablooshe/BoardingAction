@@ -162,7 +162,8 @@ public class ButtonTextSwitcher : MonoBehaviour {
     void Update () {
         if (CurrentSlot != 0 && ChoiceMade != 0) {
             ChangeText(ChoiceMade);
-            CurrentSlot = 0;
+			if (!onlyOneButton)
+				CurrentSlot = 0;
             ChoiceMade = 0;
         }
     }

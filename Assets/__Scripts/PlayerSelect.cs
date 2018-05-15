@@ -40,10 +40,14 @@ public class MouseInfo
 public class PlayerSelect : MonoBehaviour {
 
     public List<GameObject> unitsSelected;
-    public static List<GameObject> units;
     public bool isSelecting = false;
     public Vector3 mousePosition1;
     public bool usingUI = false; // Set to true when using UI
+    public GameObject cam;
+
+    public void Awake() {
+        cam = this.gameObject;
+    }
 
 
     //Mouse selection related stuff
@@ -116,6 +120,7 @@ public class PlayerSelect : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
+
 
         bool b0Down = Input.GetMouseButtonDown(0);
         bool b1Down = Input.GetMouseButtonDown(1);
@@ -289,6 +294,11 @@ public class PlayerSelect : MonoBehaviour {
         unitsSelected.Clear();
         unit.GetComponent<PUnit>().selected = true;
         unitsSelected.Add(unit);
+    }
+
+    public void SelectAndCenter(GameObject unit) {
+        this.Select(unit);
+        cam.transform.position = new Vector3(unit.transform.position.x, unit.transform.position.y, cam.transform.position.z);
     }
 }
 
