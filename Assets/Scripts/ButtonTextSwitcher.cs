@@ -99,27 +99,27 @@ public class ButtonTextSwitcher : MonoBehaviour {
             PlayerInfo.Squads[CurrentSlot - 1].leader = PlayerInfo.Leaders[ChoiceMade - 1];
         } else {
             SoldierSet sol = new SoldierSet();
-            squadAbilities.text = "";
+            
             switch (ChoiceMade) {
                 case 1:
                     sol = new SoldierSet("Sneaky", 10, 1.5f, 2);
-                    squadAbilities.text = "Abilities: Healing, Take more Damage, and C4.";
+                    squadAbilities.text = "Abilities: Healing and C4.";
                     break;
                 case 2:
                     sol = new SoldierSet("Bombastic", 10, 1.0f, 4);
-                    squadAbilities.text = "Abilities: Grenades, C4, and Enrage Mode.";
+                    squadAbilities.text = "Abilities: Grenades and C4.";
                     break;
                 case 3:
                     sol = new SoldierSet("Nerdy", 20, 1.25f, 2);
-                    squadAbilities.text = "Abilities: Deployable Cover, Take more Damage, and Heal.";
+                    squadAbilities.text = "Abilities: Deployable Cover and Heal.";
                     break;
                 case 4:
                     sol = new SoldierSet("Tanky", 40, 1.0f, 1);
-                    squadAbilities.text = "Abiltiies: Take more Damage, Deployable Cover, and Grenades.";
+                    squadAbilities.text = "Abiltiies: Deployable Cover and Grenades.";
                     break;
                 case 5:
                     sol = new SoldierSet("Assault-y", 10, 1.25f, 3);
-                    squadAbilities.text = "Abilities: Enrage Mode, Deployable Cover, and Heal.";
+                    squadAbilities.text = "Abilities: Enrage Mode and Deployable Cover.";
                     break;
                 default:
                     squadAbilities.text = "Please choose a squad.";
