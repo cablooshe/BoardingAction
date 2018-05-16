@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class C4 : MonoBehaviour {
     private GameObject lightSource;
-    private float time = 0.4f;
+    private float time = 1f;
+    private float timeInc = 1f;
     private bool isActive = false;
 	// Use this for initialization
 	void Start () {
@@ -15,7 +16,7 @@ public class C4 : MonoBehaviour {
 	void Update () {
         if (Time.time > time) {
             Flip();
-            time += 2;
+            time += timeInc;
         }
 	}
     void Flip() {
