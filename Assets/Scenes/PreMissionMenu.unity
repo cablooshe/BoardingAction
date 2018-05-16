@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311947, g: 0.38074005, b: 0.35872722, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -5130,10 +5130,10 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'You are the Commander of the First Atlas, the special forces team tasked
+  m_Text: 'You are the Commander of the Fist of  Atlas, the special forces team tasked
     with boarding enemy ships and completing a variety of objectives.  You control
     squads of soldiers, in order to complete missions issued by Admiral Kai, the commander
-    of the Arms of Atlas.  Your mission? Destroy and take down the enemy ship through
+    of the Arms of Atlas.  Your mission? Destroy and take down each enemy ship through
     the different levels. '
 --- !u!222 &919247566
 CanvasRenderer:
