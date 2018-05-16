@@ -17,7 +17,6 @@ public class Map : MonoBehaviour {
 
     public void CompletedObjective()
     {
-        print("completed obj");
         countComplete++;
         if (countComplete == numObjectives[objectivePhase])
             FinishedObjectives();
@@ -27,7 +26,7 @@ public class Map : MonoBehaviour {
     {
 		objectivePhase++;
 		if (objectivePhase == numObjectives.Length) {
-			print ("You Win!");
+			GameObject.Find("MainCamera").GetComponent<ObjectiveMaster>().decrement();
 		} else {
 			for (int i = 0; i < spawnsPerPhase [objectivePhase-1]; i++) {
 				GameObject spawnedObjective = Instantiate (spawns [lastSpawn]);
