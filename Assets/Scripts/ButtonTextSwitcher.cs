@@ -151,7 +151,11 @@ public class ButtonTextSwitcher : MonoBehaviour {
             Choice02.GetComponentInChildren<Text>().text = PlayerInfo.Leaders[1].data.leaderName;
             Choice03.GetComponentInChildren<Text>().text = PlayerInfo.Leaders[2].data.leaderName;
             Choice04.GetComponentInChildren<Text>().text = PlayerInfo.Leaders[3].data.leaderName;
-            
+			Choice05.GetComponentInChildren<Text>().text = PlayerInfo.Leaders[4].data.leaderName;
+			Choice06.GetComponentInChildren<Text>().text = PlayerInfo.Leaders[5].data.leaderName;
+			Choice07.GetComponentInChildren<Text>().text = PlayerInfo.Leaders[6].data.leaderName;
+			Choice08.GetComponentInChildren<Text>().text = PlayerInfo.Leaders[7].data.leaderName;
+
         }
 
         /*

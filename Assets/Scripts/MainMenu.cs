@@ -27,8 +27,10 @@ public class MainMenu : MonoBehaviour {
         };
         for (int i = 0; i < PlayerInfo.Squads.Count; i++) {
             PlayerInfo.Squads[i].soldiers = new SoldierSet("Type " + i, 20, 2, 1);
-            PlayerInfo.Leaders[i].data.level = 1;
         }
+		for (int i = 0; i < PlayerInfo.Leaders.Count; i++) {
+			PlayerInfo.Leaders [i].data.level = 1;
+		}
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
