@@ -29,10 +29,12 @@ public class PUnit : Unit {
     public float coverCoolDown = 5f;
     public float grenadeRange = 15f;
     public float enrageModifier = 1.5f;
-    public float enrageCoolDown = 10f;
+    public float enrageCoolDown = 20f;
     public bool readyAbility1 = true;
     public bool readyAbility2 = true;
-
+    public bool enraged = false;
+    public float enrageTime = 10f;
+    public float enrageTimer = 0f;
 
 
 
@@ -220,6 +222,12 @@ public class PUnit : Unit {
         {
             useAbility2();
         }
+
+        if (enraged && enrageTimer < Time.time)
+        {
+            unenrage();
+        }
+       
     }
 
     public void useAbility1()
@@ -297,16 +305,26 @@ public class PUnit : Unit {
         {
             ability2timestamp = Time.time + enrageCoolDown;
         }
+        enrageTimer = Time.time + enrageTime;
+        enraged = true;
     }
 
     public void unenrage()
     {
-        this.updateDamage = this.updateDamage / this.enrageModifier;
-
-        for (int i = 0; i < this.transforms[0].childCount; i++)
+        if (enraged)
         {
-            this.transforms[1].GetChild(i).GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
-            this.transforms[2].GetChild(i).GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+            this.updateDamage = this.updateDamage / this.enrageModifier;
+
+            for (int i = 0; i < this.transforms[0].childCount; i++)
+            {
+                this.transforms[1].GetChild(i).GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+                this.transforms[2].GetChild(i).GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+            }
+            enraged = false;
+        }
+        else
+        {
+            print("already unenraged");
         }
     }
 
