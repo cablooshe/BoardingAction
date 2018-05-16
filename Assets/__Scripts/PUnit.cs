@@ -155,7 +155,7 @@ public class PUnit : Unit {
         else {
             anim.SetBool("InCover", false);
         }
-        if (isTargeting)
+        if (isAttacking)
         {
             anim.SetBool("Attacking", true);
 
@@ -459,8 +459,7 @@ public class PUnit : Unit {
     public void heal() {
         if (this.currentHealth == this.updateMaxHealth) {
             print("you're already full health!");
-        }
-        if (numHealsLeft <= 0) {
+        } else if (numHealsLeft <= 0) {
             print("you've used up all your heals!");
         } else {
             numHealsLeft--;
