@@ -405,19 +405,7 @@ public abstract class Unit : PT_MonoBehaviour {
 		return false;
 	}
 
-	//______________________________________SELECTION RELEVANT METHODS___________________________________________________\\
-
-	public void toggleHalo()
-	{
-		if (selected)
-		{
-			halo.GetComponent<Renderer>().enabled = true;
-		}
-		else
-		{
-			halo.GetComponent<Renderer>().enabled = false;
-		}
-	}
+	
 
 	//______________________________________MOUSECLICK METHODS___________________________________________________\\
 

@@ -15,6 +15,7 @@ public class SelectionHalo : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         mat = GetComponent<Renderer>().material;
+    
 	}
 	
 	// Update is called once per frame
