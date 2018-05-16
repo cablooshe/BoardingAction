@@ -182,7 +182,7 @@ public abstract class Unit : PT_MonoBehaviour {
 			attack();
 		}
 
-        if (isTargeting) {
+        if (isTargeting && !inCover) {
             Face(targetSelected.GetComponent<Unit>().characterTrans.position);
         }
 
