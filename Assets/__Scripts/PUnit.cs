@@ -385,6 +385,9 @@ public class PUnit : Unit {
     }
 
     public void heal() {
+        if (this.currentHealth == this.updateMaxHealth) {
+            print("you're already full health!");
+        }
         if (numHealsLeft <= 0) {
             print("you've used up all your heals!");
         } else {
