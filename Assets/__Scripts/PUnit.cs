@@ -40,7 +40,10 @@ public class PUnit : Unit {
     public GameObject c4instance;
     public int numHealsLeft = 3;
     public float percentHeal = 0.3f;
-
+    public Color lastColor;
+    public bool flash = false; //used to flash the circle red when ability not ready
+    public float flashTimer = 0f;
+    public float flashCoolDown = .05f;
 
 
     protected new void Awake() {
@@ -72,7 +75,17 @@ public class PUnit : Unit {
         GetComponent<Rigidbody>().velocity = Vector3.zero;
         anim.SetBool("Walking", false);
     }
-
+    
+    public void flashCircle()
+    {
+        if(halo.GetComponent<SelectionHalo>().mat.color != Color.red)
+        {
+            lastColor = halo.GetComponent<SelectionHalo>().mat.color;
+        }
+        halo.GetComponent<SelectionHalo>().mat.color = Color.red;
+        flash = true;
+        flashTimer = Time.time + flashCoolDown;
+    }
     
     public void dropCover()
     {
@@ -80,7 +93,8 @@ public class PUnit : Unit {
         {
             if (!cooledDown(ability1timestamp))
             {
-                print("Cover not ready");
+                //print("Cover not ready");
+                flashCircle();
                 return;
             }
         }
@@ -88,7 +102,8 @@ public class PUnit : Unit {
         {
             if (!cooledDown(ability2timestamp))
             {
-                print("Cover not ready");
+                //print("Cover not ready");
+                flashCircle();
                 return;
             }
         }
@@ -101,11 +116,11 @@ public class PUnit : Unit {
         go.transform.position = coverPos;
         if (ability1 == Ability.deployCover)
         {
-            ability1timestamp = Time.time + grenadeCoolDown;
+            ability1timestamp = Time.time + coverCoolDown;
         }
         else
         {
-            ability2timestamp = Time.time + grenadeCoolDown;
+            ability2timestamp = Time.time + coverCoolDown;
         }
         halo.GetComponent<SelectionHalo>().mat.color = Color.green;
     }
@@ -231,8 +246,14 @@ public class PUnit : Unit {
         if (enraged && enrageTimer < Time.time) //Unenrages the unit
         {
             unenrage();
+        }  
+
+        if(flash && flashTimer <= Time.time)
+        {
+            halo.GetComponent<SelectionHalo>().mat.color = lastColor;
+            flash = false;
         }
-       
+
     }
 
     public void useAbility1()
@@ -249,7 +270,7 @@ public class PUnit : Unit {
                     enrage(1);
                     break;
                 case Ability.deployCover:
-                    anim.SetTrigger("DeployingCover");
+                    anim.SetTrigger("DeployingCover"); //this is terrible be wary if making changes to this using cooldowns
                     break;
                 case Ability.c4:
                     if (c4instance == null)
@@ -268,7 +289,8 @@ public class PUnit : Unit {
         }
         else
         {
-            print("ability 1 not ready");
+            //print("ability 1 not ready");
+            flashCircle();
         }
     }
 
@@ -285,7 +307,7 @@ public class PUnit : Unit {
                     enrage(2);
                     break;
                 case Ability.deployCover:
-                    anim.SetTrigger("DeployingCover");
+                    anim.SetTrigger("DeployingCover"); //this is terrible be wary if making changes to this using cooldowns
                     break;
                 case Ability.c4:
                     if (c4instance == null)
@@ -305,9 +327,9 @@ public class PUnit : Unit {
         }
         else
         {
-            print("ability 2 not ready");
+            //print("ability 2 not ready");
+            flashCircle();
         }
-
     }
 
     public void placeC4()
@@ -386,7 +408,7 @@ public class PUnit : Unit {
     {
         prepGrenade = true;
         walking = false;
-        halo.GetComponent<SelectionHalo>().mat.color = Color.red;
+        halo.GetComponent<SelectionHalo>().mat.color = Color.yellow;
     }
 
     void throwGrenade(Vector3 xTarget)
