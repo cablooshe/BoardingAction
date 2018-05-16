@@ -9065,10 +9065,10 @@ MonoBehaviour:
   minZoom: 1
   maxZoom: 50
   edgeDist: 50
-  camBoundLeft: -20
-  camBoundRight: 30
-  camBoundBottom: -7
-  camBoundTop: 70
+  camBoundLeft: -30
+  camBoundRight: 40
+  camBoundBottom: -10
+  camBoundTop: 75
 --- !u!81 &1278415667
 AudioListener:
   m_ObjectHideFlags: 0
