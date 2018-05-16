@@ -7,15 +7,13 @@ public class EnemyUnit : Unit {
 
     [Header("Set in Inspector: EnemyUnit")]
     public Vector3[] patrolPoints;
-    public Vector3[] updatePatrol;
-    public bool newPatrol = false;
 	public behavior unitBehavior = behavior.standard;
 
     private bool onPatrol = true;
     private Vector3 patrolDest;
 
     private float timeSinceDamage;
-    private float resetPatrol = 2f;
+    private float resetPatrol = 1f;
 
 
     protected override void Awake(){
@@ -72,12 +70,7 @@ public class EnemyUnit : Unit {
     {
         onPatrol = true;
         walking = true;
-        if (!newPatrol && patrolPoints.Length > 0){
-            patrolDest = patrolPoints[Random.Range(0, patrolPoints.Length)];
-        }
-        else {
-            patrolDest = updatePatrol[Random.Range(0, updatePatrol.Length)];
-        }
+        patrolDest = patrolPoints[Random.Range(0, patrolPoints.Length)];
         WalkTo(patrolDest);
     }
 

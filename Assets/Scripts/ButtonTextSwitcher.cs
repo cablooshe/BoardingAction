@@ -11,7 +11,6 @@ public class ButtonTextSwitcher : MonoBehaviour {
     public Button Slot3;
     public Button Slot4;
 	public Text squadAbilities;
-	public string resetText;
     public int CurrentSlot;
     
 
@@ -33,9 +32,6 @@ public class ButtonTextSwitcher : MonoBehaviour {
     public List<Button> slots;
     public List<GameObject> choices;
 
-	public void Reset() {
-		slots [0].GetComponentInChildren<Text> ().text = resetText;
-	}
 
     public void SlotChoice01() {
         CurrentSlot = 1;
@@ -178,8 +174,7 @@ public class ButtonTextSwitcher : MonoBehaviour {
             ChangeText(ChoiceMade);
 			if (!onlyOneButton)
 				CurrentSlot = 0;
-			ChoiceMade = 0;
-			
+            ChoiceMade = 0;
         }
     }
 }
