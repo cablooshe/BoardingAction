@@ -55,16 +55,18 @@ public abstract class Unit : PT_MonoBehaviour {
 	public Transform characterTrans;							// Parent of each unit to make rotation easier
 
 	public List<Transform> transforms;							// List of unit transforms to move each unit with squad
-    public float timestamp; 									// used for cooldowns - really could use a better name
-
+    public float ability1timestamp;                             // used for cooldowns - really could use a better name
+    public float ability2timestamp;
     [Header("Unit: Enemy Info")]								// Information about the squad's enemies
 	public GameObject targetSelected;							// The squad's current target
 	protected string enemyTag = "EnemyUnit";					// The tag of the squad's enemies (makes sure they don't attack friends)
 	//public bool randomPatrol;
 
 
-	[Header("Unit: Animation Info")]							// Just animation stuff
+	[Header("Unit: Animation and positioning Info")]							// Just animation stuff
 	protected Animator anim;
+    private Quaternion toRotate; //allows for non instant rotations
+
 	public bool selected
 	{
 		get { return _selected; }
@@ -81,11 +83,12 @@ public abstract class Unit : PT_MonoBehaviour {
 		transforms.Add(characterTrans.Find("SquadLeader"));
 		transforms.Add(characterTrans.Find("Member1"));
 		transforms.Add(characterTrans.Find("Member2"));
-        timestamp = Time.time;
-
-		updateMaxHealth = maxHealth;
+        ability1timestamp= Time.time;
+        ability2timestamp = Time.time;
+        updateMaxHealth = maxHealth;
 		currentHealth = maxHealth;
 		updateDamage = damage;
+        toRotate = characterTrans.rotation;
 	}
 
 	protected void Start()
@@ -102,7 +105,8 @@ public abstract class Unit : PT_MonoBehaviour {
 		walking = true;
 		walkTarget = xTarget; //set the point to walk to
 		walkTarget.z = 0; //force z=0
-		Face(walkTarget); //look in the direction of walkTarget
+        if (!isTargeting)
+		    Face(walkTarget); //look in the direction of walkTarget if not targeting something else
 	}
 
 	public void StopWalking() // Stop walking
@@ -116,8 +120,10 @@ public abstract class Unit : PT_MonoBehaviour {
 		Vector3 delta = poi - pos;
 		//use atan2 to get the rotation around z that ponts the x axis of mage:charactertrans towards poi
 		float rZ = Mathf.Rad2Deg * Mathf.Atan2(delta.y, delta.x);
-		//set the rotation of charactwertrans (doesnt rotate just yet)
-		characterTrans.rotation = Quaternion.Euler(0, 0, rZ);
+        //set the rotation of charactwertrans (doesnt rotate just yet)
+        //characterTrans.rotation = Quaternion.Slerp(transform.rotation, Quaternion.identity, Time.deltaTime / 1);
+        toRotate = Quaternion.Euler(0, 0, rZ);
+        //characterTrans.rotation = Quaternion.Euler(0, 0, rZ);
 		/*foreach (Transform t in transforms)
 		{
 			t.rotation = Quaternion.Euler(-rZ, 90, -90);
@@ -126,7 +132,8 @@ public abstract class Unit : PT_MonoBehaviour {
 
 	protected void FixedUpdate()
 	{//happens every physics step, 50 times per second
-
+        characterTrans.rotation = Quaternion.Lerp(transform.rotation, toRotate, Time.time );
+        //characterTrans.rotation = Quaternion.Slerp(transform.rotation, toRotate, Time.deltaTime);
 		//keep muzzle flash with unit
 		//if (muzzleFlashFront != null) {
 		//	muzzleFlashFront.transform.position = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, this.gameObject.transform.position.z - 1f);
@@ -164,13 +171,17 @@ public abstract class Unit : PT_MonoBehaviour {
         findCover(); // Always find all cover in range
 
 		//DO Attack based on attack speed
-		if (Time.time >= updateAttack)
+		if (Time.time >= updateAttack && isTargeting)
 		{
 			// Change the next update (current second+attackSpeed)
 			updateAttack = Mathf.FloorToInt(Time.time) + attackSpeed;
 			// Call your function
 			attack();
 		}
+
+        if (isTargeting) {
+            Face(targetSelected.GetComponent<Unit>().characterTrans.position);
+        }
 
         //if the unit isnt moving, stop walking
         if (this.gameObject.GetComponent<Rigidbody>().velocity.magnitude < 0.09f)

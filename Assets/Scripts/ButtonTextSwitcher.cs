@@ -11,6 +11,7 @@ public class ButtonTextSwitcher : MonoBehaviour {
     public Button Slot3;
     public Button Slot4;
 	public Text squadAbilities;
+	public string resetText;
     public int CurrentSlot;
     
 
@@ -32,6 +33,9 @@ public class ButtonTextSwitcher : MonoBehaviour {
     public List<Button> slots;
     public List<GameObject> choices;
 
+	public void Reset() {
+		slots [0].GetComponentInChildren<Text> ().text = resetText;
+	}
 
     public void SlotChoice01() {
         CurrentSlot = 1;
@@ -102,31 +106,31 @@ public class ButtonTextSwitcher : MonoBehaviour {
             
             switch (ChoiceMade) {
 			case 1:
-				sol = new SoldierSet ("Sneaky", 10, 1.5f, 2);
+				sol = new SoldierSet ("Stealth", 10, 1.5f, 2);
 				squadAbilities.text = "Abilities: Healing and C4.";
 				sol.ability1 = PUnit.Ability.heal;
 				sol.ability2 = PUnit.Ability.c4;
                 break;
             case 2:
-                sol = new SoldierSet("Bombastic", 10, 1.0f, 4);
+                sol = new SoldierSet("Demolition", 10, 1.0f, 4);
                 squadAbilities.text = "Abilities: Grenades and C4.";
 				sol.ability1 = PUnit.Ability.grenade;
 				sol.ability2 = PUnit.Ability.c4;
                 break;
             case 3:
-                sol = new SoldierSet("Nerdy", 20, 1.25f, 2);
+                sol = new SoldierSet("Balanced", 20, 1.25f, 2);
                 squadAbilities.text = "Abilities: Deployable Cover and Heal.";
 				sol.ability1 = PUnit.Ability.deployCover;
 				sol.ability2 = PUnit.Ability.heal;
 				break;
             case 4:
-                sol = new SoldierSet("Tanky", 40, 1.0f, 1);
+                sol = new SoldierSet("Defensive", 40, 1.0f, 1);
                 squadAbilities.text = "Abiltiies: Deployable Cover and Grenades.";
 				sol.ability1 = PUnit.Ability.deployCover;
 				sol.ability2 = PUnit.Ability.grenade;
 				break;
             case 5:
-                sol = new SoldierSet("Assault-y", 10, 1.25f, 3);
+                sol = new SoldierSet("Assault", 10, 1.25f, 3);
                 squadAbilities.text = "Abilities: Enrage Mode and Deployable Cover.";
 				sol.ability1 = PUnit.Ability.enrage;
 				sol.ability2 = PUnit.Ability.deployCover;
@@ -174,7 +178,8 @@ public class ButtonTextSwitcher : MonoBehaviour {
             ChangeText(ChoiceMade);
 			if (!onlyOneButton)
 				CurrentSlot = 0;
-            ChoiceMade = 0;
+			ChoiceMade = 0;
+			
         }
     }
 }

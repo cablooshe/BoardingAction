@@ -11,6 +11,11 @@ public class CameraMovement : MonoBehaviour {
 
     public float edgeDist = 40f;
 
+    public float camBoundLeft = -20;
+    public float camBoundRight = 30;
+    public float camBoundBottom = -7;
+    public float camBoundTop = 70;
+
 	// Use this for initialization
 	void Start () {
        
@@ -22,10 +27,6 @@ public class CameraMovement : MonoBehaviour {
 
         float x = Input.mousePosition.x;
         float y = Input.mousePosition.y;
-        float camBoundLeft = -20;
-        float camBoundRight = 30;
-        float camBoundBottom = -7;
-        float camBoundTop = 70;
 
         if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D) || (x > Screen.width - edgeDist))
         {
