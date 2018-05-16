@@ -255,7 +255,7 @@ MonoBehaviour:
   StopTime: 0.5
   Duration: 0.35
   ForceAmount: 2500
-  ForceRadius: 4
+  ForceRadius: 2
   IsProjectile: 0
   ManualParticleSystems: []
 --- !u!114 &11450062
