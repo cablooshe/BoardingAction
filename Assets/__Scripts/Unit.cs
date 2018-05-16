@@ -137,10 +137,6 @@ public abstract class Unit : PT_MonoBehaviour {
 	{//happens every physics step, 50 times per second
         //characterTrans.rotation = Quaternion.Slerp(transform.rotation, toRotate, Time.time*0.1f );
         //characterTrans.rotation = Quaternion.Slerp(transform.rotation, toRotate, Time.deltaTime);
-		//keep muzzle flash with unit
-		//if (muzzleFlashFront != null) {
-		//	muzzleFlashFront.transform.position = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, this.gameObject.transform.position.z - 1f);
-		//}
         if (targetSelected == null) {
             isTargeting = false;
         }
@@ -339,6 +335,7 @@ public abstract class Unit : PT_MonoBehaviour {
         GameObject toAttack = null;
 		while (i < hitColliders.Length) // Check every collider within a certain radius, if it is an enemy then target it
 		{
+
 			if (hitColliders [i].gameObject != this.gameObject && hitColliders [i].tag == enemyTag) {
                 /*Vector3 xTarget = hitColliders[i].gameObject.GetComponent<Unit>().characterTrans.position;
                 float dist = Vector3.Distance(characterTrans.position, xTarget);
