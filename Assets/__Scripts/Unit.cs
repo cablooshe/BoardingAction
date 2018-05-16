@@ -55,8 +55,8 @@ public abstract class Unit : PT_MonoBehaviour {
 	public Transform characterTrans;							// Parent of each unit to make rotation easier
 
 	public List<Transform> transforms;							// List of unit transforms to move each unit with squad
-    public float timestamp; 									// used for cooldowns - really could use a better name
-
+    public float ability1timestamp;                             // used for cooldowns - really could use a better name
+    public float ability2timestamp;
     [Header("Unit: Enemy Info")]								// Information about the squad's enemies
 	public GameObject targetSelected;							// The squad's current target
 	protected string enemyTag = "EnemyUnit";					// The tag of the squad's enemies (makes sure they don't attack friends)
@@ -81,9 +81,9 @@ public abstract class Unit : PT_MonoBehaviour {
 		transforms.Add(characterTrans.Find("SquadLeader"));
 		transforms.Add(characterTrans.Find("Member1"));
 		transforms.Add(characterTrans.Find("Member2"));
-        timestamp = Time.time;
-
-		updateMaxHealth = maxHealth;
+        ability1timestamp= Time.time;
+        ability2timestamp = Time.time;
+        updateMaxHealth = maxHealth;
 		currentHealth = maxHealth;
 		updateDamage = damage;
 	}
