@@ -12142,7 +12142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numObjectives: 05000000
-  spawnsPerPhase: 
+  spawnsPerPhase: 00000000
   spawns: []
   isPrimary: 0
   countComplete: 0

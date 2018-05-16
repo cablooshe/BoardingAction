@@ -9952,8 +9952,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58ac943bd857d3046a97b4ad04a19b33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numObjectives: 
-  spawnsPerPhase: 
+  numObjectives: 0a000000
+  spawnsPerPhase: 00000000
   spawns: []
   isPrimary: 0
   countComplete: 0
