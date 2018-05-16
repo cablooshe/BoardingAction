@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311947, g: 0.38074005, b: 0.35872722, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -382,7 +382,6 @@ MonoBehaviour:
   Slot3: {fileID: 0}
   Slot4: {fileID: 0}
   squadAbilities: {fileID: 72544665}
-  resetText: Squad Choices
   CurrentSlot: 0
   Choice01: {fileID: 949747658}
   Choice02: {fileID: 2020787745}
@@ -657,7 +656,6 @@ MonoBehaviour:
   Slot3: {fileID: 2076913879}
   Slot4: {fileID: 265027668}
   squadAbilities: {fileID: 0}
-  resetText: 
   CurrentSlot: 0
   Choice01: {fileID: 2106196763}
   Choice02: {fileID: 0}
@@ -2365,17 +2363,6 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 8975398}
         m_MethodName: SlotChoice04
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 8975398}
-        m_MethodName: Reset
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4225,17 +4212,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 8975398}
-        m_MethodName: Reset
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &674693433
@@ -4993,17 +4969,6 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 8975398}
         m_MethodName: SlotChoice02
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 8975398}
-        m_MethodName: Reset
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8399,7 +8364,6 @@ MonoBehaviour:
   Slot3: {fileID: 1590985997}
   Slot4: {fileID: 531323269}
   squadAbilities: {fileID: 0}
-  resetText: 
   CurrentSlot: 0
   Choice01: {fileID: 740077898}
   Choice02: {fileID: 1218287288}
@@ -10038,17 +10002,6 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 8975398}
         m_MethodName: SlotChoice03
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 8975398}
-        m_MethodName: Reset
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

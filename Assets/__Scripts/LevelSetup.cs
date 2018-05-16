@@ -10,12 +10,6 @@ public class LevelSetup : MonoBehaviour {
 
     public int squadPressed = 0;
 
-	[Header("LevelSetup Spawnpoints: Set in Inspector")]
-	public Vector3 spawn1 = new Vector3 (32, 8, 0.65f);
-	public Vector3 spawn2 = new Vector3(29, 11, 0.65f);
-	public Vector3 spawn3 = new Vector3(24, 12, 0.65f);
-	public Vector3 spawn4 = new Vector3(28, 10, 0.65f);
-
     //To update the squadinfo panel when highlighting
     public Text squadName;
     public Text HP;
@@ -74,10 +68,11 @@ public class LevelSetup : MonoBehaviour {
 
     void Start () {
         
-        spawnLoc.Add(spawn1);
-		spawnLoc.Add(spawn2);
-        spawnLoc.Add(spawn3);
-        spawnLoc.Add(spawn4);
+        spawnLoc.Add(new Vector3(32, 8, 0.65f));
+        spawnLoc.Add(new Vector3(32, 8, 0.65f));
+        spawnLoc.Add(new Vector3(29, 11, 0.65f));
+        spawnLoc.Add(new Vector3(24, 12, 0.65f));
+        spawnLoc.Add(new Vector3(28, 10, 0.65f));
         IList<Squad> squads = PlayerInfo.Squads;
         if(squads == null) {
             return;

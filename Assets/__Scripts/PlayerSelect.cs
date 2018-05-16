@@ -45,10 +45,8 @@ public class PlayerSelect : MonoBehaviour {
     public bool usingUI = false; // Set to true when using UI
     public GameObject cam;
 
-
     public void Awake() {
         cam = this.gameObject;
-
     }
 
 
@@ -122,6 +120,7 @@ public class PlayerSelect : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
+
 
         bool b0Down = Input.GetMouseButtonDown(0);
         bool b1Down = Input.GetMouseButtonDown(1);
