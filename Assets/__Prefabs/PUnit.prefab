@@ -2025,6 +2025,8 @@ MonoBehaviour:
   attackRadius: 2
   coverRadius: 1
   attackSpeed: 1
+  isBoss: 0
+  bossShootRadius: 1
   death1: 0
   death2: 0
   numDeaths: 0
@@ -2036,6 +2038,7 @@ MonoBehaviour:
   corpse: {fileID: 1177295529553878, guid: 7a44cb136f2c00948be4dbd63c3681f0, type: 2}
   currentHealth: 10
   updateMaxHealth: 10
+  updateDamage: 1
   _selected: 0
   walking: 0
   isTargeting: 0
@@ -2045,13 +2048,30 @@ MonoBehaviour:
   coverList: []
   characterTrans: {fileID: 0}
   transforms: []
+  ability1timestamp: 0
+  ability2timestamp: 0
   targetSelected: {fileID: 0}
   tapIndicatorPrefab: {fileID: 0}
   explosion: {fileID: 131164, guid: 3c5f4e32698bdb04eaed647f60310510, type: 2}
+  deployableCover: {fileID: 1756968665209470, guid: 46140c0442691df4bab921fcce03e81c,
+    type: 2}
+  ability1: 0
+  ability2: 2
   mTapTime: 0.1
   mDragDist: 5
   activeScreenWidth: 1
   mPhase: 0
+  prepGrenade: 0
+  grenadeCoolDown: 10
+  coverCoolDown: 5
+  grenadeRange: 15
+  enrageModifier: 1.5
+  enrageCoolDown: 10
+  readyAbility1: 1
+  readyAbility2: 1
+  enraged: 0
+  enrageTime: 10
+  enrageTimer: 0
 --- !u!135 &135062092033198874
 SphereCollider:
   m_ObjectHideFlags: 1
