@@ -28,12 +28,12 @@ public class PUnit : Unit {
     public float grenadeCoolDown = 10f;
     public float coverCoolDown = 5f;
     public float grenadeRange = 15f;
-    public float enrageModifier = 1.5f;
-    public float enrageCoolDown = 20f;
+    public float enrageModifier = 1.5f; 
+    public float enrageCoolDown = 20f; //amount of time to be able to enrage again
     public bool readyAbility1 = true;
     public bool readyAbility2 = true;
     public bool enraged = false;
-    public float enrageTime = 10f;
+    public float enrageTime = 10f;//Amount of time a unit has the buff from enrage
     public float enrageTimer = 0f;
 
 
@@ -223,7 +223,7 @@ public class PUnit : Unit {
             useAbility2();
         }
 
-        if (enraged && enrageTimer < Time.time)
+        if (enraged && enrageTimer < Time.time) //Unenrages the unit
         {
             unenrage();
         }
