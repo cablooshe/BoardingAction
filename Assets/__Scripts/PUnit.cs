@@ -7,13 +7,18 @@ using System.Linq; //Enables LINQ queries
 
 //mage is a subclass of PT_MonoBehavior
 public class PUnit : Unit {
+	public enum Ability { grenade, deployCover, enrage, heal, c4 };
+
 
 	[Header("PUnit: Associated Prefabs - Set in Inspector")]
     public GameObject tapIndicatorPrefab;
     public GameObject explosion;
     public GameObject deployableCover;
+    public GameObject c4prefab;
   
-
+	[Header("PUnit: Abilities")]
+	public Ability ability1 = Ability.grenade;
+	public Ability ability2 = Ability.enrage;
 
     [Header("PUnit: Mouse Info")]
     public float mTapTime = 0.5f; //how long is considered a tap
@@ -24,11 +29,19 @@ public class PUnit : Unit {
     public float grenadeCoolDown = 10f;
     public float coverCoolDown = 5f;
     public float grenadeRange = 15f;
-    public float enrageModifier = 1.5f;
-    public float enrageCoolDown = 10f;
-    public bool grenadeReady = true;    
-    
-    
+    public float enrageModifier = 1.5f; 
+    public float enrageCoolDown = 20f; //amount of time to be able to enrage again
+    public float c4CoolDown = 20f;
+    public bool readyAbility1 = true;
+    public bool readyAbility2 = true;
+    public bool enraged = false;
+    public float enrageTime = 10f;//Amount of time a unit has the buff from enrage
+    public float enrageTimer = 0f;
+    public GameObject c4instance;
+    public int numHealsLeft = 3;
+    public float percentHeal = 0.3f;
+
+
 
     protected new void Awake() {
         base.Awake();
@@ -60,21 +73,41 @@ public class PUnit : Unit {
         anim.SetBool("Walking", false);
     }
 
+    
     public void dropCover()
     {
-        if (!cooledDown())
+        if (ability1 == Ability.deployCover)
         {
-            print("Cover not ready");
-            return;
+            if (!cooledDown(ability1timestamp))
+            {
+                print("Cover not ready");
+                return;
+            }
         }
+        else
+        {
+            if (!cooledDown(ability2timestamp))
+            {
+                print("Cover not ready");
+                return;
+            }
+        }
+       
         Debug.Log("COVER DROPPED");
         Vector3 coverRot = characterTrans.rotation.eulerAngles;
         Vector3 coverPos = transform.position;
         GameObject go = Instantiate(deployableCover) as GameObject;
         go.transform.rotation = Quaternion.Euler(coverRot.x, coverRot.y, coverRot.z);
         go.transform.position = coverPos;
-        timestamp = Time.time + coverCoolDown;
-        halo.GetComponent<SelectionHalo>().mat.color = Color.blue;
+        if (ability1 == Ability.deployCover)
+        {
+            ability1timestamp = Time.time + grenadeCoolDown;
+        }
+        else
+        {
+            ability2timestamp = Time.time + grenadeCoolDown;
+        }
+        halo.GetComponent<SelectionHalo>().mat.color = Color.green;
     }
 
     public void throwGrenade() {
@@ -182,56 +215,131 @@ public class PUnit : Unit {
                 MouseDrag(); //still dragging
             }
         }
-      
 
 
-        if(timestamp <= Time.time)
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            if (!grenadeReady)
-            {
-                print("grenade ready");
-            }
-            grenadeReady = true;
-            halo.GetComponent<SelectionHalo>().mat.color = Color.green;
+            useAbility1();
+          
         }
 
-        if (Input.GetKey(KeyCode.Alpha1) && !prepGrenade)
+        if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-           if (cooledDown())
-            {
-                readyGrenade();
-            } else
-            {
-                print("grenade not ready");                
-            }
-        }
-        if (Input.GetKey(KeyCode.Alpha2) && !prepGrenade)
-        {
-            if (cooledDown())
-            {
-                anim.SetTrigger("DeployingCover");
-            }
-            else
-            {
-                print("grenade not ready");
-            }
-        }
-        if (Input.GetKey(KeyCode.Alpha3) && !prepGrenade)
-        {
-            enrage();
+            useAbility2();
         }
 
-        if (cooledDown())
+        if (enraged && enrageTimer < Time.time) //Unenrages the unit
         {
             unenrage();
         }
+       
+    }
 
-        
+    public void useAbility1()
+    {
 
+        if (cooledDown(ability1timestamp))
+        {
+            switch (ability1)
+            {
+                case Ability.grenade:
+                    readyGrenade();
+                    break;
+                case Ability.enrage:
+                    enrage(1);
+                    break;
+                case Ability.deployCover:
+                    anim.SetTrigger("DeployingCover");
+                    break;
+                case Ability.c4:
+                    if (c4instance == null)
+                    {
+                        placeC4();
+                    }
+                    else
+                    {
+                        blowC4(2);
+                    }
+                    break;
+                case Ability.heal:
+                    heal();
+                    break;
+            }
+        }
+        else
+        {
+            print("ability 1 not ready");
+        }
+    }
+
+    public void useAbility2()
+    {
+        if (cooledDown(ability2timestamp))
+        {
+            switch (ability2)
+            {
+                case Ability.grenade:
+                    readyGrenade();
+                    break;
+                case Ability.enrage:
+                    enrage(2);
+                    break;
+                case Ability.deployCover:
+                    anim.SetTrigger("DeployingCover");
+                    break;
+                case Ability.c4:
+                    if (c4instance == null)
+                    {
+                        placeC4();
+                    }
+                    else
+                    {
+                        blowC4(2);
+                    }
+                    break;
+                case Ability.heal:
+                    heal();
+                    break;
+            }
+
+        }
+        else
+        {
+            print("ability 2 not ready");
+        }
 
     }
 
-    public void enrage()
+    public void placeC4()
+    {
+        print("placec4");
+        c4instance = Instantiate(c4prefab) as GameObject;
+        //c4instance.transform.position = this.transform.position;
+        Vector3 c4Rot = characterTrans.rotation.eulerAngles;
+        Vector3 c4Pos = transform.position;
+        c4instance.transform.rotation = Quaternion.Euler(c4Rot.x, c4Rot.y, c4Rot.z);
+        c4instance.transform.position = c4Pos;
+    }
+
+    public void blowC4(int abilityID)
+    {
+        GameObject exp;
+        exp = Instantiate(explosion) as GameObject;
+        exp.transform.position = c4instance.transform.position;
+        Destroy(c4instance);
+        c4instance = null;
+
+        if (abilityID == 1)
+        {
+            ability1timestamp = Time.time + c4CoolDown;
+        }
+        else
+        {
+            ability2timestamp = Time.time + c4CoolDown;
+        }
+    }
+
+    public void enrage(int abilityID)
     {
         this.updateDamage = this.updateDamage * this.enrageModifier;
         int i = 0;
@@ -241,26 +349,39 @@ public class PUnit : Unit {
             this.transforms[2].GetChild(i).GetComponent<Renderer>().material.SetColor("_Color", Color.magenta);
         }
         prepGrenade = false;
-        timestamp = Time.time + enrageCoolDown;
+        if (abilityID == 1)
+        {
+            ability1timestamp = Time.time + enrageCoolDown;
+        }
+        else
+        {
+            ability2timestamp = Time.time + enrageCoolDown;
+        }
+        enrageTimer = Time.time + enrageTime;
+        enraged = true;
     }
+
+
 
     public void unenrage()
     {
-        this.updateDamage = this.updateDamage / this.enrageModifier;
-
-        for (int i = 0; i < this.transforms[0].childCount; i++)
+        if (enraged)
         {
-            this.transforms[1].GetChild(i).GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
-            this.transforms[2].GetChild(i).GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+            this.updateDamage = this.updateDamage / this.enrageModifier;
+
+            for (int i = 0; i < this.transforms[0].childCount; i++)
+            {
+                this.transforms[1].GetChild(i).GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+                this.transforms[2].GetChild(i).GetComponent<Renderer>().material.SetColor("_Color", Color.grey);
+            }
+            enraged = false;
+        }
+        else
+        {
+            print("already unenraged");
         }
     }
 
-    bool cooledDown()
-    {
-        return timestamp <= Time.time;
-    }
-
-    //used to put unit in grenade throwing state
     void readyGrenade()
     {
         prepGrenade = true;
@@ -268,7 +389,44 @@ public class PUnit : Unit {
         halo.GetComponent<SelectionHalo>().mat.color = Color.red;
     }
 
-    //used if grenade is not thrown
+    void throwGrenade(Vector3 xTarget)
+    {
+        float dist = Vector3.Distance(transform.position, xTarget);
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, xTarget - transform.position, dist, LayerMask.GetMask("Default")))
+        {
+            print("collide");
+            Debug.DrawRay(transform.position, xTarget - transform.position, Color.red, 100000, true);
+            prepGrenade = false;
+            halo.GetComponent<SelectionHalo>().mat.color = Color.green;
+            return;
+        }
+
+        if (dist < grenadeRange)
+        {
+            GameObject exp;
+            exp = Instantiate(explosion) as GameObject;
+            exp.transform.position = xTarget;
+            prepGrenade = false;
+            halo.GetComponent<SelectionHalo>().mat.color = Color.green;
+            if (ability1 == Ability.grenade)
+            {
+                ability1timestamp= Time.time + grenadeCoolDown;
+            }
+            else
+            {
+                ability2timestamp = Time.time + grenadeCoolDown;
+            }
+            
+        }
+        else
+        {
+            print("too far");
+            prepGrenade = false;
+            halo.GetComponent<SelectionHalo>().mat.color = Color.green;
+        }
+    }
+
     void unreadyGrenade()
     {
         prepGrenade = false;
@@ -276,6 +434,49 @@ public class PUnit : Unit {
         halo.GetComponent<SelectionHalo>().mat.color = Color.green;
     }
 
+    public void heal() {
+        if (this.currentHealth == this.updateMaxHealth) {
+            print("you're already full health!");
+        } else if (numHealsLeft <= 0) {
+            print("you've used up all your heals!");
+        } else {
+            numHealsLeft--;
+            float newHealth = (this.updateMaxHealth * percentHeal) + this.currentHealth;
+            if (newHealth > this.updateMaxHealth) {
+                this.currentHealth = this.updateMaxHealth;
+            } else {
+                this.currentHealth = newHealth;
+            }
+            
+        }
+    }
+
+
+
+ 
+
+
+    //check a timestamp to see if its passed
+    bool cooledDown(float timestamp)
+    {
+        return timestamp <= Time.time;
+    }
+
+
+
+
+
+
+
+
+  
+
+  
+    //used to put unit in grenade throwing state
+   
+
+    //used if grenade is not thrown
+ 
     //Pulls inifo about the mouse, adds it to mouseInfos, and returns it
     MouseInfo AddMouseInfo() {
         MouseInfo mInfo = new MouseInfo();
@@ -339,36 +540,7 @@ public class PUnit : Unit {
         // We might need this later, but now it is USELESS (almost as much as Gordon's comments (lol))
     }
 
-    void throwGrenade(Vector3 xTarget)
-    {
-        float dist = Vector3.Distance(transform.position, xTarget);
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position,xTarget - transform.position, dist,LayerMask.GetMask("Default")))
-        {
-            print("collide");
-            Debug.DrawRay(transform.position, xTarget - transform.position, Color.red, 100000, true);
-            prepGrenade = false;
-            halo.GetComponent<SelectionHalo>().mat.color = Color.green;
-            return;
-        }
-
-        if (dist < grenadeRange)
-        {
-            GameObject exp;
-            exp = Instantiate(explosion) as GameObject;
-            exp.transform.position = xTarget;
-            prepGrenade = false;
-            halo.GetComponent<SelectionHalo>().mat.color = Color.blue;
-            timestamp = Time.time + grenadeCoolDown;
-            grenadeReady = false;
-        }
-        else
-        {
-            print("too far");
-            prepGrenade = false;
-            halo.GetComponent<SelectionHalo>().mat.color = Color.green;
-        }
-    }
+    
 
 
 
@@ -405,6 +577,11 @@ public class PUnit : Unit {
     
     public void ClearInput() {
         mPhase = MPhase.idle;
+    }
+
+    public override void takeDamage(float damage, GameObject enemy)
+    {
+        base.takeDamage(damage, enemy);
     }
 
 }

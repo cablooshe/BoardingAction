@@ -15,7 +15,7 @@ public class SquadLeader {
         data.leaderName = "";
         data.squadClass = "";
         data.level = 1;
-        data.speed = 1;
+        data.speed = 1.0f;
         data.damage = 1;
         data.exp = 0;
     }
@@ -27,32 +27,52 @@ public class SquadLeader {
         data.squadClass = squadClass;
       //  data.icon = icon;
         switch (data.squadClass) {
-            case "Scout":
-                data.speed = 3 + (1 * data.level);
-                data.health = 85 + (10 * data.level);
-                //TODO: Equip Weapon
-                data.damage = 15;  //TODO: how does weapon affect this?
-                break;
-            case "Heavy":
-                data.speed = 1 + (1 * data.level);
-                data.health = 60 + (10 * data.level);
-                //TODO: Equip Weapon
-                data.damage = 25;  //TODO: how does weapon affect this?
-                break;
-            case "Balanced":
-                data.speed = 2 + (1 * data.level);
-                data.health = 75 + (10 * data.level);
-                //TODO: Equip Weapon
-                data.damage = 15;  //TODO: how does weapon affect this?
-                break;
-            case "Sniper":
-                data.speed = 2 + (1 * data.level);
-                data.health = 80 + (10 * data.level);
-                //TODO: Equip Weapon
-                data.damage = 30;  //TODO: how does weapon affect this?
-                break;
-            default:
-                break;
+        case "Scout":
+			data.speed = 1.5f + (data.level / 2);
+            data.health = 85 + (10 * data.level);
+            //TODO: Equip Weapon
+            data.damage = 15;  //TODO: how does weapon affect this?
+            break;
+        case "Heavy":
+			data.speed = 1.0f + (data.level / 10);
+            data.health = 100 + (10 * data.level);
+            //TODO: Equip Weapon
+            data.damage = 45;  //TODO: how does weapon affect this?
+            break;
+        case "Balanced":
+			data.speed = 1.25f + (data.level / 4);
+            data.health = 75 + (10 * data.level);
+            //TODO: Equip Weapon
+            data.damage = 15;  //TODO: how does weapon affect this?
+            break;
+		case "Sniper":
+			data.speed = 1.25f + (data.level / 4);
+            data.health = 80 + (10 * data.level);
+            //TODO: Equip Weapon
+            data.damage = 30;  //TODO: how does weapon affect this?
+            break;
+		case "Recruit":
+			data.speed = 1.25f + (data.level / 4);
+			data.health = 60 + (10 * data.level);
+			data.damage = 14;
+			break;
+		case "Pacifist":
+			data.speed = 1f + (data.level / 10);
+			data.health = 500 + (100 * data.level);
+			data.damage = 0;
+			break;
+		case "Gamer":
+			data.speed = 1.75f + (data.level / 2);
+			data.health = 50 + (5 * data.level);
+			data.damage = 5;
+			break;
+		case "Public Speaker":
+			data.speed = 0f;
+			data.health = 50 + (5 * data.level);
+			data.damage = -1;
+			break;
+        default:
+            break;
         }
         this.data.level = 1;
         //this.data.damage = (int)(Random.value * 10);

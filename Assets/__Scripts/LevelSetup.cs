@@ -10,6 +10,12 @@ public class LevelSetup : MonoBehaviour {
 
     public int squadPressed = 0;
 
+	[Header("LevelSetup Spawnpoints: Set in Inspector")]
+	public Vector3 spawn1 = new Vector3 (32, 8, 0.65f);
+	public Vector3 spawn2 = new Vector3(29, 11, 0.65f);
+	public Vector3 spawn3 = new Vector3(24, 12, 0.65f);
+	public Vector3 spawn4 = new Vector3(28, 10, 0.65f);
+
     //To update the squadinfo panel when highlighting
     public Text squadName;
     public Text HP;
@@ -39,28 +45,28 @@ public class LevelSetup : MonoBehaviour {
 
     public void highlightSquad1() {
         this.GetComponent<PlayerSelect>().usingUI = true;
-        this.GetComponent<PlayerSelect>().Select(units[0]);
+        this.GetComponent<PlayerSelect>().SelectAndCenter(units[0]);
         squadName.text = units[0].GetComponent<PUnit>().name;
         HP.text = System.Convert.ToString(units[0].GetComponent<PUnit>().currentHealth);
     }
 
     public void highlightSquad2() {
         this.GetComponent<PlayerSelect>().usingUI = true;
-        this.GetComponent<PlayerSelect>().Select(units[1]);
+        this.GetComponent<PlayerSelect>().SelectAndCenter(units[1]);
         squadName.text = units[1].GetComponent<PUnit>().name;
         HP.text = System.Convert.ToString(units[1].GetComponent<PUnit>().currentHealth);
     }
 
     public void highlightSquad3() {
         this.GetComponent<PlayerSelect>().usingUI = true;
-        this.GetComponent<PlayerSelect>().Select(units[2]);
+        this.GetComponent<PlayerSelect>().SelectAndCenter(units[2]);
         squadName.text = units[2].GetComponent<PUnit>().name;
         HP.text = System.Convert.ToString(units[2].GetComponent<PUnit>().currentHealth);
     }
 
     public void highlightSquad4() {
         this.GetComponent<PlayerSelect>().usingUI = true;
-        this.GetComponent<PlayerSelect>().Select(units[3]);
+        this.GetComponent<PlayerSelect>().SelectAndCenter(units[3]);
         squadName.text = units[3].GetComponent<PUnit>().name;
         HP.text = System.Convert.ToString(units[3].GetComponent<PUnit>().currentHealth);
     }
@@ -68,11 +74,10 @@ public class LevelSetup : MonoBehaviour {
 
     void Start () {
         
-        spawnLoc.Add(new Vector3(32, 8, 0.65f));
-        spawnLoc.Add(new Vector3(32, 8, 0.65f));
-        spawnLoc.Add(new Vector3(29, 11, 0.65f));
-        spawnLoc.Add(new Vector3(24, 12, 0.65f));
-        spawnLoc.Add(new Vector3(28, 10, 0.65f));
+        spawnLoc.Add(spawn1);
+		spawnLoc.Add(spawn2);
+        spawnLoc.Add(spawn3);
+        spawnLoc.Add(spawn4);
         IList<Squad> squads = PlayerInfo.Squads;
         if(squads == null) {
             return;
@@ -83,6 +88,7 @@ public class LevelSetup : MonoBehaviour {
                 continue;
             SquadLeader leader = test.leader;
             string name = leader.data.leaderName;
+			print (name + " " + test.soldiers.soldierClass);
 			float hp = leader.data.health + 2 * test.soldiers.health;
 			float dam = leader.data.damage + 2 * test.soldiers.damage;
 			float mov = leader.data.speed * test.soldiers.speedMult;
@@ -98,6 +104,8 @@ public class LevelSetup : MonoBehaviour {
 			unit.GetComponent<PUnit> ().name = name;
 			unit.GetComponent<PUnit> ().damage = dam;
             unit.GetComponent<PUnit>().attackRadius = 6;
+			unit.GetComponent<PUnit> ().ability1 = test.soldiers.ability1;
+			unit.GetComponent<PUnit> ().ability2 = test.soldiers.ability2;
             units.Add(unit);
         }
         switch(units.Count) {

@@ -9,8 +9,12 @@ public class CameraMovement : MonoBehaviour {
     public float minZoom = 1f;
     public float maxZoom = 50f;
 
-    public float edgeDist = 50f;
-    
+    public float edgeDist = 40f;
+
+    public float camBoundLeft = -20;
+    public float camBoundRight = 30;
+    public float camBoundBottom = -7;
+    public float camBoundTop = 70;
 
 	// Use this for initialization
 	void Start () {
@@ -24,23 +28,31 @@ public class CameraMovement : MonoBehaviour {
         float x = Input.mousePosition.x;
         float y = Input.mousePosition.y;
 
-        if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D) || x > Screen.width - edgeDist)
+        if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D) || (x > Screen.width - edgeDist))
         {
-            transform.Translate(new Vector3(cameraSpeed * Time.deltaTime, 0, 0));
+            if (!(x > 875 && y < 80) && !(transform.position.x > camBoundRight)) {
+                transform.Translate(new Vector3(cameraSpeed * Time.deltaTime, 0, 0));
+            }
         }
         if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A) || x < edgeDist)
         {
-            transform.Translate(new Vector3(-cameraSpeed * Time.deltaTime, 0, 0));
+            if (!(x < 50 && y < 60) && !(transform.position.x < camBoundLeft)) {
+                transform.Translate(new Vector3(-cameraSpeed * Time.deltaTime, 0, 0));
+            }
         }
         if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S) || y < edgeDist)
         {
-            Vector3 move = Quaternion.Euler(-transform.rotation.eulerAngles.x, 0, 0) * new Vector3(0, -cameraSpeed * Time.deltaTime, 0);
-            transform.Translate(move);
+            if (!(x < 50 && y < 80) && !(x > 780 && y < 80) && !(transform.position.y < camBoundBottom)) {
+                Vector3 move = Quaternion.Euler(-transform.rotation.eulerAngles.x, 0, 0) * new Vector3(0, -cameraSpeed * Time.deltaTime, 0);
+                transform.Translate(move);
+            }
         }
         if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W) || y > Screen.height - edgeDist)
         {
-            Vector3 move = Quaternion.Euler(-transform.rotation.eulerAngles.x, 0, 0) * new Vector3(0, cameraSpeed * Time.deltaTime, 0);
-            transform.Translate(move);
+            if (!(transform.position.y > camBoundTop)) {
+                Vector3 move = Quaternion.Euler(-transform.rotation.eulerAngles.x, 0, 0) * new Vector3(0, cameraSpeed * Time.deltaTime, 0);
+                transform.Translate(move);
+            }
         }
 
         var d = Input.GetAxis("Mouse ScrollWheel");

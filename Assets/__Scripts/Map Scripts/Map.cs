@@ -8,6 +8,7 @@ public class Map : MonoBehaviour {
     public int[] numObjectives; // Number of objectives per phase
 	public int[] spawnsPerPhase; // These ints should sum to the length of spawns, and there should be as many of these as the number of objectives phases
 	public GameObject[] spawns; // GameObjects to be spawned
+    public bool isPrimary = true;
 
     [Header("Set Dynamically")]
     public int countComplete = 0;
@@ -16,7 +17,6 @@ public class Map : MonoBehaviour {
 
     public void CompletedObjective()
     {
-        print("completed obj");
         countComplete++;
         if (countComplete == numObjectives[objectivePhase])
             FinishedObjectives();
@@ -26,7 +26,7 @@ public class Map : MonoBehaviour {
     {
 		objectivePhase++;
 		if (objectivePhase == numObjectives.Length) {
-			print ("You Win!");
+			GameObject.Find("Main Camera").GetComponent<ObjectiveMaster>().decrement();
 		} else {
 			for (int i = 0; i < spawnsPerPhase [objectivePhase-1]; i++) {
 				GameObject spawnedObjective = Instantiate (spawns [lastSpawn]);
