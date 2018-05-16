@@ -26,7 +26,7 @@ public class Map : MonoBehaviour {
     {
 		objectivePhase++;
 		if (objectivePhase == numObjectives.Length) {
-			GameObject.Find("MainCamera").GetComponent<ObjectiveMaster>().decrement();
+			GameObject.Find("Main Camera").GetComponent<ObjectiveMaster>().decrement();
 		} else {
 			for (int i = 0; i < spawnsPerPhase [objectivePhase-1]; i++) {
 				GameObject spawnedObjective = Instantiate (spawns [lastSpawn]);
