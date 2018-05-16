@@ -58,6 +58,8 @@ public class HighlightInfo : MonoBehaviour {
 					cb.normalColor = Color.red;
 					button2.colors = cb;
 				}
+                button1.onClick.AddListener(leaderOne.useAbility1);
+                button2.onClick.AddListener(leaderOne.useAbility2);
             } else {
                 squadName.text = "No squads selected";
                 HP.text = "0";
