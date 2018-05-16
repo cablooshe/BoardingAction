@@ -7,6 +7,8 @@ public class HighlightInfo : MonoBehaviour {
 
     public Text squadName;
     public Text HP;
+    public Text Action1;
+    public Text Action2;
 
 
 
@@ -31,7 +33,9 @@ public class HighlightInfo : MonoBehaviour {
 
                 squadName.text = System.Convert.ToString(leaderOne.name);
                 HP.text = System.Convert.ToString(leaderOne.currentHealth);
-                
+                Action1.text = System.Convert.ToString(leaderOne.ability1);
+                Action2.text = System.Convert.ToString(leaderOne.ability2);
+
 
             } else {
                 squadName.text = "";
