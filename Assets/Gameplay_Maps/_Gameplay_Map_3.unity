@@ -7041,7 +7041,7 @@ Prefab:
     - target: {fileID: 114968838523588394, guid: 179170abab854bf42b06e27d8b2278d8,
         type: 2}
       propertyPath: damage
-      value: 10
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 114968838523588394, guid: 179170abab854bf42b06e27d8b2278d8,
         type: 2}
@@ -9065,10 +9065,10 @@ MonoBehaviour:
   minZoom: 1
   maxZoom: 50
   edgeDist: 50
-  camBoundLeft: -20
-  camBoundRight: 30
-  camBoundBottom: -7
-  camBoundTop: 70
+  camBoundLeft: -30
+  camBoundRight: 40
+  camBoundBottom: -10
+  camBoundTop: 75
 --- !u!81 &1278415667
 AudioListener:
   m_ObjectHideFlags: 0
@@ -9199,6 +9199,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   squadName: {fileID: 10897888}
   HP: {fileID: 1890572392}
+  ability1: {fileID: 1996661663}
+  ability2: {fileID: 1420387963}
+  button1: {fileID: 990326202}
+  button2: {fileID: 470647155}
 --- !u!114 &1278415674
 MonoBehaviour:
   m_ObjectHideFlags: 0

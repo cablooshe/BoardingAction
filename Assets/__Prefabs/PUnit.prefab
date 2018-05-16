@@ -2042,6 +2042,7 @@ MonoBehaviour:
   _selected: 0
   walking: 0
   isTargeting: 0
+  isAttacking: 0
   inCover: 0
   isDead: 0
   walkTarget: {x: 0, y: 0, z: 0}
@@ -2055,6 +2056,7 @@ MonoBehaviour:
   explosion: {fileID: 131164, guid: 3c5f4e32698bdb04eaed647f60310510, type: 2}
   deployableCover: {fileID: 1756968665209470, guid: 46140c0442691df4bab921fcce03e81c,
     type: 2}
+  c4prefab: {fileID: 1577317991567442, guid: e9b4373b4b92e324984d0fd2f92d1bc1, type: 2}
   ability1: 0
   ability2: 2
   mTapTime: 0.1
@@ -2067,11 +2069,19 @@ MonoBehaviour:
   grenadeRange: 15
   enrageModifier: 1.5
   enrageCoolDown: 10
+  c4CoolDown: 20
   readyAbility1: 1
   readyAbility2: 1
   enraged: 0
   enrageTime: 10
   enrageTimer: 0
+  c4instance: {fileID: 0}
+  numHealsLeft: 3
+  percentHeal: 0.3
+  lastColor: {r: 0, g: 0, b: 0, a: 0}
+  flash: 0
+  flashTimer: 0
+  flashCoolDown: 0.05
 --- !u!135 &135062092033198874
 SphereCollider:
   m_ObjectHideFlags: 1
