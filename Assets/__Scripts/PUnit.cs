@@ -135,7 +135,7 @@ public class PUnit : Unit {
         else {
             anim.SetBool("InCover", false);
         }
-        if (isTargeting)
+        if (isAttacking)
         {
             anim.SetBool("Attacking", true);
 

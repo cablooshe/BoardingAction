@@ -39,6 +39,7 @@ public abstract class Unit : PT_MonoBehaviour {
 	public bool _selected; 										// Is this squad selected?
 	public bool walking = false;								// Is this squad currently walking?
 	public bool isTargeting = false;							// Is this squad targeting anything?
+    public bool isAttacking = false;
 	public bool inCover = false;								// Is this squad in cover?
 	public bool isDead = false;									// Is this squad already dead?
 	public Vector3 walkTarget;									// Place the squad is trying to walk toward
@@ -66,6 +67,7 @@ public abstract class Unit : PT_MonoBehaviour {
 	[Header("Unit: Animation and positioning Info")]							// Just animation stuff
 	protected Animator anim;
     private Quaternion toRotate; //allows for non instant rotations
+    private float updateTarget = 00f;
 
 	public bool selected
 	{
@@ -121,9 +123,10 @@ public abstract class Unit : PT_MonoBehaviour {
 		//use atan2 to get the rotation around z that ponts the x axis of mage:charactertrans towards poi
 		float rZ = Mathf.Rad2Deg * Mathf.Atan2(delta.y, delta.x);
         //set the rotation of charactwertrans (doesnt rotate just yet)
-        //characterTrans.rotation = Quaternion.Slerp(transform.rotation, Quaternion.identity, Time.deltaTime / 1);
-        toRotate = Quaternion.Euler(0, 0, rZ);
-        //characterTrans.rotation = Quaternion.Euler(0, 0, rZ);
+        //characterTrans.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, rZ), Time.time / 1);
+        //toRotate = Quaternion.Euler(0, 0, rZ);
+
+        characterTrans.rotation = Quaternion.Euler(0, 0, rZ);
 		/*foreach (Transform t in transforms)
 		{
 			t.rotation = Quaternion.Euler(-rZ, 90, -90);
@@ -132,13 +135,15 @@ public abstract class Unit : PT_MonoBehaviour {
 
 	protected void FixedUpdate()
 	{//happens every physics step, 50 times per second
-        characterTrans.rotation = Quaternion.Lerp(transform.rotation, toRotate, Time.time );
+        //characterTrans.rotation = Quaternion.Slerp(transform.rotation, toRotate, Time.time*0.1f );
         //characterTrans.rotation = Quaternion.Slerp(transform.rotation, toRotate, Time.deltaTime);
 		//keep muzzle flash with unit
 		//if (muzzleFlashFront != null) {
 		//	muzzleFlashFront.transform.position = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, this.gameObject.transform.position.z - 1f);
 		//}
-
+        if (targetSelected == null) {
+            isTargeting = false;
+        }
 		if (walking)
 		{
 			//Mathf.Abs((walkTarget.x - pos.x) + (walkTarget.y - pos.y))
@@ -163,9 +168,11 @@ public abstract class Unit : PT_MonoBehaviour {
 			GetComponent<Rigidbody>().velocity = Vector3.zero;
 		}
 
-		if (!isTargeting || !targetInRange(targetSelected)) // If the squad is not targeting anything, or the target is no longer in range, try to find a new target
+		if (!isTargeting || !targetInRange(targetSelected) && Time.time >= updateTarget) // If the squad is not targeting anything, or the target is no longer in range, try to find a new target
 		{
+            isAttacking = false;
 			findTargetInRange();
+            updateTarget += 1f;
 		}
 
         findCover(); // Always find all cover in range
@@ -196,13 +203,26 @@ public abstract class Unit : PT_MonoBehaviour {
     //_________________________________________________Targeting and attack/damage methods__________________________________________________\\
 
     public void attack() {
-		if (isTargeting)
+        if (isTargeting)
 		{
-			if (isBoss) { // If this unit is a boss, it may be targeting even if not in shooting range. If so, don't shoot.
+            Vector3 xTarget = targetSelected.GetComponent<Unit>().characterTrans.position;
+            float dist = Vector3.Distance(this.characterTrans.position, xTarget);
+            if (isBoss) { // If this unit is a boss, it may be targeting even if not in shooting range. If so, don't shoot.
 				if (Vector3.Distance (targetSelected.transform.position, transform.position) > bossShootRadius)
 					return;
 			}
-			targetSelected.GetComponent<Unit>().takeDamage(this.updateDamage, this.gameObject);
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, xTarget - transform.position, dist, LayerMask.GetMask("Default")))
+            {
+                print("bad target");
+                targetSelected = null;
+                isTargeting = false;
+                //Debug.DrawRay(transform.position, xTarget - transform.position, Color.red, 100000, true);
+                //halo.GetComponent<SelectionHalo>().mat.color = Color.green;
+                return;
+            }
+            isAttacking = true;
+            targetSelected.GetComponent<Unit>().takeDamage(this.updateDamage, this.gameObject);
 			attackAnimation(targetSelected);
 			targetSelected.GetComponent<Unit>().takeDamageAnimation();
             
@@ -320,14 +340,17 @@ public abstract class Unit : PT_MonoBehaviour {
 		while (i < hitColliders.Length) // Check every collider within a certain radius, if it is an enemy then target it
 		{
 			if (hitColliders [i].gameObject != this.gameObject && hitColliders [i].tag == enemyTag) {
-				RaycastHit hit;
-				/*if (!(Physics.Raycast (localPos, hitColliders [i].gameObject.transform.position - localPos, out hit, attackRadius - 0.1f) && hit.collider.gameObject != hitColliders [i].gameObject)) {
-					if (toAttack == null || Vector3.Distance (toAttack.transform.position, localPos) > Vector3.Distance (hitColliders [i].transform.position, localPos)) {
-                        print("DOING SOMETHING");
-						toAttack = hitColliders [i].gameObject;
-					}
-				}*/
-				toAttack = hitColliders[i].gameObject;
+                /*Vector3 xTarget = hitColliders[i].gameObject.GetComponent<Unit>().characterTrans.position;
+                float dist = Vector3.Distance(characterTrans.position, xTarget);
+                //RaycastHit hit;
+                if (Physics.Raycast(transform.position, xTarget - transform.position, dist, LayerMask.GetMask("Default")))
+                {
+                  //  print("bad target");
+                    //Debug.DrawRay(transform.position, xTarget - transform.position, Color.red, 100000, true);
+                    //halo.GetComponent<SelectionHalo>().mat.color = Color.green;
+                    continue;
+                }*/
+                toAttack = hitColliders[i].gameObject;
 			}
 			i++;
 		}
