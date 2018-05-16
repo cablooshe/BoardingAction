@@ -35,6 +35,8 @@ public class PUnit : Unit {
     public bool enraged = false;
     public float enrageTime = 10f;//Amount of time a unit has the buff from enrage
     public float enrageTimer = 0f;
+    public int numHealsLeft = 3;
+    public float percentHeal = 0.3f;
 
 
 
@@ -249,6 +251,7 @@ public class PUnit : Unit {
                 case Ability.c4:
                     break;
                 case Ability.heal:
+                    heal();
                     break;
             }
         }
@@ -276,6 +279,7 @@ public class PUnit : Unit {
                 case Ability.c4:
                     break;
                 case Ability.heal:
+                    heal();
                     break;
             }
 
@@ -378,6 +382,21 @@ public class PUnit : Unit {
         prepGrenade = false;
         walking = false;
         halo.GetComponent<SelectionHalo>().mat.color = Color.green;
+    }
+
+    public void heal() {
+        if (numHealsLeft <= 0) {
+            print("you've used up all your heals!");
+        } else {
+            numHealsLeft--;
+            float newHealth = (this.updateMaxHealth * percentHeal) + this.currentHealth;
+            if (newHealth > this.updateMaxHealth) {
+                this.currentHealth = this.updateMaxHealth;
+            } else {
+                this.currentHealth = newHealth;
+            }
+            
+        }
     }
 
 
