@@ -14,6 +14,7 @@ public class PUnit : Unit {
     public GameObject tapIndicatorPrefab;
     public GameObject explosion;
     public GameObject deployableCover;
+    public GameObject c4prefab;
   
 	[Header("PUnit: Abilities")]
 	public Ability ability1 = Ability.grenade;
@@ -30,11 +31,15 @@ public class PUnit : Unit {
     public float grenadeRange = 15f;
     public float enrageModifier = 1.5f; 
     public float enrageCoolDown = 20f; //amount of time to be able to enrage again
+    public float c4CoolDown = 20f;
     public bool readyAbility1 = true;
     public bool readyAbility2 = true;
     public bool enraged = false;
     public float enrageTime = 10f;//Amount of time a unit has the buff from enrage
     public float enrageTimer = 0f;
+    public GameObject c4instance;
+    public int numHealsLeft = 3;
+    public float percentHeal = 0.3f;
 
 
 
@@ -212,13 +217,13 @@ public class PUnit : Unit {
         }
 
 
-        if (Input.GetKey(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             useAbility1();
           
         }
 
-        if (Input.GetKey(KeyCode.Alpha2))
+        if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             useAbility2();
         }
@@ -247,8 +252,17 @@ public class PUnit : Unit {
                     anim.SetTrigger("DeployingCover");
                     break;
                 case Ability.c4:
+                    if (c4instance == null)
+                    {
+                        placeC4();
+                    }
+                    else
+                    {
+                        blowC4(2);
+                    }
                     break;
                 case Ability.heal:
+                    heal();
                     break;
             }
         }
@@ -274,8 +288,17 @@ public class PUnit : Unit {
                     anim.SetTrigger("DeployingCover");
                     break;
                 case Ability.c4:
+                    if (c4instance == null)
+                    {
+                        placeC4();
+                    }
+                    else
+                    {
+                        blowC4(2);
+                    }
                     break;
                 case Ability.heal:
+                    heal();
                     break;
             }
 
@@ -285,6 +308,35 @@ public class PUnit : Unit {
             print("ability 2 not ready");
         }
 
+    }
+
+    public void placeC4()
+    {
+        print("placec4");
+        c4instance = Instantiate(c4prefab) as GameObject;
+        //c4instance.transform.position = this.transform.position;
+        Vector3 c4Rot = characterTrans.rotation.eulerAngles;
+        Vector3 c4Pos = transform.position;
+        c4instance.transform.rotation = Quaternion.Euler(c4Rot.x, c4Rot.y, c4Rot.z);
+        c4instance.transform.position = c4Pos;
+    }
+
+    public void blowC4(int abilityID)
+    {
+        GameObject exp;
+        exp = Instantiate(explosion) as GameObject;
+        exp.transform.position = c4instance.transform.position;
+        Destroy(c4instance);
+        c4instance = null;
+
+        if (abilityID == 1)
+        {
+            ability1timestamp = Time.time + c4CoolDown;
+        }
+        else
+        {
+            ability2timestamp = Time.time + c4CoolDown;
+        }
     }
 
     public void enrage(int abilityID)
@@ -308,6 +360,8 @@ public class PUnit : Unit {
         enrageTimer = Time.time + enrageTime;
         enraged = true;
     }
+
+
 
     public void unenrage()
     {
@@ -378,6 +432,23 @@ public class PUnit : Unit {
         prepGrenade = false;
         walking = false;
         halo.GetComponent<SelectionHalo>().mat.color = Color.green;
+    }
+
+    public void heal() {
+        if (this.currentHealth == this.updateMaxHealth) {
+            print("you're already full health!");
+        } else if (numHealsLeft <= 0) {
+            print("you've used up all your heals!");
+        } else {
+            numHealsLeft--;
+            float newHealth = (this.updateMaxHealth * percentHeal) + this.currentHealth;
+            if (newHealth > this.updateMaxHealth) {
+                this.currentHealth = this.updateMaxHealth;
+            } else {
+                this.currentHealth = newHealth;
+            }
+            
+        }
     }
 
 

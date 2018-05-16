@@ -2694,7 +2694,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: BOMBASTIC
+  m_Text: Demolition
 --- !u!222 &298630477
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2985,7 +2985,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: SNEAKY
+  m_Text: Stealth
 --- !u!222 &347832729
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4817,7 +4817,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: NERDY
+  m_Text: Balanced
 --- !u!222 &843828695
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7109,7 +7109,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: TANKY
+  m_Text: Defensive
 --- !u!222 &1404369059
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9439,7 +9439,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: ASSAULT-Y
+  m_Text: Assault
 --- !u!222 &1960164579
 CanvasRenderer:
   m_ObjectHideFlags: 0
