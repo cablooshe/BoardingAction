@@ -284,6 +284,11 @@ public class PUnit : Unit {
 
     }
 
+    protected override void FixedUpdate() {
+        base.FixedUpdate();
+
+    }
+
     public void useAbility1()
     {
         if (cooledDown(ability1timestamp))
@@ -486,7 +491,6 @@ public class PUnit : Unit {
     void unreadyGrenade()
     {
         prepGrenade = false;
-        walking = false;
         halo.GetComponent<SelectionHalo>().mat.color = Color.green;
     
     }
@@ -612,6 +616,7 @@ public class PUnit : Unit {
         print("Colliding");
         GameObject go = c.gameObject;
         if ((go.tag == "PUnit" && go.GetComponent<PUnit>().walking == false) || go.tag == "Structure") {
+            print("OnCollisionEnter");
             StopWalking();
         }
 		if (go.tag == "Door") {

@@ -233,7 +233,7 @@ public class PlayerSelect : MonoBehaviour {
             usingUI = true;
             return;
         }
-            if (unitsSelected.Count != 0)
+        if (unitsSelected.Count != 0)
         {
             foreach (GameObject u in unitsSelected)
             {

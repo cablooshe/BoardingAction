@@ -22,7 +22,7 @@ public class HighlightInfo : MonoBehaviour {
     void Update() {
         List<GameObject> selected = this.gameObject.GetComponent<PlayerSelect>().unitsSelected;
         ColorBlock cb = button1.colors;
-        cb.normalColor = Color.gray;
+        cb.normalColor = Color.white;
         button1.colors = cb;
         button2.colors = cb;
         if (selected != null && selected.Count > 0 && selected[0] != null) {
