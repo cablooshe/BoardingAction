@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq; //Enables LINQ queries
+using UnityEngine.SceneManagement;
 
 public abstract class Unit : PT_MonoBehaviour {
     static public bool DEBUG = false;
@@ -214,7 +215,7 @@ public abstract class Unit : PT_MonoBehaviour {
             RaycastHit hit;
             if (Physics.Raycast(transform.position, xTarget - transform.position, dist, LayerMask.GetMask("Default")))
             {
-                print("bad target");
+                //print("bad target");
                 targetSelected = null;
                 isTargeting = false;
                 //Debug.DrawRay(transform.position, xTarget - transform.position, Color.red, 100000, true);
@@ -323,6 +324,13 @@ public abstract class Unit : PT_MonoBehaviour {
 	{
 		if (isDead) // Prevent this from running multiple times
 			return;
+        if (this.tag == "PUnit") {
+            HighlightInfo.SquadCount--;
+            print(HighlightInfo.SquadCount);
+            if (HighlightInfo.SquadCount == 0) {
+                SceneManager.LoadScene("LoseScreen");
+            }
+        }
 		Instantiate(corpse, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z - 1), gameObject.transform.rotation);
 		isDead = true;
 		if (isObjective) // If killing this squad was an objective, score the objective

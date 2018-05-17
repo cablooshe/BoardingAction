@@ -86,6 +86,7 @@ public class LevelSetup : MonoBehaviour {
             Squad test = squads[i];
             if (squads[i].leader.data.leaderName.Length ==0)
                 continue;
+            HighlightInfo.SquadCount++;
             SquadLeader leader = test.leader;
             string name = leader.data.leaderName;
 			print (name + " " + test.soldiers.soldierClass);

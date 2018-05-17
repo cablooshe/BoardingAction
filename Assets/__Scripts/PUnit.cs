@@ -619,10 +619,10 @@ public class PUnit : Unit {
     }*/
 
     void OnCollisionEnter (Collision c) {
-        print("Colliding");
+        //print("Colliding");
         GameObject go = c.gameObject;
         if ((go.tag == "PUnit" && go.GetComponent<PUnit>().walking == false) || go.tag == "Structure") {
-            print("OnCollisionEnter");
+            //print("OnCollisionEnter");
             StopWalking();
         }
 		if (go.tag == "Door") {

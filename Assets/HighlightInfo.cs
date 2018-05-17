@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class HighlightInfo : MonoBehaviour {
+
+    public static int SquadCount  = 0;
 
     public Text squadName;
     public Text HP;
@@ -14,12 +17,18 @@ public class HighlightInfo : MonoBehaviour {
 	public Button button2;
 
     // Use this for initialization
-    void Start() {
-
+    void Awake() {
+        //SquadCount = PlayerInfo.Squads.Count;
+       // print(SquadCount);
     }
 
     // Update is called once per frame
     void Update() {
+        if (SquadCount == 0) {
+            SceneManager.LoadScene("LoseScreen");
+            return;
+        }
+
         List<GameObject> selected = this.gameObject.GetComponent<PlayerSelect>().unitsSelected;
         ColorBlock cb = button1.colors;
         cb.normalColor = Color.white;
