@@ -206,8 +206,8 @@ public abstract class Unit : PT_MonoBehaviour {
     public void attack() {
         if (isTargeting)
 		{
-            Vector3 xTarget = targetSelected.GetComponent<Unit>().characterTrans.position;
-            float dist = Vector3.Distance(this.characterTrans.position, xTarget);
+            Vector3 xTarget = targetSelected.transform.position;
+            float dist = Vector3.Distance(this.transform.position, xTarget);
             if (isBoss) { // If this unit is a boss, it may be targeting even if not in shooting range. If so, don't shoot.
 				if (Vector3.Distance (targetSelected.transform.position, transform.position) > bossShootRadius)
 					return;
