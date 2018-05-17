@@ -19485,6 +19485,7 @@ GameObject:
   - component: {fileID: 1918359425}
   - component: {fileID: 1918359424}
   - component: {fileID: 1918359423}
+  - component: {fileID: 1918359426}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -19633,6 +19634,23 @@ MonoBehaviour:
   squad2Panel: {fileID: 0}
   squad3Panel: {fileID: 0}
   squad4Panel: {fileID: 0}
+--- !u!114 &1918359426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1918359418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4943dde1f860548479862942036163b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  squadName: {fileID: 234378793}
+  HP: {fileID: 1182777020}
+  ability1: {fileID: 1815499597}
+  ability2: {fileID: 1627669695}
+  button1: {fileID: 1414744071}
+  button2: {fileID: 2127408535}
 --- !u!1001 &1921197873
 Prefab:
   m_ObjectHideFlags: 0
