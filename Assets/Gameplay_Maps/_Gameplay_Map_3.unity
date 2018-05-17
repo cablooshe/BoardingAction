@@ -7885,17 +7885,17 @@ Prefab:
     - target: {fileID: 114968838523588394, guid: 179170abab854bf42b06e27d8b2278d8,
         type: 2}
       propertyPath: maxHealth
-      value: 200
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 114968838523588394, guid: 179170abab854bf42b06e27d8b2278d8,
         type: 2}
       propertyPath: currentHealth
-      value: 60
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 114968838523588394, guid: 179170abab854bf42b06e27d8b2278d8,
         type: 2}
       propertyPath: updateMaxHealth
-      value: 60
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 114968838523588394, guid: 179170abab854bf42b06e27d8b2278d8,
         type: 2}
@@ -8787,6 +8787,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4943dde1f860548479862942036163b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SquadCount: 0
   squadName: {fileID: 10897888}
   HP: {fileID: 1890572392}
   ability1: {fileID: 1996661663}
@@ -10356,7 +10357,7 @@ Prefab:
     - target: {fileID: 114968838523588394, guid: 179170abab854bf42b06e27d8b2278d8,
         type: 2}
       propertyPath: maxHealth
-      value: 50
+      value: 75
       objectReference: {fileID: 0}
     - target: {fileID: 114968838523588394, guid: 179170abab854bf42b06e27d8b2278d8,
         type: 2}
@@ -10366,17 +10367,17 @@ Prefab:
     - target: {fileID: 114968838523588394, guid: 179170abab854bf42b06e27d8b2278d8,
         type: 2}
       propertyPath: currentHealth
-      value: 30
+      value: 75
       objectReference: {fileID: 0}
     - target: {fileID: 114968838523588394, guid: 179170abab854bf42b06e27d8b2278d8,
         type: 2}
       propertyPath: updateMaxHealth
-      value: 30
+      value: 75
       objectReference: {fileID: 0}
     - target: {fileID: 114968838523588394, guid: 179170abab854bf42b06e27d8b2278d8,
         type: 2}
       propertyPath: attackRadius
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 114968838523588394, guid: 179170abab854bf42b06e27d8b2278d8,
         type: 2}
