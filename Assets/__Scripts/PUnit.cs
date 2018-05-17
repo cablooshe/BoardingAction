@@ -15,6 +15,7 @@ public class PUnit : Unit {
     public GameObject explosion;
     public GameObject deployableCover;
     public GameObject c4prefab;
+
   
 	[Header("PUnit: Abilities")]
 	public Ability ability1 = Ability.grenade;
@@ -38,6 +39,7 @@ public class PUnit : Unit {
     public float enrageTime = 10f;//Amount of time a unit has the buff from enrage
     public float enrageTimer = 0f;
     public GameObject c4instance;
+    public GameObject rangeCircle; //used to visualize the grenade range
     public int numHealsLeft = 3;
     public float percentHeal = 0.3f;
     public Color lastColor;
@@ -67,7 +69,16 @@ public class PUnit : Unit {
         halo.transform.position = new Vector3(halo.transform.position.x-.23f, halo.transform.position.y+.05f, halo.transform.position.z);
         halo.GetComponent<Renderer>().enabled = false;
         halo.transform.position = new Vector3(this.pos.x, this.pos.y, this.pos.z - 0.15f);
+
+        rangeCircle = Instantiate(haloPrefab) as GameObject;
+        rangeCircle.GetComponent<Renderer>().enabled = false;
+        rangeCircle.transform.parent = this.transform;
+        rangeCircle.transform.position = new Vector3(halo.transform.position.x - .23f, halo.transform.position.y + .05f, halo.transform.position.z);
         
+        rangeCircle.transform.position = new Vector3(this.pos.x, this.pos.y, this.pos.z - 0.15f);
+        rangeCircle.transform.localScale += new Vector3(2*grenadeRange, 2*grenadeRange, 0);
+        
+
     }
     public new void StopWalking() {
         GetComponent<Rigidbody>().velocity = Vector3.zero;
@@ -145,6 +156,23 @@ public class PUnit : Unit {
         Debug.Log("CONSOLE HACKED");
     }
 
+    //______________________________________SELECTION RELEVANT METHODS___________________________________________________\\
+
+    public void toggleHalo()
+    {
+        if (selected)
+        {
+            
+            halo.GetComponent<Renderer>().enabled = true;
+
+        }
+        else
+        {
+            rangeCircle.GetComponent<Renderer>().enabled = false;
+            halo.GetComponent<Renderer>().enabled = false;
+            unreadyGrenade();
+        }
+    }
 
     void updateAnimation() {
 
@@ -258,7 +286,6 @@ public class PUnit : Unit {
 
     public void useAbility1()
     {
-
         if (cooledDown(ability1timestamp))
         {
             switch (ability1)
@@ -409,6 +436,9 @@ public class PUnit : Unit {
         prepGrenade = true;
         walking = false;
         halo.GetComponent<SelectionHalo>().mat.color = Color.yellow;
+        rangeCircle.GetComponent<Renderer>().material.color = Color.yellow;
+        rangeCircle.GetComponent<SelectionHalo>().mat.mainTextureOffset = new Vector2(.2f, 0);
+        rangeCircle.GetComponent<Renderer>().enabled = true;
     }
 
     void throwGrenade(Vector3 xTarget)
@@ -421,6 +451,7 @@ public class PUnit : Unit {
             Debug.DrawRay(transform.position, xTarget - transform.position, Color.red, 100000, true);
             prepGrenade = false;
             halo.GetComponent<SelectionHalo>().mat.color = Color.green;
+            rangeCircle.GetComponent<Renderer>().enabled = false;
             return;
         }
 
@@ -439,13 +470,16 @@ public class PUnit : Unit {
             {
                 ability2timestamp = Time.time + grenadeCoolDown;
             }
-            
+            rangeCircle.GetComponent<Renderer>().enabled = false;
+
         }
         else
         {
             print("too far");
             prepGrenade = false;
             halo.GetComponent<SelectionHalo>().mat.color = Color.green;
+            rangeCircle.GetComponent<Renderer>().enabled = false;
+
         }
     }
 
@@ -454,6 +488,7 @@ public class PUnit : Unit {
         prepGrenade = false;
         walking = false;
         halo.GetComponent<SelectionHalo>().mat.color = Color.green;
+    
     }
 
     public void heal() {

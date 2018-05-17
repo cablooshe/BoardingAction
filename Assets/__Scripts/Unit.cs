@@ -140,6 +140,9 @@ public abstract class Unit : PT_MonoBehaviour {
         if (targetSelected == null) {
             isTargeting = false;
         }
+        if (inCover && !anim.GetBool("Walking")) {
+            Face(coverList[0].gameObject.transform.position);
+        }
 		if (walking)
 		{
 			//Mathf.Abs((walkTarget.x - pos.x) + (walkTarget.y - pos.y))
@@ -402,19 +405,7 @@ public abstract class Unit : PT_MonoBehaviour {
 		return false;
 	}
 
-	//______________________________________SELECTION RELEVANT METHODS___________________________________________________\\
-
-	public void toggleHalo()
-	{
-		if (selected)
-		{
-			halo.GetComponent<Renderer>().enabled = true;
-		}
-		else
-		{
-			halo.GetComponent<Renderer>().enabled = false;
-		}
-	}
+	
 
 	//______________________________________MOUSECLICK METHODS___________________________________________________\\
 
