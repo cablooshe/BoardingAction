@@ -28,7 +28,7 @@ public class SquadLeader {
       //  data.icon = icon;
         switch (data.squadClass) {
         case "Scout":
-			data.speed = 1.5f + (data.level / 2);
+			data.speed = 1.8f + (data.level / 2);
             data.health = 85 + (10 * data.level);
             //TODO: Equip Weapon
             data.damage = 15;  //TODO: how does weapon affect this?
@@ -40,36 +40,36 @@ public class SquadLeader {
             data.damage = 45;  //TODO: how does weapon affect this?
             break;
         case "Balanced":
-			data.speed = 1.25f + (data.level / 4);
+			data.speed = 1.4f + (data.level / 4);
             data.health = 75 + (10 * data.level);
             //TODO: Equip Weapon
             data.damage = 15;  //TODO: how does weapon affect this?
             break;
 		case "Sniper":
-			data.speed = 1.25f + (data.level / 4);
+			data.speed = 1.4f + (data.level / 4);
             data.health = 80 + (10 * data.level);
             //TODO: Equip Weapon
             data.damage = 30;  //TODO: how does weapon affect this?
             break;
 		case "Recruit":
-			data.speed = 1.25f + (data.level / 4);
+			data.speed = 1.3f + (data.level / 4);
 			data.health = 60 + (10 * data.level);
 			data.damage = 14;
 			break;
 		case "Pacifist":
 			data.speed = 1f + (data.level / 10);
 			data.health = 500 + (100 * data.level);
-			data.damage = 0;
+			data.damage = 3;
 			break;
 		case "Gamer":
 			data.speed = 1.75f + (data.level / 2);
 			data.health = 50 + (5 * data.level);
-			data.damage = 5;
+			data.damage = 10;
 			break;
 		case "Public Speaker":
-			data.speed = 0f;
+			data.speed = 1f;
 			data.health = 50 + (5 * data.level);
-			data.damage = -1;
+			data.damage = Random.Range(1,30);
 			break;
         default:
             break;

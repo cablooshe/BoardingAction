@@ -326,7 +326,6 @@ public abstract class Unit : PT_MonoBehaviour {
 			return;
         if (this.tag == "PUnit") {
             HighlightInfo.SquadCount--;
-            print(HighlightInfo.SquadCount);
             if (HighlightInfo.SquadCount == 0) {
                 SceneManager.LoadScene("LoseScreen");
             }
