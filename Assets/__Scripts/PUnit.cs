@@ -433,6 +433,7 @@ public class PUnit : Unit {
 
     void readyGrenade()
     {
+        anim.SetBool("Throwing", true);
         prepGrenade = true;
         walking = false;
         halo.GetComponent<SelectionHalo>().mat.color = Color.yellow;
@@ -443,6 +444,7 @@ public class PUnit : Unit {
 
     void throwGrenade(Vector3 xTarget)
     {
+        anim.SetBool("Throwing", false);
         float dist = Vector3.Distance(transform.position, xTarget);
         RaycastHit hit;
         if (Physics.Raycast(transform.position, xTarget - transform.position, dist, LayerMask.GetMask("Default")))
@@ -485,6 +487,7 @@ public class PUnit : Unit {
 
     void unreadyGrenade()
     {
+        anim.SetBool("Throwing", false);
         prepGrenade = false;
         walking = false;
         halo.GetComponent<SelectionHalo>().mat.color = Color.green;
@@ -580,6 +583,9 @@ public class PUnit : Unit {
         if (!prepGrenade)
         {
             WalkTo(lastMouseInfo.loc);
+            GameObject go = Instantiate(tapIndicatorPrefab) as GameObject;
+            go.transform.position = lastMouseInfo.loc;
+
         }
         else
         {

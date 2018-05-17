@@ -140,7 +140,7 @@ public abstract class Unit : PT_MonoBehaviour {
         if (targetSelected == null) {
             isTargeting = false;
         }
-        if (inCover && !anim.GetBool("Walking")) {
+        if (inCover && !walking) {
             Face(coverList[0].gameObject.transform.position);
         }
 		if (walking)
