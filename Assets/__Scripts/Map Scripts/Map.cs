@@ -24,10 +24,12 @@ public class Map : MonoBehaviour {
         countComplete++;
         numPrimeLeft.text = System.Convert.ToString(System.Math.Abs(System.Convert.ToInt16(numPrimeLeft.text) - 1));
         Debug.Log("countComplete: " + countComplete);
-        if (objectivePhase < numObjectives.Length)
-        if (countComplete == numObjectives[objectivePhase])
-            Debug.Log("FinishedObjectives()");
-            FinishedObjectives();
+        if (objectivePhase < numObjectives.Length){
+            if (countComplete == numObjectives[objectivePhase]){
+                Debug.Log("FinishedObjectives()");
+                FinishedObjectives();
+            }
+        }
     }
 
     private void FinishedObjectives()
