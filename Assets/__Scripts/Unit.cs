@@ -133,7 +133,7 @@ public abstract class Unit : PT_MonoBehaviour {
 		}*/
 	}
 
-	protected void FixedUpdate()
+	protected virtual void FixedUpdate()
 	{//happens every physics step, 50 times per second
         //characterTrans.rotation = Quaternion.Slerp(transform.rotation, toRotate, Time.time*0.1f );
         //characterTrans.rotation = Quaternion.Slerp(transform.rotation, toRotate, Time.deltaTime);
@@ -148,11 +148,11 @@ public abstract class Unit : PT_MonoBehaviour {
 			//Mathf.Abs((walkTarget.x - pos.x) + (walkTarget.y - pos.y))
 			if (Mathf.Abs((walkTarget.x - pos.x) + (walkTarget.y - pos.y)) < speed * Time.fixedDeltaTime)
 			{
-				// print("CLOSE");
-				//if mage is very close to walktarget, just stop
-				//pos = walkTarget;
-				//Vector3 stopPos = new Vector3(walkTarget.x, walkTarget.y, pos.z);
-				//pos = stopPos;
+                // print("CLOSE");
+                //if mage is very close to walktarget, just stop
+                //pos = walkTarget;
+                //Vector3 stopPos = new Vector3(walkTarget.x, walkTarget.y, pos.z);
+                //pos = stopPos;
 				StopWalking();
 			}
 			else
@@ -192,6 +192,7 @@ public abstract class Unit : PT_MonoBehaviour {
         //if the unit isnt moving, stop walking
         if (this.gameObject.GetComponent<Rigidbody>().velocity.magnitude < 0.09f)
         {
+            //print("Low velocity");
             this.StopWalking();
         }
 
@@ -405,19 +406,7 @@ public abstract class Unit : PT_MonoBehaviour {
 		return false;
 	}
 
-	//______________________________________SELECTION RELEVANT METHODS___________________________________________________\\
-
-	public void toggleHalo()
-	{
-		if (selected)
-		{
-			halo.GetComponent<Renderer>().enabled = true;
-		}
-		else
-		{
-			halo.GetComponent<Renderer>().enabled = false;
-		}
-	}
+	
 
 	//______________________________________MOUSECLICK METHODS___________________________________________________\\
 

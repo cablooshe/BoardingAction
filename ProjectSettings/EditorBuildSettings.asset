@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PreMissionMenu 2.unity
     guid: e4e04f416f34e324a8828a04f300a348
+  - enabled: 1
+    path: Assets/Gameplay_Maps/_Gameplay_Map_4.unity
+    guid: 7dc54a406a94f3e4bbb8396454c76998
   m_configObjects: {}

@@ -123,104 +123,99 @@ public class PlayerSelect : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 
-        bool b0Down = Input.GetMouseButtonDown(0);
-        bool b1Down = Input.GetMouseButtonDown(1);
-        bool b1Up = Input.GetMouseButtonUp(1);
-        bool b0Up = Input.GetMouseButtonUp(0);
+        float x = Input.mousePosition.x;
+        float y = Input.mousePosition.y;
 
-        //handle all input here except for inventory button
-        /*
-         * there are only a few possible actions:
-         * 1. tap on the ground to move to that point
-         * 2. drag on the ground with no spell selected to move the mage
-         * 3. drag on the ground with spell to case along the ground
-         * 4. tap on an enemy to attack
-         */
-        //an expample of using < to return a bool value
+        if (!(x > 780 && y < 80)) {
+
+            bool b0Down = Input.GetMouseButtonDown(0);
+            bool b1Down = Input.GetMouseButtonDown(1);
+            bool b1Up = Input.GetMouseButtonUp(1);
+            bool b0Up = Input.GetMouseButtonUp(0);
+
+            //handle all input here except for inventory button
+            /*
+             * there are only a few possible actions:
+             * 1. tap on the ground to move to that point
+             * 2. drag on the ground with no spell selected to move the mage
+             * 3. drag on the ground with spell to case along the ground
+             * 4. tap on an enemy to attack
+             */
+            //an expample of using < to return a bool value
 
 
-        //this is handled as an if statement instead of switch because a tap can sometimes happen within a single frame
-        if (mPhase == MPhase.idle)
-        {
-            //mouseInfos.Clear(); //clear the mouseInfos
-            if(b0Down) {
-                mouseInfos.Clear();
-                AddMouseInfo(); //and add a first mouseinfo
+            //this is handled as an if statement instead of switch because a tap can sometimes happen within a single frame
+            if (mPhase == MPhase.idle) {
+                //mouseInfos.Clear(); //clear the mouseInfos
+                if (b0Down) {
+                    mouseInfos.Clear();
+                    AddMouseInfo(); //and add a first mouseinfo
 
-            //if the mouse was clicked on something, its aavalid mousedown
-                MouseDown();
+                    //if the mouse was clicked on something, its aavalid mousedown
+                    MouseDown();
+                    mPhase = MPhase.down;
+                }
+
+            }
+
+            if (mPhase == MPhase.down) {
+                AddMouseInfo();
+                if (b0Up) {
+                    MouseTap();
+                    mPhase = MPhase.idle;
+                } else {
+                    float dragDist = (lastMouseInfo.screenLoc - mouseInfos[0].screenLoc).magnitude;
+                    if (dragDist >= mDragDist) {
+                        mPhase = MPhase.drag;
+                    }
+
+                }
+            }
+
+            if (mPhase == MPhase.drag) {
+                AddMouseInfo();
+                if (b0Up) {
+                    MouseDragUp();
+                    mouseInfos.Clear();
+                    mPhase = MPhase.idle;
+                } else {
+                    MouseDrag(); //still dragging
+                }
+            }
+
+
+
+
+
+            if (Input.GetMouseButtonDown(0)) {
+
                 mPhase = MPhase.down;
-            }
-            
-        }
 
-        if (mPhase == MPhase.down)
-        {
-            AddMouseInfo();
-            if (b0Up)
-            {
-                MouseTap();
-                mPhase = MPhase.idle;
+                isSelecting = true;
+                mousePosition1 = Input.mousePosition;
             }
-            else
-            {
-                float dragDist = (lastMouseInfo.screenLoc - mouseInfos[0].screenLoc).magnitude;
-                if (dragDist >= mDragDist)
-                {
-                    mPhase = MPhase.drag;
+            // If we let go of the left mouse button, end selection
+            if (Input.GetMouseButtonUp(0)) {
+                if (usingUI) {
+                    usingUI = false;
+                    isSelecting = false;
+                    return;
                 }
-
-            }
-        }
-
-        if (mPhase == MPhase.drag)
-        {
-            AddMouseInfo();
-            if (b0Up)
-            {
-                MouseDragUp();
-                mouseInfos.Clear();
-                mPhase = MPhase.idle;
-            }
-            else
-            {
-                MouseDrag(); //still dragging
-            }
-        }
-
-
-
-
-
-        if (Input.GetMouseButtonDown(0))
-        {
-
-            mPhase = MPhase.down;
-
-            isSelecting = true;
-            mousePosition1 = Input.mousePosition;
-        }
-        // If we let go of the left mouse button, end selection
-        if (Input.GetMouseButtonUp(0)) {
-            if (usingUI) {
-                usingUI = false;
-                isSelecting = false;
-                return;
-            }
-            if(isSelecting) {
-                foreach(GameObject u in unitsSelected) {
-                    u.GetComponent<PUnit>().selected = false;
-                }
-                unitsSelected.Clear();
-                foreach (GameObject unit in GameObject.FindGameObjectsWithTag("PUnit")) {
-                    if (IsWithinSelectionBounds(unit)){
-                        unitsSelected.Add(unit);
-                        unit.GetComponent<PUnit>().selected = true;
+                if (isSelecting) {
+                    foreach (GameObject u in unitsSelected) {
+                        u.GetComponent<PUnit>().selected = false;
+                    }
+                    unitsSelected.Clear();
+                    foreach (GameObject unit in GameObject.FindGameObjectsWithTag("PUnit")) {
+                        if (IsWithinSelectionBounds(unit)) {
+                            unitsSelected.Add(unit);
+                            unit.GetComponent<PUnit>().selected = true;
+                        }
                     }
                 }
+                isSelecting = false;
             }
-            isSelecting = false;
-        }  
+        }
     }
 
     public void MouseUp() {
@@ -238,7 +233,7 @@ public class PlayerSelect : MonoBehaviour {
             usingUI = true;
             return;
         }
-            if (unitsSelected.Count != 0)
+        if (unitsSelected.Count != 0)
         {
             foreach (GameObject u in unitsSelected)
             {

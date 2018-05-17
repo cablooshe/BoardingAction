@@ -38,12 +38,12 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 11
-  m_GIWorkflowMode: 0
+  m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -89,7 +89,8 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaIndirect: 2
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ShowResolutionOverlay: 1
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000002, guid: 5129e9be0bfc7204d8e630893541ffb0,
+    type: 2}
   m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
@@ -4224,11 +4225,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58ac943bd857d3046a97b4ad04a19b33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numPrimeLeft: {fileID: 0}
   numObjectives: 0700000001000000
   spawnsPerPhase: 0100000000000000
   spawns:
   - {fileID: 1934349030166168, guid: abd9d1eae080e5d44b38094d7a7c1812, type: 2}
   isPrimary: 1
+  missionObjective: {fileID: 0}
   countComplete: 0
   objectivePhase: 0
   lastSpawn: 0
@@ -6481,7 +6484,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.29999, y: -15}
+  m_AnchoredPosition: {x: -0.2999878, y: -15}
   m_SizeDelta: {x: -781, y: -252.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &632795168
@@ -9632,7 +9635,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.00004068, y: 257.66}
+  m_AnchoredPosition: {x: -0.000030517578, y: 257.66}
   m_SizeDelta: {x: -82.755, y: -257.66}
   m_Pivot: {x: 1, y: 0}
 --- !u!1001 &900987480
@@ -9952,10 +9955,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58ac943bd857d3046a97b4ad04a19b33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numPrimeLeft: {fileID: 0}
   numObjectives: 0a000000
   spawnsPerPhase: 00000000
   spawns: []
   isPrimary: 0
+  missionObjective: {fileID: 0}
   countComplete: 0
   objectivePhase: 0
   lastSpawn: 0
@@ -20636,21 +20641,21 @@ MonoBehaviour:
   spawn4: {x: 28, y: 10, z: 0.65}
   squadName: {fileID: 0}
   HP: {fileID: 0}
-  squad1N: {fileID: 0}
-  squad2N: {fileID: 0}
-  squad3N: {fileID: 0}
-  squad4N: {fileID: 0}
-  squad1P: {fileID: 0}
-  squad2P: {fileID: 0}
-  squad3P: {fileID: 0}
-  squad4P: {fileID: 0}
-  squad1H: {fileID: 0}
-  squad2H: {fileID: 0}
-  squad3H: {fileID: 0}
-  squad4H: {fileID: 0}
-  squad2Panel: {fileID: 0}
-  squad3Panel: {fileID: 0}
-  squad4Panel: {fileID: 0}
+  squad1N: {fileID: 870369277}
+  squad2N: {fileID: 863601232}
+  squad3N: {fileID: 1972219170}
+  squad4N: {fileID: 1905836823}
+  squad1P: {fileID: 1269212085}
+  squad2P: {fileID: 1313910014}
+  squad3P: {fileID: 564144087}
+  squad4P: {fileID: 163602679}
+  squad1H: {fileID: 1011201198}
+  squad2H: {fileID: 1298542527}
+  squad3H: {fileID: 1126365285}
+  squad4H: {fileID: 1249041239}
+  squad2Panel: {fileID: 1325859425}
+  squad3Panel: {fileID: 1733070628}
+  squad4Panel: {fileID: 704213817}
 --- !u!1001 &1921197873
 Prefab:
   m_ObjectHideFlags: 0
@@ -22024,7 +22029,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.2, y: 0.87991}
+  m_AnchoredPosition: {x: -0.19999695, y: 0.87991333}
   m_SizeDelta: {x: -0.4, y: -0.24017}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2019688602
