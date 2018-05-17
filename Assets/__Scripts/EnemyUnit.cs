@@ -48,7 +48,7 @@ public class EnemyUnit : Unit {
 	
 	// Update is called once per frame
 	protected void Update () {
-		if (isTargeting) {
+		if (isTargeting && targetSelected != null) {
             if (unitBehavior == behavior.charge)
                 WalkTo(targetSelected.transform.position);
             else if (unitBehavior == behavior.passive) {
