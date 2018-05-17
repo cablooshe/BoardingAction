@@ -17,3 +17,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BetweenPlaceholder.unity
     guid: d611917fe21a4434f918b2cac319861b
+  - enabled: 1
+    path: Assets/Gameplay_Maps/LoseScreen.unity
+    guid: 152b8673317c4b24aadf7d24e04f6560

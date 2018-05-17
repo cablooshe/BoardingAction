@@ -30,7 +30,7 @@ public class CameraMovement : MonoBehaviour {
 
         if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D) || (x > Screen.width - edgeDist))
         {
-            if (!(x > 875 && y < 80) && !(transform.position.x > camBoundRight)) {
+            if (!(x > 1075 && y < 80) && !(transform.position.x > camBoundRight)) {
                 transform.Translate(new Vector3(cameraSpeed * Time.deltaTime, 0, 0));
             }
         }
