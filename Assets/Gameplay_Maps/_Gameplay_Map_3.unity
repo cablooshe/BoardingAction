@@ -6010,7 +6010,7 @@ Prefab:
     - target: {fileID: 114968838523588394, guid: 179170abab854bf42b06e27d8b2278d8,
         type: 2}
       propertyPath: attackRadius
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 114968838523588394, guid: 179170abab854bf42b06e27d8b2278d8,
         type: 2}
@@ -6816,7 +6816,7 @@ Prefab:
     - target: {fileID: 114968838523588394, guid: 179170abab854bf42b06e27d8b2278d8,
         type: 2}
       propertyPath: damage
-      value: 50
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 114968838523588394, guid: 179170abab854bf42b06e27d8b2278d8,
         type: 2}
@@ -6841,12 +6841,12 @@ Prefab:
     - target: {fileID: 114968838523588394, guid: 179170abab854bf42b06e27d8b2278d8,
         type: 2}
       propertyPath: attackRadius
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 114968838523588394, guid: 179170abab854bf42b06e27d8b2278d8,
         type: 2}
       propertyPath: speed
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 114968838523588394, guid: 179170abab854bf42b06e27d8b2278d8,
         type: 2}
@@ -7900,12 +7900,12 @@ Prefab:
     - target: {fileID: 114968838523588394, guid: 179170abab854bf42b06e27d8b2278d8,
         type: 2}
       propertyPath: damage
-      value: 50
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 114968838523588394, guid: 179170abab854bf42b06e27d8b2278d8,
         type: 2}
       propertyPath: attackRadius
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 114968838523588394, guid: 179170abab854bf42b06e27d8b2278d8,
         type: 2}
@@ -7926,6 +7926,11 @@ Prefab:
         type: 2}
       propertyPath: isObjective
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114968838523588394, guid: 179170abab854bf42b06e27d8b2278d8,
+        type: 2}
+      propertyPath: unitBehavior
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 179170abab854bf42b06e27d8b2278d8, type: 2}
@@ -13323,6 +13328,11 @@ Prefab:
     - target: {fileID: 114968838523588394, guid: 179170abab854bf42b06e27d8b2278d8,
         type: 2}
       propertyPath: isObjective
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114968838523588394, guid: 179170abab854bf42b06e27d8b2278d8,
+        type: 2}
+      propertyPath: unitBehavior
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
