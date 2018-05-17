@@ -58,8 +58,8 @@ public class HighlightInfo : MonoBehaviour {
 					cb.normalColor = Color.red;
 					button2.colors = cb;
 				}
-                button1.onClick.AddListener(leaderOne.useAbility1);
-                button2.onClick.AddListener(leaderOne.useAbility2);
+                //button1.onClick.AddListener(leaderOne.useAbility1);
+                //button2.onClick.AddListener(leaderOne.useAbility2);
             } else {
                 squadName.text = "No squads selected";
                 HP.text = "0";
@@ -67,5 +67,17 @@ public class HighlightInfo : MonoBehaviour {
                 ability2.text = "Ability 2";
             }
         }
+    }
+
+    public void DoAbility1() {
+        List<GameObject> selected = this.gameObject.GetComponent<PlayerSelect>().unitsSelected;
+        PUnit leaderOne = selected[0].GetComponent<PUnit>();
+        leaderOne.useAbility1();
+    }
+
+    public void DoAbility2() {
+        List<GameObject> selected = this.gameObject.GetComponent<PlayerSelect>().unitsSelected;
+        PUnit leaderOne = selected[0].GetComponent<PUnit>();
+        leaderOne.useAbility2();
     }
 }
